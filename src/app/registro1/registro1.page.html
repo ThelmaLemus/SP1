@@ -1,41 +1,45 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>registro1</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title slot="end">Multitask +</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+	<img class="icon" src="assets/icon/calendar.svg.png">
+
 	<!--Nombre-->
 	<ion-item>
-		<!-- <ion-label>Nombre completo</ion-label> -->
-		<ion-input placeholder="Nombre"></ion-input>
+		<ion-label position="floating">Nombre</ion-label> 
+		<ion-input name="nombre"></ion-input>
 	</ion-item>
 
 	<!--Usuario-->
 	<ion-item>
-		<!-- <ion-label>Usuario</ion-label> -->
-		<ion-input placeholder="Usuario"></ion-input>
+		<ion-label position="floating">Usuario</ion-label>
+		<ion-input name="usuario"></ion-input>
 	</ion-item>
 
 	<!--Correo-->
 	<ion-item>
-		<!-- <ion-label>Correo electrónico</ion-label> -->
-		<ion-input type="email" placeholder="Correo"></ion-input>
+		<ion-label position="floating">Correo electrónico</ion-label>
+		<ion-input type="email" [(ngModel)]="correo" name="correo"></ion-input>
 	</ion-item>
 
 	<!--Contraseña-->
 	<ion-item>
-		<!-- <ion-label>Contraseña</ion-label> -->
-		<ion-input type="password" placeholder="Contraseña"></ion-input>
+		<ion-label position="floating">Contraseña</ion-label>
+		<ion-input type="password" [(ngModel)]="contrasena" name="contraseña"></ion-input>
 	</ion-item>
 
 	<!--Confimar contraseña-->
 	<ion-item>
-		<!-- <ion-label>Confirmar contraseña</ion-label> -->
-		<ion-input type="password" placeholder="Confirmar contraseña"></ion-input>
+		<ion-label position="floating">Confirmar contraseña</ion-label>
+		<ion-input type="password"></ion-input>
 	</ion-item>
 
-	<ion-button href="/registro2">Continuar</ion-button>
+	<br>
 
+	<ion-button expand="block" (click)="onSubmitLogin()">Continuar</ion-button>
 
 </ion-content>
