@@ -1,5 +1,5 @@
 {
-  "name": "navegacion",
+  "name": "mul",
   "integrations": {},
-  "type": "angular"
+  "type": "ionic-angular"
 }
