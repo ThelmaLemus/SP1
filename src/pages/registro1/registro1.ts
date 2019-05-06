@@ -48,8 +48,7 @@ export class Registro1Page {
     if (this.user.id != undefined) 
     {
       // console.log("entro: " + this.user.id);
-      this.usersService.editUserF(this.user);
-      this.navCtrl.push(Registro2Page, { id: this.user.id, edited: 1 });
+      this.editUser();
     }else
     {
       // console.log("user " + this.user);
@@ -59,7 +58,8 @@ export class Registro1Page {
   }
 
 
-  private newUser() {
+  private newUser() 
+  {
     this.user.id = Date.now();
     if (this.user.nombre == null || this.user.username == null || this.user.correo == null || this.user.password == null || this.password2 == null) {
       alert("Por favor llene los campos");
@@ -75,6 +75,20 @@ export class Registro1Page {
       // console.log("Password: " + this.user.password);
       // console.log("Id: " + this.user.id);
       this.usersService.createUser(this.user);
+      this.navCtrl.push(Registro2Page, { id: this.user.id });
+    }
+  }
+
+  private editUser()
+  {
+    if (this.user.nombre == "" || this.user.username == "" || this.user.correo == "" || this.user.password == "" || this.password2 == "") {
+      alert("Por favor llene los campos");
+    }
+    else if (this.user.password != this.password2) {
+      alert("Las contraseñas no coinciden");
+    }
+    else {
+      this.usersService.editUserF(this.user);
       this.navCtrl.push(Registro2Page, { id: this.user.id });
     }
   }

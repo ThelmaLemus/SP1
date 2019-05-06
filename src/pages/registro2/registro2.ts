@@ -48,16 +48,16 @@ export class Registro2Page {
     */
    
     this.user.myDate = new Date().toISOString();
-    if(this.user.sexo.length == 0)
+    if(this.user.sexo == undefined)
     {
       alert("Por favor llene los campos");
     }
     else
     {
-      console.log("sexo: " + this.user.nombre);
-      console.log("mydate: " + this.user.myDate);
-      console.log("trabajas: " + this.user.trabaja);
-      console.log("estudias: " + this.user.estudia);
+      // console.log("sexo: " + this.user.nombre);
+      // console.log("mydate: " + this.user.myDate);
+      // console.log("trabajas: " + this.user.trabaja);
+      // console.log("estudias: " + this.user.estudia);
       this.usersService.createUserF(this.user);
       this.navCtrl.pop();
       this.navCtrl.pop();
