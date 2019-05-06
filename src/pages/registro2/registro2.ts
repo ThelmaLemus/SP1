@@ -48,7 +48,7 @@ export class Registro2Page {
     */
    
     this.user.myDate = new Date().toISOString();
-    if(this.user.sexo == undefined)
+    if(this.user.sexo == undefined || this.user.myDate == undefined)
     {
       alert("Por favor llene los campos");
     }
@@ -58,6 +58,7 @@ export class Registro2Page {
       // console.log("mydate: " + this.user.myDate);
       // console.log("trabajas: " + this.user.trabaja);
       // console.log("estudias: " + this.user.estudia);
+      
       this.usersService.createUserF(this.user);
       this.navCtrl.pop();
       this.navCtrl.pop();
