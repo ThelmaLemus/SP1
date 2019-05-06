@@ -54,11 +54,11 @@ export class Registro2Page {
     }
     else
     {
+      this.user.myDate = this.user.myDate.toISOString();
       // console.log("sexo: " + this.user.nombre);
       // console.log("mydate: " + this.user.myDate);
       // console.log("trabajas: " + this.user.trabaja);
       // console.log("estudias: " + this.user.estudia);
-      
       this.usersService.createUserF(this.user);
       this.navCtrl.pop();
       this.navCtrl.pop();
