@@ -11,7 +11,10 @@ import { Registro1Page } from '../registro1/registro1';
 export class HomePage {
   users = [];
   constructor(public navCtrl: NavController, public usersService: UsersService) {
-    this.users = usersService.getUsers();
+    usersService.getUsers().valueChanges()
+    .subscribe(users => {
+      this.users = users;
+    });
   }
 
   gotoWel(id)

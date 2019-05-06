@@ -18,14 +18,19 @@ import { UsersService } from '../../services/users.service';
 })
 export class Registro2Page {
   id = null;
-  user = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
+  edited = 0;
+  user:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
   
 //  formattedDate;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public usersService: UsersService) {
     this.id = navParams.get('id');
-    this.user = usersService.getUser(this.id);
-    console.log("Id: " + this.user.id);
+    usersService.getUser(this.id).valueChanges()
+    .subscribe(user=> {
+      this.user = user;
+    });
+    // console.log("Id: " + this.user.id);
+
   }
 
   ionViewDidLoad() {

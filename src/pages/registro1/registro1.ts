@@ -17,20 +17,24 @@ import { UsersService } from '../../services/users.service';
   templateUrl: 'registro1.html',
 })
 export class Registro1Page {
-  user = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
+  user:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
   password2 = '';
   
   id = null;
+  edited = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public usersService: UsersService) {
     this.id = navParams.get('id');
     // this.id =  1;
-    // console.log("Nombre: " + typeof this.id );
+    // console.log("Nombre: " + this.id );
     if (this.id != undefined) {
-      this.user = usersService.getUser(this.id);
+      usersService.getUser(this.id).valueChanges()
+      .subscribe(user=> {
+        this.user = user;
+      });
     }else
     {
       this.user.id = this.id;
-      console.log("dif:" + this.id);
+      // console.log("dif:" + this.id);
     }
 
   }
@@ -43,11 +47,12 @@ export class Registro1Page {
   {
     if (this.user.id != undefined) 
     {
-      this.usersService.editUser(this.user);
-      this.navCtrl.push(Registro2Page, { id: this.user.id });
+      // console.log("entro: " + this.user.id);
+      this.usersService.editUserF(this.user);
+      this.navCtrl.push(Registro2Page, { id: this.user.id, edited: 1 });
     }else
     {
-      console.log("user " + this.user)
+      // console.log("user " + this.user);
       this.newUser();
     }
     
@@ -64,11 +69,11 @@ export class Registro1Page {
     }
     else {
       
-      console.log("Nombre: " + this.user.nombre);
-      console.log("Username: " + this.user.username);
-      console.log("Correo: " + this.user.correo);
-      console.log("Password: " + this.user.password);
-      console.log("Id: " + this.user.id);
+      // console.log("Nombre: " + this.user.nombre);
+      // console.log("Username: " + this.user.username);
+      // console.log("Correo: " + this.user.correo);
+      // console.log("Password: " + this.user.password);
+      // console.log("Id: " + this.user.id);
       this.usersService.createUser(this.user);
       this.navCtrl.push(Registro2Page, { id: this.user.id });
     }

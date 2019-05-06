@@ -8,20 +8,17 @@ export class UsersService{
     constructor(public afDB: AngularFireDatabase){
 
     }
-    users = [
-        {id: 1, nombre : 'ivan1', username: null, correo: 'iva1@gmail.com', password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null },
-        {id: 2, nombre : 'ivan2', username: null, correo: 'iva2@gmail.com', password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null },
-        {id: 3, nombre : 'ivan3', username: null, correo: 'iva3@gmail.com', password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null },
-        {id: 4, nombre : 'ivan4', username: null, correo: 'iva4@gmail.com', password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null }
-
-    ];
+    users = [];
+    users1 =[];
 
     public getUsers(){
-        return this.users;
+        // return this.users;
+        return this.afDB.list('usuarios/');
     }
 
     public getUser(id){
-        return this.users.filter(function(e, i){return e.id == id})[0] || {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
+        // return this.users.filter(function(e, i){return e.id == id})[0] || {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
+        return this.afDB.object('usuarios/'+ id);
     }
 
     public createUser(user){
@@ -38,6 +35,13 @@ export class UsersService{
                 this.users[i] = user;
             }
         }
+    }
+
+    /**
+     * ecitUserF 
+     */
+    public editUserF(user) {
+        this.afDB.database.ref('usuarios/' + user.id).set(user);
     }
 
     /**
