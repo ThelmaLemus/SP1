@@ -22,21 +22,30 @@ export class Registro1Page {
   
   id = null;
   edited = 0;
+  delete = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public usersService: UsersService) {
     this.id = navParams.get('id');
     // this.id =  1;
-    // console.log("Nombre: " + this.id );
-    if (this.id != undefined) {
-      usersService.getUserF(this.id).valueChanges()
-      .subscribe(user=> {
-        this.user = user;
-      });
+    console.log("Nombre: " + this.delete );
+    if (this.delete.equals("1") ) {
+      if (this.id != undefined) {
+        usersService.getUserF(this.id).valueChanges()
+        .subscribe(user=> {
+          this.user = user;
+        });
+      }
+    }else{
+      console.log("DELETE: "+this.delete);
+      debugger
+      this.deleteUser();
+      
     }
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Registro1Page');
+    console.log('del'+this.delete)
   }
   
   public addUser()
@@ -92,8 +101,8 @@ export class Registro1Page {
   }
 
 
-  deleteUser() {
-    this.usersService.deleteUser(this.user);
+  public deleteUser() {
     this.navCtrl.pop();
+    this.usersService.deleteUser(this.user);
   }
 }

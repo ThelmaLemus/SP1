@@ -53,10 +53,11 @@ export class UsersService{
      * deleteUser
      */
     public deleteUser(user) {
-        for (let i = 0; i < this.users.length; i++) {
-            if (this.users[i].id == user.id) {
-                this.users.splice(i,1);
-            }
-        }
+        this.afDB.database.ref('usuarios/' + user.id).remove();
+        // for (let i = 0; i < this.users.length; i++) {
+        //     if (this.users1[i].id == user.id) {
+        //         this.users1.splice(i,1);
+        //     }
+        // }
     }
 }
