@@ -58,7 +58,7 @@ export class Registro2Page {
     this.formattedDate = year + month + day;
     */
    
-    this.user.myDate = new Date().toISOString();
+    // this.user.myDate = new Date().toISOString();
     if(this.user.sexo == undefined || this.user.myDate == undefined)
     {
       alert("Por favor llene los campos");
