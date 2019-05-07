@@ -17,7 +17,7 @@ import { UsersService } from '../../services/users.service';
   templateUrl: 'registro1.html',
 })
 export class Registro1Page {
-  user:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
+  user:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:"", myDate:"", trabaja:null, estudia:null};
   password2 = '';
   
   id = null;
@@ -27,14 +27,10 @@ export class Registro1Page {
     // this.id =  1;
     // console.log("Nombre: " + this.id );
     if (this.id != undefined) {
-      usersService.getUser(this.id).valueChanges()
+      usersService.getUserF(this.id).valueChanges()
       .subscribe(user=> {
         this.user = user;
       });
-    }else
-    {
-      this.user.id = this.id;
-      // console.log("dif:" + this.id);
     }
 
   }
@@ -45,7 +41,7 @@ export class Registro1Page {
   
   public addUser()
   {
-    if (this.user.id != undefined) 
+    if (this.user.id != undefined && this.user.id != 0) 
     {
       // console.log("entro: " + this.user.id);
       this.editUser();
@@ -72,10 +68,12 @@ export class Registro1Page {
       // console.log("Nombre: " + this.user.nombre);
       // console.log("Username: " + this.user.username);
       // console.log("Correo: " + this.user.correo);
-      // console.log("Password: " + this.user.password);
-      // console.log("Id: " + this.user.id);
+      console.log("Password: " + this.user.password);
+      // this.user.sexo="";
+      // this.user.myDate="";
       this.usersService.createUser(this.user);
-      this.navCtrl.push(Registro2Page, { id: this.user.id });
+      console.log("Id: " + this.user.id);
+      this.navCtrl.push(Registro2Page, { id: this.user.id, edited:0});
     }
   }
 
@@ -89,7 +87,7 @@ export class Registro1Page {
     }
     else {
       this.usersService.editUserF(this.user);
-      this.navCtrl.push(Registro2Page, { id: this.user.id });
+      this.navCtrl.push(Registro2Page, { id: this.user.id, edited:1});
     }
   }
 

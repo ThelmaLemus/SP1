@@ -17,12 +17,17 @@ export class UsersService{
     }
 
     public getUser(id){
+        return this.users1.filter(function(e, i){return e.id == id})[0] || {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
+        // return this.afDB.object('usuarios/'+ id);
+    }
+
+    public getUserF(id) {
         // return this.users.filter(function(e, i){return e.id == id})[0] || {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
-        return this.afDB.object('usuarios/'+ id);
+        return this.afDB.object('usuarios/' + id);
     }
 
     public createUser(user){
-        this.users.push(user);
+        this.users1.push(user);
     }
 
     public createUserF(user) {

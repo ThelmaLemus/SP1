@@ -20,16 +20,27 @@ export class Registro2Page {
   id = null;
   edited = 0;
   user:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
+  user1:any = { id: null, nombre: null, username: null, correo: null, password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null };
   
 //  formattedDate;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public usersService: UsersService) {
     this.id = navParams.get('id');
-    usersService.getUser(this.id).valueChanges()
-    .subscribe(user=> {
-      this.user = user;
-    });
-    // console.log("Id: " + this.user.id);
+    this.edited = navParams.get('edited');
+
+
+    // console.log("username: "+this.id);
+    if (this.edited != 0 ) {
+      usersService.getUserF(this.id).valueChanges()
+      .subscribe(user=> {
+        this.user = user;
+      });
+    }else
+    {
+      this.user = usersService.getUser(this.id); 
+    }
+
+    // console.log("Idd: " + this.user);
 
   }
 
@@ -54,11 +65,11 @@ export class Registro2Page {
     }
     else
     {
-      this.user.myDate = this.user.myDate.toISOString();
+      // this.user.myDate = this.user.myDate.toISOString();
       // console.log("sexo: " + this.user.nombre);
       // console.log("mydate: " + this.user.myDate);
       // console.log("trabajas: " + this.user.trabaja);
-      // console.log("estudias: " + this.user.estudia);
+      console.log("sexo: " + this.user.sexo);  
       this.usersService.createUserF(this.user);
       this.navCtrl.pop();
       this.navCtrl.pop();

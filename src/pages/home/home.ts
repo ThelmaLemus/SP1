@@ -19,7 +19,7 @@ export class HomePage {
 
   gotoWel(id)
   {
-    this.navCtrl.push(Registro1Page, { id:id });
+    this.navCtrl.push(Registro1Page, { id:id, edited:1 });
   }
 
   registrarse()
