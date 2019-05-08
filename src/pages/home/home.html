@@ -16,9 +16,16 @@
   <br><br><br>
 
   <ion-list>
-    <button ion-item *ngFor="let user of users" (click)="gotoWel(user.id)">
-      {{ user.nombre }}
-    </button>  
+    <div class="user_list">
+      <div class="item_user_list" *ngFor="let user of users">
+        <button class="user_bt" ion-item  (click)="gotoWel(user.id)">
+          {{ user.nombre }}
+        </button>
+        <button class="delete_bt" ion-item  color="danger" (click)="dddd(user.id)" >
+            X
+        </button> 
+      </div>
+    </div>
   </ion-list>
 
 

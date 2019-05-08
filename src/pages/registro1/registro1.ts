@@ -22,30 +22,19 @@ export class Registro1Page {
   
   id = null;
   edited = 0;
-  delete = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public usersService: UsersService) {
     this.id = navParams.get('id');
     // this.id =  1;
-    console.log("Nombre: " + this.delete );
-    if (this.delete.equals("1") ) {
-      if (this.id != undefined) {
-        usersService.getUserF(this.id).valueChanges()
-        .subscribe(user=> {
-          this.user = user;
-        });
-      }
-    }else{
-      console.log("DELETE: "+this.delete);
-      debugger
-      this.deleteUser();
-      
+    if (this.id != undefined) {
+      usersService.getUserF(this.id).valueChanges()
+      .subscribe(user=> {
+        this.user = user;
+      });
     }
-
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Registro1Page');
-    console.log('del'+this.delete)
   }
   
   public addUser()
@@ -77,11 +66,11 @@ export class Registro1Page {
       // console.log("Nombre: " + this.user.nombre);
       // console.log("Username: " + this.user.username);
       // console.log("Correo: " + this.user.correo);
-      console.log("Password: " + this.user.password);
+      // console.log("Password: " + this.user.password);
       // this.user.sexo="";
       // this.user.myDate="";
       this.usersService.createUser(this.user);
-      console.log("Id: " + this.user.id);
+      // console.log("Id: " + this.user.id);
       this.navCtrl.push(Registro2Page, { id: this.user.id, edited:0});
     }
   }

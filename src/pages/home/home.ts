@@ -10,6 +10,9 @@ import { Registro1Page } from '../registro1/registro1';
 })
 export class HomePage {
   users = [];
+  user:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:"", myDate:"", trabaja:null, estudia:null};
+  user1:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:"", myDate:"", trabaja:null, estudia:null};
+  id = null;
   constructor(public navCtrl: NavController, public usersService: UsersService) {
     usersService.getUsers().valueChanges()
     .subscribe(users => {
@@ -25,5 +28,12 @@ export class HomePage {
   registrarse()
   {
   	this.navCtrl.push(Registro1Page);
+  }
+  public dddd(id) {
+    this.usersService.getUserF(id).valueChanges()
+    .subscribe(user => {
+      this.user = user;
+    });
+    this.usersService.deleteUser(this.user);
   }
 }
