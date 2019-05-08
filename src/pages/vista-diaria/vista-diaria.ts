@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-// import { FirebaseService } from '../../services/firebase.service';
+import { CrearEventoPage } from '../crear-evento/crear-evento';
+
+
 // import { VerEventoPage } from '../ver-evento/ver-evento';
 // import { CrearEventoPage } from '../crear-evento/crear-evento';
 
@@ -19,10 +21,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class VistaDiariaPage {
 
 	events = [];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, //public eventsService: FirebaseService
-    ) {
-  	// this.events = eventsService.getEvents();
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	
   }
 
   ionViewDidLoad() {
@@ -31,12 +31,12 @@ export class VistaDiariaPage {
 
   verEvento(id)
   {
-  	// this.navCtrl.push(VerEventoPage, {id:id});
+  	
   }
 
   newEvent()
   {
-    // this.navCtrl.push(CrearEventoPage);
+    this.navCtrl.push(CrearEventoPage);
   }
 
 

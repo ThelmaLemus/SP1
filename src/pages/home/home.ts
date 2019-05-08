@@ -17,9 +17,10 @@ export class HomePage {
     usersService.getUsers().valueChanges()
     .subscribe(users => {
       this.users = users;
-      // debugger
+      // debugger 
     });
   }
+ 
   iniciarSesion(){
     // debugger
     for (let i = 0; i < this.users.length; i++) {
@@ -33,8 +34,6 @@ export class HomePage {
       }
       
     }
-    console.log("Username: " + this.username);
-    console.log("Password: " + this.password);
   }
   gotoWel(id)
   {

@@ -18,6 +18,7 @@ import { Registro1PageModule } from '../pages/registro1/registro1.module';
 import { Registro2PageModule } from '../pages/registro2/registro2.module';
 import { BienvenidoPageModule } from '../pages/bienvenido/bienvenido.module';
 import { VistaDiariaPageModule } from '../pages/vista-diaria/vista-diaria.module';
+import { CrearEventoPageModule } from '../pages/crear-evento/crear-evento.module';
 
 
 // import { NgCalendarModule} from 'ionic2-calendar';
@@ -45,7 +46,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    VistaDiariaPageModule
+    VistaDiariaPageModule,
+    CrearEventoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
