@@ -18,8 +18,8 @@ import { UsersService } from '../../services/users.service';
 export class Registro2Page {
   id = null;
   edited = 0;
-  user:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
-  user1:any = { id: null, nombre: null, username: null, correo: null, password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null };
+  user:any = {id: null, nombre :null, username:null, correo:null, password:null, sexo:null, myDate:null, trabaja:null, estudia:null};
+  user1:any = { id: null, nombre: null, username: null, correo: null, password: null, sexo: null, myDate: null, trabaja: null, estudia: null };
   
 //  formattedDate;
 
@@ -68,7 +68,7 @@ export class Registro2Page {
       // console.log("sexo: " + this.user.nombre);
       // console.log("mydate: " + this.user.myDate);
       // console.log("trabajas: " + this.user.trabaja);
-      console.log("sexo: " + this.user.sexo);  
+      // console.log("sexo: " + this.user.sexo);  
       this.usersService.createUserF(this.user);
       this.navCtrl.pop();
       this.navCtrl.pop();

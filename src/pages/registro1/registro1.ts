@@ -17,7 +17,7 @@ import { UsersService } from '../../services/users.service';
   templateUrl: 'registro1.html',
 })
 export class Registro1Page {
-  user:any = {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:"", myDate:"", trabaja:null, estudia:null};
+  user:any = {id: null, nombre :null, username:null, correo:null, password:null, sexo:"", myDate:"", trabaja:null, estudia:null};
   password2 = '';
   
   id = null;

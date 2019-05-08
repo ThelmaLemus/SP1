@@ -1,16 +1,24 @@
 page-home {
-    // .user_list{
-    //     display: flex;
-    //     flex-direction: column;
-    // }
-    .item_user_list{
+    .icon
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    .item_user_list
+    {
         display: flex;
         justify-content: space-between;
     }
-    .user_bt{
+
+    .user_bt
+    {
         width: 40%;
     }
-    .delete_bt{
+
+    .delete_bt
+    {
         width: auto;
         height: 10px;
         border-radius: 100%;
