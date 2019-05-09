@@ -13,6 +13,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/da
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { UsersService } from '../services/users.service';
+import { EventServices } from '../services/events.services';
 
 import { Registro1PageModule } from '../pages/registro1/registro1.module';
 import { Registro2PageModule } from '../pages/registro2/registro2.module';
@@ -56,6 +57,7 @@ export const firebaseConfig = {
   ],
   providers: [
     StatusBar,
+    EventServices,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsersService

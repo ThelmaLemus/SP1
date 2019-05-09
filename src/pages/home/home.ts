@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { UsersService } from '../../services/users.service';
 import { Registro1Page } from '../registro1/registro1';
 import { VistaDiariaPage } from '../vista-diaria/vista-diaria';
-// import { AngularFireDatabase } from '@angular/fire/database';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -21,21 +21,29 @@ export class HomePage {
     });
   }
  
-  iniciarSesion(){
+  iniciarSesion()
+  {
     // debugger
     for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].username == this.username && this.users[i].password == this.password) {
+      if (this.users[i].username == this.username && this.users[i].password == this.password) 
+      {
         console.log("Inició sesión correctamente");
         this.navCtrl.push(VistaDiariaPage);
         break; 
-      }else{
+      }else if(this.username == null || this.password == null)
+      {
+        alert("Por favor ingrese un usuario y una contrasña");
+        break;
+      }else
+      {
         alert("Usuario o contraseña incorrectos");
         break;
       }
       
     }
   }
-  gotoWel(id)
+
+  editarUsuario(id)
   {
     this.navCtrl.push(Registro1Page, { id:id, edited:1 });
   }

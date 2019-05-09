@@ -11,105 +11,140 @@
 </ion-header>
 
 <ion-content padding>
+	<div class="top">
+		<div class="palette">
+			<i class="ico-gray fas fa-palette fa-2x"></i> 
+		</div>
+	</div>
+	<div class="form_cei">
 
-	<ion-item>
-	    <ion-label floating>Título</ion-label>
-	    <ion-input type="text" [(ngModel)]="title"></ion-input>
-	</ion-item>
+		<div class="citem">
+			<div class="icon-center">
+				<i class="ico-gray far fa-edit fa-lg"></i>
+			</div>
+			<ion-item>
+				<ion-label floating>Título</ion-label>
+				<ion-input type="text" [(ngModel)]="title"></ion-input>	 
+			</ion-item>
+		</div>
+		
+		<div class="citem">
+			<div class="icon-center">
+				<i class="ico-gray fas fa-map-marker-alt fa-lg"></i>
+			</div>
+			<ion-item>
+				<ion-label floating>Dirección</ion-label>
+				<ion-input type="text" [(ngModel)]="direccion"></ion-input>
+			</ion-item>
+		</div>
+	
+		<div class="citem">
+			<div class="icon-center">
+				<i class="ico-gray fas fa-clock fa-lg"></i>
+			</div>
+			<ion-item style="display:flex; justify-content: space-around;">
+				<ion-input style="display:none;"></ion-input>
+				<ion-label style="margin-top: 20px;" ><span>Todo el día</span> </ion-label>
+				<ion-checkbox style="margin-top: 15px;" floating (ionChange)="disableTime()"></ion-checkbox>
+			</ion-item>
+		</div>
+	
+		<div class="citem">
+			<div class="icon-center">
+				<i class="ico-gray fas fa-calendar fa-lg"></i>
+			</div>
+			<ion-item>
+				<ion-label floating>Fecha inicial</ion-label>
+				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="startDate"></ion-datetime>
+			</ion-item>
+		</div>
+		
+		<div class="citem">
+			<div class="icon-center">
+				<i class="ico-gray fas fa-calendar fa-lg"></i>
+			</div>
+			<ion-item>
+				<ion-label floating>Fecha final</ion-label>
+				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="endDate"></ion-datetime>
+			</ion-item>
+		</div>
+	
+		<div class="citem">
+			<div class="icon-center">
+				<i class="ico-gray fas fa-retweet fa-lg"></i>
+			</div>
+			<ion-item>
+				<ion-label floating>Repetición</ion-label>
+				<ion-select [(ngModel)]="repeat">
+					<ion-option value="no">
+						No se repite
+					</ion-option>
+					<ion-option value="dias">
+						Todos los días
+					</ion-option>
+					<ion-option value="semanas">
+						Todas las semanas
+					</ion-option>
+					<ion-option value="meses">
+						Todos los meses
+					</ion-option>
+					<ion-option value="años">
+						Todos los años
+					</ion-option>
+					<!-- <ion-option value="mujer">
+						Personalización
+					</ion-option> -->
+				</ion-select>
+			</ion-item>
+		</div>
 
-	<ion-item>
-		<!-- 512*512 -->
-	    <ion-avatar item-start>
-	      <img src="assets/icon/address.svg">
-	    </ion-avatar>
-	    <ion-label floating>Dirección</ion-label>
-	    <ion-input type="text" [(ngModel)]="direccion"></ion-input>
-	</ion-item>
-
-	<ion-item>
-		<ion-avatar item-start>
-	      <img src="assets/imgs/reloj.png">
-	    </ion-avatar>
-		<ion-label color="gris">Todo el día</ion-label>
-	    <ion-checkbox [(ngModel)]="allday" (ionChange)="disableTime()"></ion-checkbox>
-	</ion-item>
-
-	<ion-item>
-		<ion-label floating>Fecha inicial</ion-label>
-		<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="startDate"></ion-datetime>
-	</ion-item>
-
-	<ion-item>
-		<ion-label floating>Fecha final</ion-label>
-		<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="endDate"></ion-datetime>
-	</ion-item>
-
-	<ion-item>
-		<ion-avatar item-start>
-	      <img src="assets/icon/repeat.svg">
-	    </ion-avatar>
-		<ion-label floating>Repetición</ion-label>
-		<ion-select [(ngModel)]="repeat">
-			<ion-option value="no">
-				No se repite
-			</ion-option>
-			<ion-option value="dias">
-				Todos los días
-			</ion-option>
-			<ion-option value="semanas">
-				Todas las semanas
-			</ion-option>
-			<ion-option value="meses">
-				Todos los meses
-			</ion-option>
-			<ion-option value="años">
-				Todos los años
-			</ion-option>
-			<!-- <ion-option value="mujer">
-				Personalización
-			</ion-option> -->
-		</ion-select>
-	</ion-item>
-
-	<ion-item>
-		<!-- 512*512 -->
-	    <ion-avatar item-start>
-	      <img src="assets/imgs/alarm.png">
-	    </ion-avatar>
-	    <ion-label floating>Recordatorio</ion-label>
-	    <ion-select [(ngModel)]="remind">
-	    	<ion-input type="number" [(ngModel)]="tiempoAntes"></ion-input>
-			<ion-option value="no">
-				Sin recordatorio
-			</ion-option>
-			<ion-option value="minutos">
-				Minutos antes
-			</ion-option>
-			<ion-option value="horas">
-				Horas antes
-			</ion-option>
-			<ion-option value="dias">
-				Días antes
-			</ion-option>
-			<ion-option value="semanas">
-				Semanas antes
-			</ion-option>
-			<!-- <ion-option value="mujer">
-				Personalización
-			</ion-option> -->
-		</ion-select>
-	</ion-item>
-
-<br>
-	<ion-item>
-		<ion-textarea placeholder="Descripción"></ion-textarea>
-	</ion-item>
+		<div class="citem">
+			<div class="icon-center">
+				<i class="ico-gray fas fa-bell fa-lg"></i>
+			</div>
+			<ion-item>
+				<ion-label floating>Recordatorio</ion-label>
+				<ion-select [(ngModel)]="remind">
+					<ion-input type="number" [(ngModel)]="tiempoAntes"></ion-input>
+					<ion-option value="no">
+						Sin recordatorio
+					</ion-option>
+					<ion-option value="minutos">
+						Minutos antes
+					</ion-option>
+					<ion-option value="horas">
+						Horas antes
+					</ion-option>
+					<ion-option value="dias">
+						Días antes
+					</ion-option>
+					<ion-option value="semanas">
+						Semanas antes
+					</ion-option>
+					<!-- <ion-option value="mujer">
+						Personalización
+					</ion-option> -->
+				</ion-select>
+			</ion-item>
+		</div>
+	
+		<div class="citem">
+			<div class="icon-center">
+				<i class="ico-gray fas fa-align-justify fa-lg"></i>
+			</div>
+			<ion-item>
+					<ion-label floating>Descripción</ion-label>
+				<ion-textarea [(ngModel)]="description"></ion-textarea>
+			</ion-item>
+		</div>
+		
+	</div>
 
 	<br><br>
 	
 	<div class="boton">
 		<button ion-button block color="primary">
-			Crear
+			Guardar
 		</button>
 	</div>
 	

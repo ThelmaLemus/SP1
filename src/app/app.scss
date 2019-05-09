@@ -14,3 +14,27 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.ico-gray
+{
+    color:gray;
+}
+
+.icon-top
+{
+  display: flex;
+  align-items:flex-start;
+}
+
+.icon-center
+{
+  display: flex;
+  align-items:center;
+}
+
+.icon-bottom
+{
+  display: flex;
+  align-items:flex-end;
+}
+

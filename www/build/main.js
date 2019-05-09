@@ -24,7 +24,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import { AngularFireDatabase } from '@angular/fire/database';
 var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, usersService) {
         var _this = this;
@@ -48,13 +47,17 @@ var HomePage = /** @class */ (function () {
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__vista_diaria_vista_diaria__["a" /* VistaDiariaPage */]);
                 break;
             }
+            else if (this.username == null || this.password == null) {
+                alert("Por favor ingrese un usuario y una contrasña");
+                break;
+            }
             else {
                 alert("Usuario o contraseña incorrectos");
                 break;
             }
         }
     };
-    HomePage.prototype.gotoWel = function (id) {
+    HomePage.prototype.editarUsuario = function (id) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__registro1_registro1__["a" /* Registro1Page */], { id: id, edited: 1 });
     };
     HomePage.prototype.registrarse = function () {
@@ -72,17 +75,16 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"C:\Users\Erick Cutuc\Music\SP1\src\pages\home\home.html"*/'<ion-header>\n\n    <!-- <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script> -->\n\n    \n\n    <ion-navbar>\n\n    <ion-title>\n\n      Inicio\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <!-- The world is your oyster.\n\n  <p>\n\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n\n  </p>\n\n\n\n  <!-- <button ion-button (click) ="goWel()">Ir a wel</button> -->\n\n  <!-- <br><br><br> -->\n\n\n\n  <img class="icon" src="assets/imgs/calendar.svg.png">\n\n  <!-- <br> -->\n\n\n\n  <ion-list padding>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Username</ion-label>\n\n      <ion-input type="text" [(ngModel)]="username"></ion-input>\n\n    </ion-item>\n\n \n\n    <ion-item>\n\n      <ion-label floating>Password</ion-label>\n\n      <ion-input type="password" [(ngModel)]="password"></ion-input>\n\n    </ion-item>\n\n\n\n  </ion-list>\n\n\n\n  \n\n  <div padding>\n\n      <button ion-button block (click)="iniciarSesion()">Iniciar sesión</button>\n\n      <button ion-button block (click)="registrarse()">Registro</button>\n\n    </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Erick Cutuc\Music\SP1\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */]])
     ], HomePage);
     return HomePage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
 
 /***/ }),
 
-/***/ 226:
+/***/ 227:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -95,16 +97,16 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 226;
+webpackEmptyAsyncContext.id = 227;
 
 /***/ }),
 
-/***/ 267:
+/***/ 268:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/bienvenido/bienvenido.module": [
-		268
+		269
 	],
 	"../pages/crear-evento/crear-evento.module": [
 		295
@@ -133,12 +135,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 267;
+webpackAsyncContext.id = 268;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 268:
+/***/ 269:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -420,7 +422,7 @@ var VistaDiariaPage = /** @class */ (function () {
     };
     VistaDiariaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-vista-diaria',template:/*ion-inline-start:"C:\Users\Erick Cutuc\Music\SP1\src\pages\vista-diaria\vista-diaria.html"*/'<!--\n  Generated template for the VistaDiariaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n  <ion-navbar>\n    <ion-title>Calendario</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<div class="boton">\n		<button ion-button icon-only color="light" (click)="newEvent()">\n	  		<ion-icon name="add"></ion-icon>\n		</button>\n	</div>\n	<div style="color:gray;">\n		<i class="fas fa-palette">d</i>\n	</div> \n\n	<ion-item *ngFor="let event of events">\n		<ion-card class="reales" (click)="verEvento(event.id)">\n			<ion-card-header>\n		    	<ion-card-title >\n		    		{{ event.title }}\n		    	</ion-card-title>\n			</ion-card-header>\n			\n			<ion-card-content>\n		    	{{ event.hora }}\n			</ion-card-content>\n		</ion-card>\n	</ion-item>\n\n	<ion-label>\n		Sugerencias\n	</ion-label>\n\n	<ion-item *ngFor="let event of events">\n		<ion-row>\n	    	<ion-col col-10>\n	    		<ion-card class="sugerencias">\n					<ion-card-header>\n			    		<ion-card-title >\n			    			{{ event.title }}\n			    		</ion-card-title>\n					</ion-card-header>\n\n					<ion-card-content>\n				    	{{ event.hora }}\n					</ion-card-content>\n				</ion-card>\n	    	</ion-col>\n	    	<ion-col col-2 align-self-left text-center>\n	    		<ion-row>\n		    		<button class="simbolo" ion-button icon-only outline item-right clear>\n		        		<ion-icon name="checkmark-circle"></ion-icon>\n		        	</button>\n		        </ion-row>\n		        <ion-row>\n		        	<button class="simbolo" ion-button icon-only outline item-right clear>\n		        		<ion-icon name="close-circle"></ion-icon>\n		       		</button>\n		       	</ion-row>\n	    	</ion-col>\n		</ion-row>\n	</ion-item>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Erick Cutuc\Music\SP1\src\pages\vista-diaria\vista-diaria.html"*/,
+            selector: 'page-vista-diaria',template:/*ion-inline-start:"C:\Users\Erick Cutuc\Music\SP1\src\pages\vista-diaria\vista-diaria.html"*/'<!--\n  Generated template for the VistaDiariaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n  <ion-navbar>\n    <ion-title>Calendario</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<div class="boton">\n		<button ion-button icon-only color="light" (click)="newEvent()">\n	  		<ion-icon name="add"></ion-icon>\n		</button>\n	</div>\n	<!-- <div style="color:gray;">\n		<i class="fas fa-palette">d</i>\n	</div>  -->\n\n	<ion-item *ngFor="let event of events">\n		<ion-card class="reales" (click)="verEvento(event.id)">\n			<ion-card-header>\n		    	<ion-card-title >\n		    		{{ event.title }}\n		    	</ion-card-title>\n			</ion-card-header>\n			\n			<ion-card-content>\n		    	{{ event.hora }}\n			</ion-card-content>\n		</ion-card>\n	</ion-item>\n\n	<ion-label>\n		Sugerencias\n	</ion-label>\n\n	<ion-item *ngFor="let event of events">\n		<ion-row>\n	    	<ion-col col-10>\n	    		<ion-card class="sugerencias">\n					<ion-card-header>\n			    		<ion-card-title >\n			    			{{ event.title }}\n			    		</ion-card-title>\n					</ion-card-header>\n\n					<ion-card-content>\n				    	{{ event.hora }}\n					</ion-card-content>\n				</ion-card>\n	    	</ion-col>\n	    	<ion-col col-2 align-self-left text-center>\n	    		<ion-row>\n		    		<button class="simbolo" ion-button icon-only outline item-right clear>\n		        		<ion-icon name="checkmark-circle"></ion-icon>\n		        	</button>\n		        </ion-row>\n		        <ion-row>\n		        	<button class="simbolo" ion-button icon-only outline item-right clear>\n		        		<ion-icon name="close-circle"></ion-icon>\n		       		</button>\n		       	</ion-row>\n	    	</ion-col>\n		</ion-row>\n	</ion-item>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Erick Cutuc\Music\SP1\src\pages\vista-diaria\vista-diaria.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], VistaDiariaPage);
@@ -478,7 +480,7 @@ var CrearEventoPage = /** @class */ (function () {
     };
     CrearEventoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-crear-evento',template:/*ion-inline-start:"C:\Users\Erick Cutuc\Music\SP1\src\pages\crear-evento\crear-evento.html"*/'<!--\n  Generated template for the VerEventoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="primary">\n  	<ion-title>Nuevo evento</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n	<ion-item>\n	    <ion-label floating>Título</ion-label>\n	    <ion-input type="text" [(ngModel)]="title"></ion-input>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/icon/address.svg">\n	    </ion-avatar>\n	    <ion-label floating>Dirección</ion-label>\n	    <ion-input type="text" [(ngModel)]="direccion"></ion-input>\n	</ion-item>\n\n	<ion-item>\n		<ion-avatar item-start>\n	      <img src="assets/imgs/reloj.png">\n	    </ion-avatar>\n		<ion-label color="gris">Todo el día</ion-label>\n	    <ion-checkbox [(ngModel)]="allday" (ionChange)="disableTime()"></ion-checkbox>\n	</ion-item>\n\n	<ion-item>\n		<ion-label floating>Fecha inicial</ion-label>\n		<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="startDate"></ion-datetime>\n	</ion-item>\n\n	<ion-item>\n		<ion-label floating>Fecha final</ion-label>\n		<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="endDate"></ion-datetime>\n	</ion-item>\n\n	<ion-item>\n		<ion-avatar item-start>\n	      <img src="assets/icon/repeat.svg">\n	    </ion-avatar>\n		<ion-label floating>Repetición</ion-label>\n		<ion-select [(ngModel)]="repeat">\n			<ion-option value="no">\n				No se repite\n			</ion-option>\n			<ion-option value="dias">\n				Todos los días\n			</ion-option>\n			<ion-option value="semanas">\n				Todas las semanas\n			</ion-option>\n			<ion-option value="meses">\n				Todos los meses\n			</ion-option>\n			<ion-option value="años">\n				Todos los años\n			</ion-option>\n			<!-- <ion-option value="mujer">\n				Personalización\n			</ion-option> -->\n		</ion-select>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/imgs/alarm.png">\n	    </ion-avatar>\n	    <ion-label floating>Recordatorio</ion-label>\n	    <ion-select [(ngModel)]="remind">\n	    	<ion-input type="number" [(ngModel)]="tiempoAntes"></ion-input>\n			<ion-option value="no">\n				Sin recordatorio\n			</ion-option>\n			<ion-option value="minutos">\n				Minutos antes\n			</ion-option>\n			<ion-option value="horas">\n				Horas antes\n			</ion-option>\n			<ion-option value="dias">\n				Días antes\n			</ion-option>\n			<ion-option value="semanas">\n				Semanas antes\n			</ion-option>\n			<!-- <ion-option value="mujer">\n				Personalización\n			</ion-option> -->\n		</ion-select>\n	</ion-item>\n\n<br>\n	<ion-item>\n		<ion-textarea placeholder="Descripción"></ion-textarea>\n	</ion-item>\n\n	<br><br>\n	\n	<div class="boton">\n		<button ion-button block color="primary">\n			Crear\n		</button>\n	</div>\n	\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Erick Cutuc\Music\SP1\src\pages\crear-evento\crear-evento.html"*/,
+            selector: 'page-crear-evento',template:/*ion-inline-start:"C:\Users\Erick Cutuc\Music\SP1\src\pages\crear-evento\crear-evento.html"*/'<!--\n  Generated template for the VerEventoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="primary">\n  	<ion-title>Nuevo evento</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<div class="top">\n		<div class="palette">\n			<i class="ico-gray fas fa-palette fa-2x"></i> \n		</div>\n	</div>\n	<div class="form_cei">\n\n		<div class="citem">\n			<div class="icon-center">\n				<i class="ico-gray far fa-edit fa-lg"></i>\n			</div>\n			<ion-item>\n				<ion-label floating>Título</ion-label>\n				<ion-input type="text" [(ngModel)]="title"></ion-input>	 \n			</ion-item>\n		</div>\n		\n		<div class="citem">\n			<div class="icon-center">\n				<i class="ico-gray fas fa-map-marker-alt fa-lg"></i>\n			</div>\n			<ion-item>\n				<ion-label floating>Dirección</ion-label>\n				<ion-input type="text" [(ngModel)]="direccion"></ion-input>\n			</ion-item>\n		</div>\n	\n		<div class="citem">\n			<div class="icon-center">\n				<i class="ico-gray fas fa-clock fa-lg"></i>\n			</div>\n			<ion-item style="display:flex; justify-content: space-around;">\n				<ion-input style="display:none;"></ion-input>\n				<ion-label style="margin-top: 20px;" ><span>Todo el día</span> </ion-label>\n				<ion-checkbox style="margin-top: 15px;" floating (ionChange)="disableTime()"></ion-checkbox>\n			</ion-item>\n		</div>\n	\n		<div class="citem">\n			<div class="icon-center">\n				<i class="ico-gray fas fa-calendar fa-lg"></i>\n			</div>\n			<ion-item>\n				<ion-label floating>Fecha inicial</ion-label>\n				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="startDate"></ion-datetime>\n			</ion-item>\n		</div>\n		\n		<div class="citem">\n			<div class="icon-center">\n				<i class="ico-gray fas fa-calendar fa-lg"></i>\n			</div>\n			<ion-item>\n				<ion-label floating>Fecha final</ion-label>\n				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="endDate"></ion-datetime>\n			</ion-item>\n		</div>\n	\n		<div class="citem">\n			<div class="icon-center">\n				<i class="ico-gray fas fa-retweet fa-lg"></i>\n			</div>\n			<ion-item>\n				<ion-label floating>Repetición</ion-label>\n				<ion-select [(ngModel)]="repeat">\n					<ion-option value="no">\n						No se repite\n					</ion-option>\n					<ion-option value="dias">\n						Todos los días\n					</ion-option>\n					<ion-option value="semanas">\n						Todas las semanas\n					</ion-option>\n					<ion-option value="meses">\n						Todos los meses\n					</ion-option>\n					<ion-option value="años">\n						Todos los años\n					</ion-option>\n					<!-- <ion-option value="mujer">\n						Personalización\n					</ion-option> -->\n				</ion-select>\n			</ion-item>\n		</div>\n\n		<div class="citem">\n			<div class="icon-center">\n				<i class="ico-gray fas fa-bell fa-lg"></i>\n			</div>\n			<ion-item>\n				<ion-label floating>Recordatorio</ion-label>\n				<ion-select [(ngModel)]="remind">\n					<ion-input type="number" [(ngModel)]="tiempoAntes"></ion-input>\n					<ion-option value="no">\n						Sin recordatorio\n					</ion-option>\n					<ion-option value="minutos">\n						Minutos antes\n					</ion-option>\n					<ion-option value="horas">\n						Horas antes\n					</ion-option>\n					<ion-option value="dias">\n						Días antes\n					</ion-option>\n					<ion-option value="semanas">\n						Semanas antes\n					</ion-option>\n					<!-- <ion-option value="mujer">\n						Personalización\n					</ion-option> -->\n				</ion-select>\n			</ion-item>\n		</div>\n	\n		<div class="citem">\n			<div class="icon-center">\n				<i class="ico-gray fas fa-align-justify fa-lg"></i>\n			</div>\n			<ion-item>\n					<ion-label floating>Descripción</ion-label>\n				<ion-textarea [(ngModel)]="description"></ion-textarea>\n			</ion-item>\n		</div>\n		\n	</div>\n\n	<br><br>\n	\n	<div class="boton">\n		<button ion-button block color="primary">\n			Guardar\n		</button>\n	</div>\n	\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Erick Cutuc\Music\SP1\src\pages\crear-evento\crear-evento.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], CrearEventoPage);
@@ -707,21 +709,23 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_wel_wel_module__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(606);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_fire__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_fire_database__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_fire__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_fire_database__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_fire_auth__ = __webpack_require__(607);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_users_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_registro1_registro1_module__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_registro2_registro2_module__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_bienvenido_bienvenido_module__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_vista_diaria_vista_diaria_module__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_crear_evento_crear_evento_module__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_events_services__ = __webpack_require__(612);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_registro1_registro1_module__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_registro2_registro2_module__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_bienvenido_bienvenido_module__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_vista_diaria_vista_diaria_module__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_crear_evento_crear_evento_module__ = __webpack_require__(295);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -769,14 +773,14 @@ var AppModule = /** @class */ (function () {
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_5__pages_wel_wel_module__["WelPageModule"],
-                __WEBPACK_IMPORTED_MODULE_12__pages_registro1_registro1_module__["Registro1PageModule"],
-                __WEBPACK_IMPORTED_MODULE_13__pages_registro2_registro2_module__["Registro2PageModule"],
-                __WEBPACK_IMPORTED_MODULE_14__pages_bienvenido_bienvenido_module__["BienvenidoPageModule"],
+                __WEBPACK_IMPORTED_MODULE_13__pages_registro1_registro1_module__["Registro1PageModule"],
+                __WEBPACK_IMPORTED_MODULE_14__pages_registro2_registro2_module__["Registro2PageModule"],
+                __WEBPACK_IMPORTED_MODULE_15__pages_bienvenido_bienvenido_module__["BienvenidoPageModule"],
                 __WEBPACK_IMPORTED_MODULE_8__angular_fire__["a" /* AngularFireModule */].initializeApp(firebaseConfig),
                 __WEBPACK_IMPORTED_MODULE_9__angular_fire_database__["b" /* AngularFireDatabaseModule */],
                 __WEBPACK_IMPORTED_MODULE_10__angular_fire_auth__["a" /* AngularFireAuthModule */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_vista_diaria_vista_diaria_module__["VistaDiariaPageModule"],
-                __WEBPACK_IMPORTED_MODULE_16__pages_crear_evento_crear_evento_module__["CrearEventoPageModule"]
+                __WEBPACK_IMPORTED_MODULE_16__pages_vista_diaria_vista_diaria_module__["VistaDiariaPageModule"],
+                __WEBPACK_IMPORTED_MODULE_17__pages_crear_evento_crear_evento_module__["CrearEventoPageModule"]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
@@ -785,6 +789,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_12__services_events_services__["a" /* EventServices */],
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_11__services_users_service__["a" /* UsersService */]
@@ -909,7 +914,7 @@ var WelPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_crear_evento_crear_evento__ = __webpack_require__(294);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -926,7 +931,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen) {
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
+        // rootPage:any = HomePage;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_crear_evento_crear_evento__["a" /* CrearEventoPage */];
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -937,12 +943,84 @@ var MyApp = /** @class */ (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Erick Cutuc\Music\SP1\src\app\app.html"*/'<ion-nav [root]="rootPage">\n\n    <script type="text/javascript" src="date.js"></script>\n\n    <script type="text/javascript" src="date-de-DE.js"></script>\n\n</ion-nav>\n\n'/*ion-inline-end:"C:\Users\Erick Cutuc\Music\SP1\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 612:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventServices; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__ = __webpack_require__(160);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var EventServices = /** @class */ (function () {
+    function EventServices(afDB) {
+        this.afDB = afDB;
+        this.events = [];
+        this.events1 = [];
+    }
+    EventServices.prototype.getEvents = function () {
+        return this.afDB.list('events/');
+    };
+    EventServices.prototype.getEvent = function (id) {
+        return this.events1.filter(function (e, i) { return e.id == id; })[0] || { id: null, nombre: null, username: null, correo: null, password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null };
+        // return this.afDB.object('events/'+ id);
+    };
+    EventServices.prototype.getEventF = function (id) {
+        return this.afDB.object('events/' + id);
+    };
+    EventServices.prototype.createEvent = function (event) {
+        this.events1.push(event);
+    };
+    EventServices.prototype.createEventF = function (event) {
+        this.afDB.database.ref('events/' + event.id).set(event);
+    };
+    EventServices.prototype.editEvent = function (event) {
+        for (var i = 0; i < this.events.length; i++) {
+            if (this.events[i].id == event.id) {
+                this.events[i] = event;
+            }
+        }
+    };
+    /**
+     * ecitEventF
+     */
+    EventServices.prototype.editEventF = function (event) {
+        this.afDB.database.ref('events/' + event.id).set(event);
+    };
+    /**
+     * deleteEvent
+     */
+    EventServices.prototype.deleteEvent = function (event) {
+        this.afDB.database.ref('events/' + event.id).remove();
+    };
+    EventServices = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
+    ], EventServices);
+    return EventServices;
+    var _a;
+}());
+
+//# sourceMappingURL=events.services.js.map
 
 /***/ }),
 
@@ -952,7 +1030,7 @@ var MyApp = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -972,21 +1050,21 @@ var UsersService = /** @class */ (function () {
     }
     UsersService.prototype.getUsers = function () {
         // return this.users;
-        return this.afDB.list('usuarios/');
+        return this.afDB.list('users/');
     };
     UsersService.prototype.getUser = function (id) {
         return this.users1.filter(function (e, i) { return e.id == id; })[0] || { id: null, nombre: null, username: null, correo: null, password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null };
-        // return this.afDB.object('usuarios/'+ id);
+        // return this.afDB.object('users/'+ id);
     };
     UsersService.prototype.getUserF = function (id) {
         // return this.users.filter(function(e, i){return e.id == id})[0] || {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
-        return this.afDB.object('usuarios/' + id);
+        return this.afDB.object('users/' + id);
     };
     UsersService.prototype.createUser = function (user) {
         this.users1.push(user);
     };
     UsersService.prototype.createUserF = function (user) {
-        this.afDB.database.ref('usuarios/' + user.id).set(user);
+        this.afDB.database.ref('users/' + user.id).set(user);
     };
     UsersService.prototype.editUser = function (user) {
         for (var i = 0; i < this.users.length; i++) {
@@ -999,13 +1077,13 @@ var UsersService = /** @class */ (function () {
      * ecitUserF
      */
     UsersService.prototype.editUserF = function (user) {
-        this.afDB.database.ref('usuarios/' + user.id).set(user);
+        this.afDB.database.ref('users/' + user.id).set(user);
     };
     /**
      * deleteUser
      */
     UsersService.prototype.deleteUser = function (user) {
-        this.afDB.database.ref('usuarios/' + user.id).remove();
+        this.afDB.database.ref('users/' + user.id).remove();
         // for (let i = 0; i < this.users.length; i++) {
         //     if (this.users1[i].id == user.id) {
         //         this.users1.splice(i,1);

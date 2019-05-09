@@ -18,7 +18,7 @@
     <ion-list>
       <div class="user_list">
         <div class="item_user_list" *ngFor="let user of users">
-          <button class="user_bt" ion-item  (click)="gotoWel(user.id)">
+          <button class="user_bt" ion-item  (click)="editarUsuario(user.id)">
             {{ user.nombre }}
           </button>
           <button class="delete_bt" ion-item  color="danger" (click)="dddd(user.id)" >
