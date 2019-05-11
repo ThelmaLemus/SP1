@@ -24,7 +24,7 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Título</ion-label>
-				<ion-input type="text" [(ngModel)]="title"></ion-input>	 
+				<ion-input type="text" [(ngModel)]="event.title"></ion-input>	 
 			</ion-item>
 		</div>
 		
@@ -34,7 +34,7 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Dirección</ion-label>
-				<ion-input type="text" [(ngModel)]="direccion"></ion-input>
+				<ion-input type="text" [(ngModel)]="event.location"></ion-input>
 			</ion-item>
 		</div>
 	
@@ -45,7 +45,7 @@
 			<ion-item style="display:flex; justify-content: space-around;">
 				<ion-input style="display:none;"></ion-input>
 				<ion-label style="margin-top: 20px;" ><span>Todo el día</span> </ion-label>
-				<ion-checkbox style="margin-top: 15px;" floating (ionChange)="disableTime()"></ion-checkbox>
+				<ion-checkbox item-right style="margin-top: 15px;" floating (ionChange)="disableTime()"></ion-checkbox>
 			</ion-item>
 		</div>
 	
@@ -55,7 +55,7 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Fecha inicial</ion-label>
-				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="startDate"></ion-datetime>
+				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="event.startDate"></ion-datetime>
 			</ion-item>
 		</div>
 		
@@ -65,7 +65,7 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Fecha final</ion-label>
-				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="endDate"></ion-datetime>
+				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="event.endDate"></ion-datetime>
 			</ion-item>
 		</div>
 	
@@ -75,7 +75,7 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Repetición</ion-label>
-				<ion-select [(ngModel)]="repeat">
+				<ion-select [(ngModel)]="event.repeat">
 					<ion-option value="no">
 						No se repite
 					</ion-option>
@@ -104,8 +104,8 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Recordatorio</ion-label>
-				<ion-select [(ngModel)]="remind">
-					<ion-input type="number" [(ngModel)]="tiempoAntes"></ion-input>
+				<ion-select [(ngModel)]="event.remind">
+					<ion-input type="number" [(ngModel)]="event.tiempoAntes"></ion-input>
 					<ion-option value="no">
 						Sin recordatorio
 					</ion-option>
@@ -134,7 +134,7 @@
 			</div>
 			<ion-item>
 					<ion-label floating>Descripción</ion-label>
-				<ion-textarea [(ngModel)]="description"></ion-textarea>
+				<ion-textarea [(ngModel)]="event.description"></ion-textarea>
 			</ion-item>
 		</div>
 		
@@ -142,10 +142,8 @@
 
 	<br><br>
 	
-	<div class="boton">
-		<button ion-button block color="primary">
-			Guardar
-		</button>
+	<div padding>
+		<button ion-button block (click)="crearEvento()">Guardar</button>
 	</div>
 	
 

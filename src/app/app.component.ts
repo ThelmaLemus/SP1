@@ -9,8 +9,8 @@ import { CrearEventoPage } from '../pages/crear-evento/crear-evento';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  // rootPage:any = HomePage;
-  rootPage:any = CrearEventoPage;
+  rootPage:any = HomePage;
+  // rootPage:any = CrearEventoPage;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
