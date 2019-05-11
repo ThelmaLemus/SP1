@@ -440,7 +440,6 @@ var VistaDiariaPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CrearEventoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_events_services__ = __webpack_require__(612);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -452,7 +451,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
 /**
  * Generated class for the CrearEventoPage page.
  *
@@ -460,20 +458,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var CrearEventoPage = /** @class */ (function () {
-    function CrearEventoPage(navCtrl, navParams, eventServices) {
+    function CrearEventoPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.eventServices = eventServices;
-        this.event = {
-            id: null,
+        this.event = { id: null,
             title: null,
-            startDate: null,
-            endDate: null,
+            fecha: null,
+            hora: null,
             descripcion: null,
             direccion: null,
             recordatorio: null,
-            repeticion: null
-        };
+            repeticion: null };
         this.id = null;
         this.id = navParams.get('id');
     }
@@ -483,40 +478,14 @@ var CrearEventoPage = /** @class */ (function () {
     CrearEventoPage.prototype.disableTime = function () {
         console.log("deshabilitado");
     };
-    CrearEventoPage.prototype.guardarEvento = function () {
-    };
-    CrearEventoPage.prototype.newEvent = function () {
-        this.event.id = Date.now();
-        if (this.event.title == null ||
-            this.event.sdate == null ||
-            this.event.edate == null ||
-            this.event.password == null ||
-            this.password2 == null) {
-            alert("Por favor llene los campos");
-        }
-        else if (this.event.password != this.password2) {
-            alert("Las contraseñas no coinciden");
-        }
-        else {
-            // console.log("Nombre: " + this.event.nombre);
-            // console.log("Username: " + this.eventname);
-            // console.log("Correo: " + this.event.correo);
-            // console.log("Password: " + this.event.password);
-            // this.event.sexo="";
-            // this.event.myDate="";
-            this.eventsService.createUser(this.event);
-            // console.log("Id: " + this.event.id);
-            this.navCtrl.push(Registro2Page, { id: this.event.id, edited: 0 });
-        }
-    };
     CrearEventoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-crear-evento',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\crear-evento\crear-evento.html"*/'<!--\n\n  Generated template for the VerEventoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n  	<ion-title>Nuevo evento</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<div class="top">\n\n		<div class="palette">\n\n			<i class="ico-gray fas fa-palette fa-2x"></i> \n\n		</div>\n\n	</div>\n\n	<div class="form_cei">\n\n\n\n		<div class="citem">\n\n			<div class="icon-center">\n\n				<i class="ico-gray far fa-edit fa-lg"></i>\n\n			</div>\n\n			<ion-item>\n\n				<ion-label floating>Título</ion-label>\n\n				<ion-input type="text" [(ngModel)]="event.title"></ion-input>	 \n\n			</ion-item>\n\n		</div>\n\n		\n\n		<div class="citem">\n\n			<div class="icon-center">\n\n				<i class="ico-gray fas fa-map-marker-alt fa-lg"></i>\n\n			</div>\n\n			<ion-item>\n\n				<ion-label floating>Dirección</ion-label>\n\n				<ion-input type="text" [(ngModel)]="event.location"></ion-input>\n\n			</ion-item>\n\n		</div>\n\n	\n\n		<div class="citem">\n\n			<div class="icon-center">\n\n				<i class="ico-gray fas fa-clock fa-lg"></i>\n\n			</div>\n\n			<ion-item style="display:flex; justify-content: space-around;">\n\n				<ion-input style="display:none;"></ion-input>\n\n				<ion-label style="margin-top: 20px;" ><span>Todo el día</span> </ion-label>\n\n				<ion-checkbox item-right style="margin-top: 15px;" floating (ionChange)="disableTime()"></ion-checkbox>\n\n			</ion-item>\n\n		</div>\n\n	\n\n		<div class="citem">\n\n			<div class="icon-center">\n\n				<i class="ico-gray fas fa-calendar fa-lg"></i>\n\n			</div>\n\n			<ion-item>\n\n				<ion-label floating>Fecha inicial</ion-label>\n\n				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="event.startDate"></ion-datetime>\n\n			</ion-item>\n\n		</div>\n\n		\n\n		<div class="citem">\n\n			<div class="icon-center">\n\n				<i class="ico-gray fas fa-calendar fa-lg"></i>\n\n			</div>\n\n			<ion-item>\n\n				<ion-label floating>Fecha final</ion-label>\n\n				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="event.endDate"></ion-datetime>\n\n			</ion-item>\n\n		</div>\n\n	\n\n		<div class="citem">\n\n			<div class="icon-center">\n\n				<i class="ico-gray fas fa-retweet fa-lg"></i>\n\n			</div>\n\n			<ion-item>\n\n				<ion-label floating>Repetición</ion-label>\n\n				<ion-select [(ngModel)]="event.repeat">\n\n					<ion-option value="no">\n\n						No se repite\n\n					</ion-option>\n\n					<ion-option value="dias">\n\n						Todos los días\n\n					</ion-option>\n\n					<ion-option value="semanas">\n\n						Todas las semanas\n\n					</ion-option>\n\n					<ion-option value="meses">\n\n						Todos los meses\n\n					</ion-option>\n\n					<ion-option value="años">\n\n						Todos los años\n\n					</ion-option>\n\n					<!-- <ion-option value="mujer">\n\n						Personalización\n\n					</ion-option> -->\n\n				</ion-select>\n\n			</ion-item>\n\n		</div>\n\n\n\n		<div class="citem">\n\n			<div class="icon-center">\n\n				<i class="ico-gray fas fa-bell fa-lg"></i>\n\n			</div>\n\n			<ion-item>\n\n				<ion-label floating>Recordatorio</ion-label>\n\n				<ion-select [(ngModel)]="event.remind">\n\n					<ion-input type="number" [(ngModel)]="event.tiempoAntes"></ion-input>\n\n					<ion-option value="no">\n\n						Sin recordatorio\n\n					</ion-option>\n\n					<ion-option value="minutos">\n\n						Minutos antes\n\n					</ion-option>\n\n					<ion-option value="horas">\n\n						Horas antes\n\n					</ion-option>\n\n					<ion-option value="dias">\n\n						Días antes\n\n					</ion-option>\n\n					<ion-option value="semanas">\n\n						Semanas antes\n\n					</ion-option>\n\n					<!-- <ion-option value="mujer">\n\n						Personalización\n\n					</ion-option> -->\n\n				</ion-select>\n\n			</ion-item>\n\n		</div>\n\n	\n\n		<div class="citem">\n\n			<div class="icon-center">\n\n				<i class="ico-gray fas fa-align-justify fa-lg"></i>\n\n			</div>\n\n			<ion-item>\n\n					<ion-label floating>Descripción</ion-label>\n\n				<ion-textarea [(ngModel)]="event.description"></ion-textarea>\n\n			</ion-item>\n\n		</div>\n\n		\n\n	</div>\n\n\n\n	<br><br>\n\n	\n\n	<div padding>\n\n		<button ion-button block (click)="crearEvento()">Guardar</button>\n\n	</div>\n\n	\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\crear-evento\crear-evento.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object])
     ], CrearEventoPage);
     return CrearEventoPage;
-    var _a, _b, _c;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=crear-evento.js.map
