@@ -24,7 +24,7 @@ export class CrearEventoPage
 		title: null,
 		startDate: null,
 		endDate: null,
-		descripcion: null,
+		location: null,
 		direccion: null,
 		recordatorio: null,
 		repeticion: null
@@ -54,8 +54,8 @@ export class CrearEventoPage
 	private newEvent() {
 		this.event.id = Date.now();
 		if (this.event.title == null ||
-			 this.event.sdate == null ||
-			 this.event.edate == null ||
+			 this.event.startDate == null ||
+			 this.event.endDate == null ||
 			 this.event.password == null ||
 			 this.password2 == null) {
 			alert("Por favor llene los campos");
