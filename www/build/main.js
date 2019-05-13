@@ -6,10 +6,10 @@ webpackJsonp([0],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_users_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__registro1_registro1__ = __webpack_require__(291);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vista_diaria_vista_diaria__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__registro1_registro1__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vista_diaria_vista_diaria__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_fire_database__ = __webpack_require__(98);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -36,6 +36,7 @@ var HomePage = /** @class */ (function () {
         this.null = 0;
         this.wrong = 0;
         this.users = [];
+        this.id = null;
         this.user = { id: null, nombre: null, username: null, correo: null, password: null, sexo: "", myDate: "", trabaja: null, estudia: null };
         this.username = null;
         this.password = null;
@@ -51,6 +52,7 @@ var HomePage = /** @class */ (function () {
             for (var i = 0; i < this.users.length; i++) {
                 if (this.users[i].username == this.username && this.users[i].password == this.password && i < this.users.length) {
                     this.ok++;
+                    this.id = this.users[i].id;
                     // break;
                 }
                 else if (i < this.users.length) {
@@ -65,7 +67,7 @@ var HomePage = /** @class */ (function () {
         // debugger
         if (this.ok == 1) {
             console.log('ok');
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__vista_diaria_vista_diaria__["a" /* VistaDiariaPage */]);
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__vista_diaria_vista_diaria__["a" /* VistaDiariaPage */], { uid: this.id });
         }
         else if (this.null != 0) {
             console.log('null');
@@ -75,19 +77,6 @@ var HomePage = /** @class */ (function () {
             console.log("Usuario o contraseña incorrecta");
             alert("Usuario o contraseña incorrectos");
         }
-        // switch (this.aux) {
-        //   case 1:
-        //     console.log("Inició sesión correctamente");
-        //   break
-        //   case 2:
-        //     console.log("Usuario y pass nulll");
-        //     alert("Por favor ingrese un usuario y una contrasña");
-        //   break
-        //   case 3:
-        //   break
-        //   // default:
-        //   //   break;
-        // }
     };
     HomePage.prototype.editarUsuario = function (id) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__registro1_registro1__["a" /* Registro1Page */], { id: id, edited: 1 });
@@ -107,16 +96,88 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\home\home.html"*/'<ion-header>\n\n    <!-- <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script> -->\n\n    \n\n    <ion-navbar>\n\n    <ion-title>\n\n      Inicio\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <!-- The world is your oyster.\n\n  <p>\n\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n\n  </p>\n\n\n\n  <!-- <button ion-button (click) ="goWel()">Ir a wel</button> -->\n\n  <!-- <br><br><br> -->\n\n\n\n  <img class="icon" src="assets/imgs/calendar.svg.png">\n\n  <!-- <br> -->\n\n\n\n  <ion-list padding>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Username</ion-label>\n\n      <ion-input type="text" [(ngModel)]="username"></ion-input>\n\n    </ion-item>\n\n \n\n    <ion-item>\n\n      <ion-label floating>Password</ion-label>\n\n      <ion-input type="password" [(ngModel)]="password"></ion-input>\n\n    </ion-item>\n\n\n\n  </ion-list>\n\n\n\n  \n\n  <div padding>\n\n      <button ion-button block (click)="iniciarSesion()">Iniciar sesión</button>\n\n      <button ion-button block (click)="registrarse()">Registro</button>\n\n    </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */], __WEBPACK_IMPORTED_MODULE_5__angular_fire_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__angular_fire_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_fire_database__["a" /* AngularFireDatabase */]) === "function" && _c || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=home.js.map
 
 /***/ }),
 
-/***/ 227:
+/***/ 176:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventServices; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__ = __webpack_require__(98);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var EventServices = /** @class */ (function () {
+    function EventServices(afDB) {
+        this.afDB = afDB;
+        this.events = [];
+        this.events1 = [];
+    }
+    EventServices.prototype.getEvents = function () {
+        // console.log('aqui');
+        return this.afDB.list('events/');
+    };
+    EventServices.prototype.getEvent = function (id) {
+        return this.events1.filter(function (e, i) { return e.id == id; })[0] || { id: null, nombre: null, username: null, correo: null, password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null };
+        // return this.afDB.object('events/'+ id);
+    };
+    EventServices.prototype.getEventF = function (id) {
+        return this.afDB.object('events/' + id);
+    };
+    EventServices.prototype.createEvent = function (event) {
+        this.events1.push(event);
+    };
+    EventServices.prototype.createEventF = function (event) {
+        this.afDB.database.ref('events/' + event.id).set(event);
+    };
+    EventServices.prototype.editEvent = function (event) {
+        for (var i = 0; i < this.events.length; i++) {
+            if (this.events[i].id == event.id) {
+                this.events[i] = event;
+            }
+        }
+    };
+    /**
+     * ecitEventF
+     */
+    EventServices.prototype.editEventF = function (event) {
+        this.afDB.database.ref('events/' + event.id).set(event);
+    };
+    /**
+     * deleteEvent
+     */
+    EventServices.prototype.deleteEvent = function (event) {
+        this.afDB.database.ref('events/' + event.id).remove();
+    };
+    EventServices = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_fire_database__["a" /* AngularFireDatabase */]])
+    ], EventServices);
+    return EventServices;
+}());
+
+//# sourceMappingURL=events.services.js.map
+
+/***/ }),
+
+/***/ 228:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -129,31 +190,34 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 227;
+webpackEmptyAsyncContext.id = 228;
 
 /***/ }),
 
-/***/ 268:
+/***/ 269:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/bienvenido/bienvenido.module": [
-		269
+		270
 	],
 	"../pages/crear-evento/crear-evento.module": [
-		296
-	],
-	"../pages/registro1/registro1.module": [
 		297
 	],
-	"../pages/registro2/registro2.module": [
+	"../pages/registro1/registro1.module": [
 		298
 	],
-	"../pages/vista-diaria/vista-diaria.module": [
+	"../pages/registro2/registro2.module": [
 		299
 	],
-	"../pages/wel/wel.module": [
+	"../pages/ver-evento/ver-evento.module": [
 		300
+	],
+	"../pages/vista-diaria/vista-diaria.module": [
+		301
+	],
+	"../pages/wel/wel.module": [
+		302
 	]
 };
 function webpackAsyncContext(req) {
@@ -167,20 +231,20 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 268;
+webpackAsyncContext.id = 269;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 269:
+/***/ 270:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BienvenidoPageModule", function() { return BienvenidoPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bienvenido__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bienvenido__ = __webpack_require__(498);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -210,14 +274,14 @@ var BienvenidoPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 291:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Registro1Page; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registro2_registro2__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registro2_registro2__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_users_service__ = __webpack_require__(77);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -319,13 +383,13 @@ var Registro1Page = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 292:
+/***/ 293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Registro2Page; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_users_service__ = __webpack_require__(77);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -410,14 +474,15 @@ var Registro2Page = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 293:
+/***/ 294:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VistaDiariaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__crear_evento_crear_evento__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_events_services__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__crear_evento_crear_evento__ = __webpack_require__(296);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -430,8 +495,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import { VerEventoPage } from '../ver-evento/ver-evento';
-// import { CrearEventoPage } from '../crear-evento/crear-evento';
+
 /**
  * Generated class for the VistaDiariaPage page.
  *
@@ -439,40 +503,114 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var VistaDiariaPage = /** @class */ (function () {
-    function VistaDiariaPage(navCtrl, navParams) {
+    function VistaDiariaPage(navCtrl, navParams, eventServices) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.eventServices = eventServices;
         this.events = [];
+        this.uid = null;
+        this.eid = null;
+        this.uid = navParams.get('uid');
+        eventServices.getEvents().valueChanges()
+            .subscribe(function (events) {
+            _this.events = events;
+        });
+        // debugger
     }
     VistaDiariaPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad VistaDiariaPage');
     };
-    VistaDiariaPage.prototype.verEvento = function (id) {
+    VistaDiariaPage.prototype.editarEvento = function (eid) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__crear_evento_crear_evento__["a" /* CrearEventoPage */], { uid: this.uid, eid: eid });
     };
     VistaDiariaPage.prototype.newEvent = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__crear_evento_crear_evento__["a" /* CrearEventoPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__crear_evento_crear_evento__["a" /* CrearEventoPage */]);
     };
     VistaDiariaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-vista-diaria',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\vista-diaria\vista-diaria.html"*/'<!--\n\n  Generated template for the VistaDiariaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Calendario</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<div class="boton">\n\n		<button ion-button icon-only color="light" (click)="newEvent()">\n\n	  		<ion-icon name="add"></ion-icon>\n\n		</button>\n\n	</div>\n\n	<!-- <div style="color:gray;">\n\n		<i class="fas fa-palette">d</i>\n\n	</div>  -->\n\n\n\n	<ion-item *ngFor="let event of events">\n\n		<ion-card class="reales" (click)="verEvento(event.id)">\n\n			<ion-card-header>\n\n		    	<ion-card-title >\n\n		    		{{ event.title }}\n\n		    	</ion-card-title>\n\n			</ion-card-header>\n\n			\n\n			<ion-card-content>\n\n		    	{{ event.hora }}\n\n			</ion-card-content>\n\n		</ion-card>\n\n	</ion-item>\n\n\n\n	<ion-label>\n\n		Sugerencias\n\n	</ion-label>\n\n\n\n	<ion-item *ngFor="let event of events">\n\n		<ion-row>\n\n	    	<ion-col col-10>\n\n	    		<ion-card class="sugerencias">\n\n					<ion-card-header>\n\n			    		<ion-card-title >\n\n			    			{{ event.title }}\n\n			    		</ion-card-title>\n\n					</ion-card-header>\n\n\n\n					<ion-card-content>\n\n				    	{{ event.hora }}\n\n					</ion-card-content>\n\n				</ion-card>\n\n	    	</ion-col>\n\n	    	<ion-col col-2 align-self-left text-center>\n\n	    		<ion-row>\n\n		    		<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="checkmark-circle"></ion-icon>\n\n		        	</button>\n\n		        </ion-row>\n\n		        <ion-row>\n\n		        	<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="close-circle"></ion-icon>\n\n		       		</button>\n\n		       	</ion-row>\n\n	    	</ion-col>\n\n		</ion-row>\n\n	</ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\vista-diaria\vista-diaria.html"*/,
+            selector: 'page-vista-diaria',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\vista-diaria\vista-diaria.html"*/'<!--\n\n  Generated template for the VistaDiariaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Calendario</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<div class="newEvent">\n\n		<button class="addbutton" ion-button icon-only color="light" (click)="newEvent()">\n\n	  		<ion-icon name="add"></ion-icon>\n\n		</button>\n\n	</div>\n\n	<br><br>\n\n	<!-- <div style="color:gray;">\n\n		<i class="fas fa-palette">d</i>\n\n	</div>  -->\n\n	<div class="event_list">\n\n		<div class="item_event_list" *ngFor="let event of events">\n\n			<ion-card class="reales" (click)="editarEvento(event.id)">\n\n				<ion-card-header>\n\n					<ion-card-title >\n\n						{{ event.title }}\n\n					</ion-card-title>\n\n				</ion-card-header>\n\n				\n\n				<ion-card-content>\n\n					{{ event.startDate }}\n\n				</ion-card-content>\n\n			</ion-card>\n\n		</div>\n\n	</div>\n\n	\n\n	<ion-label>\n\n		Sugerencias\n\n	</ion-label>\n\n\n\n	<ion-item *ngFor="let event of events">\n\n		<ion-row>\n\n	    	<ion-col col-10>\n\n	    		<ion-card class="sugerencias">\n\n					<ion-card-header>\n\n			    		<ion-card-title >\n\n			    			{{ event.title }}\n\n			    		</ion-card-title>\n\n					</ion-card-header>\n\n\n\n					<ion-card-content>\n\n				    	{{ event.startDate }}\n\n					</ion-card-content>\n\n				</ion-card>\n\n	    	</ion-col>\n\n	    	<ion-col col-2 align-self-left text-center>\n\n	    		<ion-row>\n\n		    		<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="checkmark-circle"></ion-icon>\n\n		        	</button>\n\n		        </ion-row>\n\n		        <ion-row>\n\n		        	<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="close-circle"></ion-icon>\n\n		       		</button>\n\n		       	</ion-row>\n\n	    	</ion-col>\n\n		</ion-row>\n\n	</ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\vista-diaria\vista-diaria.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */]) === "function" && _c || Object])
     ], VistaDiariaPage);
     return VistaDiariaPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=vista-diaria.js.map
 
 /***/ }),
 
-/***/ 294:
+/***/ 295:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerEventoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_events_services__ = __webpack_require__(176);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+// import { FirebaseService } from '../../services/firebase.service';
+/**
+ * Generated class for the VerEventoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var VerEventoPage = /** @class */ (function () {
+    function VerEventoPage(navCtrl, navParams, eventServices) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.event = { id: null,
+            title: null,
+            fecha: null,
+            hora: null,
+            descripcion: null,
+            direccion: null,
+            recordatorio: null,
+            repeticion: null };
+        this.eid = null;
+        this.uid = null;
+        this.uid = navParams.get('uid');
+        this.eid = navParams.get('eid');
+        // this.event = eventsService.getEvent(this.id);
+    }
+    VerEventoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad VerEventoPage');
+    };
+    VerEventoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-ver-evento',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\ver-evento\ver-evento.html"*/'<!--\n  Generated template for the VerEventoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="primary">\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n	<ion-item>\n		<!-- FALTA MOSTRAR EL COLOR DEL EVENTO QUE ESCOGIÓ -->\n		<h1>{{ event.title }}</h1>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/imgs/reloj.png">\n	    </ion-avatar>\n	    <h3>{{ event.startDate }}</h3>\n	    <h3>{{ event.endDate }}</h3>\n	</ion-item>\n\n	<ion-item>\n		<ion-label>Descripción</ion-label>\n	</ion-item>\n	<ion-item>\n		<h3>{{ event.description }}</h3>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/icon/address.svg">\n	    </ion-avatar>\n	    <h3>{{ event.location }}</h3>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/imgs/alarm.png">\n	    </ion-avatar>\n	    <h3>{{ event.reminder }}</h3>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/icon/repeat.svg">\n	    </ion-avatar>\n	    <h3>{{ event.repeat }}</h3>\n	</ion-item>\n\n	<br><br>\n	\n	<div class="boton">\n		<button ion-button icon-only color="light">\n	  		<ion-icon name="create"></ion-icon>\n		</button>\n	</div>\n	\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\ver-evento\ver-evento.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */]) === "function" && _c || Object])
+    ], VerEventoPage);
+    return VerEventoPage;
+    var _a, _b, _c;
+}());
+
+//# sourceMappingURL=ver-evento.js.map
+
+/***/ }),
+
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CrearEventoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_events_services__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_events_services__ = __webpack_require__(176);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -493,6 +631,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var CrearEventoPage = /** @class */ (function () {
     function CrearEventoPage(navCtrl, navParams, eventServices) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.eventServices = eventServices;
@@ -508,8 +647,16 @@ var CrearEventoPage = /** @class */ (function () {
             reminder: null,
             description: null
         };
-        this.id = null;
-        this.id = navParams.get('id');
+        this.uid = null;
+        this.eid = null;
+        this.uid = navParams.get('uid');
+        this.eid = navParams.get('eid');
+        if (this.eid != undefined) {
+            eventServices.getEventF(this.eid).valueChanges()
+                .subscribe(function (event) {
+                _this.event = event;
+            });
+        }
     }
     CrearEventoPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad CrearEventoPage');
@@ -519,7 +666,12 @@ var CrearEventoPage = /** @class */ (function () {
         console.log("DisableTime");
     };
     CrearEventoPage.prototype.crearEvento = function () {
-        this.newEvent();
+        if (this.eid != undefined) {
+            this.editEvent();
+        }
+        else {
+            this.newEvent();
+        }
     };
     CrearEventoPage.prototype.newEvent = function () {
         this.event.id = 'e' + Date.now();
@@ -531,20 +683,22 @@ var CrearEventoPage = /** @class */ (function () {
             alert("Por favor llene todos los campos");
         }
         else {
-            console.log("Nombre: " + this.event.id);
-            console.log("Username: " + this.event.title);
-            console.log("Correo: " + this.event.location);
-            console.log("Password: " + this.event.allday);
-            console.log("Correo: " + this.event.startDate);
-            console.log("Password: " + this.event.endDate);
-            console.log("Password: " + this.event.repeat);
-            console.log("Correo: " + this.event.reminder);
-            console.log("Password: " + this.event.description);
-            this.eventServices.createEvent(this.event);
-            // this.event.sexo="";
-            // this.event.myDate="";
-            // console.log("Id: " + this.event.id);
-            // this.navCtrl.push(Registro2Page, { id: this.event.id, edited: 0 });
+            this.eventServices.createEventF(this.event);
+            this.navCtrl.pop();
+        }
+    };
+    CrearEventoPage.prototype.editEvent = function () {
+        if (this.event.title == "" ||
+            this.event.startDate == "" ||
+            this.event.endDate == "" ||
+            this.event.allday == "" ||
+            this.event.reminder == "") {
+            alert("Por favor llene todos los campos");
+        }
+        else {
+            this.eventServices.createEventF(this.event);
+            // this.usersService.editUserF(this.user);
+            this.navCtrl.pop();
         }
     };
     CrearEventoPage = __decorate([
@@ -561,85 +715,15 @@ var CrearEventoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 295:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventServices; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__ = __webpack_require__(98);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var EventServices = /** @class */ (function () {
-    function EventServices(afDB) {
-        this.afDB = afDB;
-        this.events = [];
-        this.events1 = [];
-    }
-    EventServices.prototype.getEvents = function () {
-        return this.afDB.list('events/');
-    };
-    EventServices.prototype.getEvent = function (id) {
-        return this.events1.filter(function (e, i) { return e.id == id; })[0] || { id: null, nombre: null, username: null, correo: null, password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null };
-        // return this.afDB.object('events/'+ id);
-    };
-    EventServices.prototype.getEventF = function (id) {
-        return this.afDB.object('events/' + id);
-    };
-    EventServices.prototype.createEvent = function (event) {
-        this.events1.push(event);
-    };
-    EventServices.prototype.createEventF = function (event) {
-        this.afDB.database.ref('events/' + event.id).set(event);
-    };
-    EventServices.prototype.editEvent = function (event) {
-        for (var i = 0; i < this.events.length; i++) {
-            if (this.events[i].id == event.id) {
-                this.events[i] = event;
-            }
-        }
-    };
-    /**
-     * ecitEventF
-     */
-    EventServices.prototype.editEventF = function (event) {
-        this.afDB.database.ref('events/' + event.id).set(event);
-    };
-    /**
-     * deleteEvent
-     */
-    EventServices.prototype.deleteEvent = function (event) {
-        this.afDB.database.ref('events/' + event.id).remove();
-    };
-    EventServices = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_fire_database__["a" /* AngularFireDatabase */]])
-    ], EventServices);
-    return EventServices;
-}());
-
-//# sourceMappingURL=events.services.js.map
-
-/***/ }),
-
-/***/ 296:
+/***/ 297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CrearEventoPageModule", function() { return CrearEventoPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__crear_evento__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__crear_evento__ = __webpack_require__(296);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -669,15 +753,15 @@ var CrearEventoPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 297:
+/***/ 298:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Registro1PageModule", function() { return Registro1PageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registro1__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registro1__ = __webpack_require__(292);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -707,15 +791,15 @@ var Registro1PageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 298:
+/***/ 299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Registro2PageModule", function() { return Registro2PageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registro2__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registro2__ = __webpack_require__(293);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -745,15 +829,53 @@ var Registro2PageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 299:
+/***/ 300:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VerEventoPageModule", function() { return VerEventoPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ver_evento__ = __webpack_require__(295);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var VerEventoPageModule = /** @class */ (function () {
+    function VerEventoPageModule() {
+    }
+    VerEventoPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__ver_evento__["a" /* VerEventoPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__ver_evento__["a" /* VerEventoPage */]),
+            ],
+        })
+    ], VerEventoPageModule);
+    return VerEventoPageModule;
+}());
+
+//# sourceMappingURL=ver-evento.module.js.map
+
+/***/ }),
+
+/***/ 301:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VistaDiariaPageModule", function() { return VistaDiariaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vista_diaria__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vista_diaria__ = __webpack_require__(294);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -783,15 +905,15 @@ var VistaDiariaPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 300:
+/***/ 302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WelPageModule", function() { return WelPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wel__ = __webpack_require__(582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wel__ = __webpack_require__(584);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -821,13 +943,13 @@ var WelPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 345:
+/***/ 347:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(472);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -835,7 +957,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 470:
+/***/ 472:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -843,28 +965,30 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_wel_wel_module__ = __webpack_require__(300);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(607);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_wel_wel_module__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(609);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_fire__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_fire_database__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_fire_auth__ = __webpack_require__(608);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_fire_auth__ = __webpack_require__(610);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_users_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_events_services__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_registro1_registro1_module__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_registro2_registro2_module__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_bienvenido_bienvenido_module__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_vista_diaria_vista_diaria_module__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_crear_evento_crear_evento_module__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_events_services__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_registro1_registro1_module__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_registro2_registro2_module__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_bienvenido_bienvenido_module__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_vista_diaria_vista_diaria_module__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_crear_evento_crear_evento_module__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_ver_evento_ver_evento_module__ = __webpack_require__(300);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -908,6 +1032,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/crear-evento/crear-evento.module#CrearEventoPageModule', name: 'CrearEventoPage', segment: 'crear-evento', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/registro1/registro1.module#Registro1PageModule', name: 'Registro1Page', segment: 'registro1', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/registro2/registro2.module#Registro2PageModule', name: 'Registro2Page', segment: 'registro2', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ver-evento/ver-evento.module#VerEventoPageModule', name: 'VerEventoPage', segment: 'ver-evento', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/vista-diaria/vista-diaria.module#VistaDiariaPageModule', name: 'VistaDiariaPage', segment: 'vista-diaria', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/wel/wel.module#WelPageModule', name: 'WelPage', segment: 'wel', priority: 'low', defaultHistory: [] }
                     ]
@@ -920,7 +1045,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_9__angular_fire_database__["b" /* AngularFireDatabaseModule */],
                 __WEBPACK_IMPORTED_MODULE_10__angular_fire_auth__["a" /* AngularFireAuthModule */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_vista_diaria_vista_diaria_module__["VistaDiariaPageModule"],
-                __WEBPACK_IMPORTED_MODULE_17__pages_crear_evento_crear_evento_module__["CrearEventoPageModule"]
+                __WEBPACK_IMPORTED_MODULE_17__pages_crear_evento_crear_evento_module__["CrearEventoPageModule"],
+                __WEBPACK_IMPORTED_MODULE_18__pages_ver_evento_ver_evento_module__["VerEventoPageModule"]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
@@ -943,13 +1069,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 496:
+/***/ 498:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BienvenidoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -993,13 +1119,13 @@ var BienvenidoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 582:
+/***/ 584:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_users_service__ = __webpack_require__(77);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1045,15 +1171,15 @@ var WelPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 607:
+/***/ 609:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1169,5 +1295,5 @@ var UsersService = /** @class */ (function () {
 
 /***/ })
 
-},[345]);
+},[347]);
 //# sourceMappingURL=main.js.map

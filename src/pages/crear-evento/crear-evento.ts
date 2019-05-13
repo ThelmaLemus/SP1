@@ -18,7 +18,7 @@ import { EventServices } from '../../services/events.services';
 })
 export class CrearEventoPage
 {
-	event = 
+	event: any = 
 	{	
 		id: null,
 		uid: null, 
@@ -32,10 +32,19 @@ export class CrearEventoPage
 		description: null
 	};
 	
-	id = null;
-
+	uid = null;
+	eid = null;
 	constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
-  	this.id = navParams.get('id');
+		this.uid = navParams.get('uid');
+		this.eid = navParams.get('eid'); 
+		if (this.eid != undefined) 
+		{
+			eventServices.getEventF(this.eid).valueChanges()
+			.subscribe(event => {
+				this.event = event;
+			});
+		}
+	  
   }
 
   ionViewDidLoad() {
@@ -50,7 +59,13 @@ export class CrearEventoPage
   }
 
 	crearEvento(){
-		this.newEvent();
+		if (this.eid != undefined) 
+		{
+			this.editEvent();
+		}else
+		{
+			this.newEvent();
+		}
 	}
 
 
@@ -65,27 +80,30 @@ export class CrearEventoPage
 		{
 			alert("Por favor llene todos los campos");
 		}
-		// else if (this.event.password != this.password2) {
-		// 	alert("Las contraseñas no coinciden");
-		// }
+
 		else {
 
-			console.log("Nombre: " + this.event.id);
-			console.log("Username: " + this.event.title);
-			console.log("Correo: " + this.event.location);
-			console.log("Password: " + this.event.allday);
-			console.log("Correo: " + this.event.startDate);
-			console.log("Password: " + this.event.endDate);
-			console.log("Password: " + this.event.repeat);
-			console.log("Correo: " + this.event.reminder);
-			console.log("Password: " + this.event.description);
-			this.eventServices.createEvent(this.event);
-			// this.event.sexo="";
-			// this.event.myDate="";
-			
+			this.eventServices.createEventF(this.event);
+			this.navCtrl.pop();
 
-			// console.log("Id: " + this.event.id);
-			// this.navCtrl.push(Registro2Page, { id: this.event.id, edited: 0 });
+		}
+	}
+
+
+
+	private editEvent () {
+		if (this.event.title == "" ||
+			this.event.startDate == "" ||
+			this.event.endDate == "" ||
+			this.event.allday == "" ||
+			this.event.reminder == "") {
+			alert("Por favor llene todos los campos");
+		}else
+		{
+			this.eventServices.createEventF(this.event);
+			// this.usersService.editUserF(this.user);
+			this.navCtrl.pop();
+
 		}
 	}
 }

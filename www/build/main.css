@@ -25824,6 +25824,16 @@ page-home .delete_bt {
   border-radius: 100%;
 }
 
+page-ver-evento .button {
+  margin-right: 50%;
+  margin-bottom: 50%;
+}
+
+page-ver-evento .boton {
+  right: 0px;
+  padding: 10px;
+}
+
 page-vista-diaria .reales {
   display: block;
   width: 100% !important;
@@ -25845,4 +25855,30 @@ page-vista-diaria .sugerencias {
   margin-left: 0;
   margin-right: 0;
   margin-top: 2px;
+}
+
+page-vista-diaria .newEvent {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+page-vista-diaria .item_event_list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+page-vista-diaria .event_list {
+  margin-bottom: 30px;
 }

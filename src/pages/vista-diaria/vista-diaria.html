@@ -12,29 +12,31 @@
 </ion-header>
 
 <ion-content padding>
-	<div class="boton">
-		<button ion-button icon-only color="light" (click)="newEvent()">
+	<div class="newEvent">
+		<button class="addbutton" ion-button icon-only color="light" (click)="newEvent()">
 	  		<ion-icon name="add"></ion-icon>
 		</button>
 	</div>
+	<br><br>
 	<!-- <div style="color:gray;">
 		<i class="fas fa-palette">d</i>
 	</div>  -->
-
-	<ion-item *ngFor="let event of events">
-		<ion-card class="reales" (click)="verEvento(event.id)">
-			<ion-card-header>
-		    	<ion-card-title >
-		    		{{ event.title }}
-		    	</ion-card-title>
-			</ion-card-header>
-			
-			<ion-card-content>
-		    	{{ event.hora }}
-			</ion-card-content>
-		</ion-card>
-	</ion-item>
-
+	<div class="event_list">
+		<div class="item_event_list" *ngFor="let event of events">
+			<ion-card class="reales" (click)="editarEvento(event.id)">
+				<ion-card-header>
+					<ion-card-title >
+						{{ event.title }}
+					</ion-card-title>
+				</ion-card-header>
+				
+				<ion-card-content>
+					{{ event.startDate }}
+				</ion-card-content>
+			</ion-card>
+		</div>
+	</div>
+	
 	<ion-label>
 		Sugerencias
 	</ion-label>
@@ -50,7 +52,7 @@
 					</ion-card-header>
 
 					<ion-card-content>
-				    	{{ event.hora }}
+				    	{{ event.startDate }}
 					</ion-card-content>
 				</ion-card>
 	    	</ion-col>

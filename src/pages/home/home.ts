@@ -14,6 +14,7 @@ export class HomePage {
   null = 0;
   wrong = 0;
   users = [];
+  id = null;
   user:any = {id: null, nombre :null, username:null, correo:null, password:null, sexo:"", myDate:"", trabaja:null, estudia:null};
   username = null;
   password = null;
@@ -34,6 +35,7 @@ export class HomePage {
         if (this.users[i].username == this.username && this.users[i].password == this.password && i < this.users.length) 
         {
           this.ok ++;
+          this.id = this.users[i].id;
           // break;
         } else if (i < this.users.length)
         {
@@ -49,7 +51,7 @@ export class HomePage {
     if (this.ok == 1) 
     {
       console.log('ok');
-      this.navCtrl.push(VistaDiariaPage);
+      this.navCtrl.push(VistaDiariaPage, {uid: this.id});
       
     }else if (this.null !=0)
     {
@@ -62,22 +64,6 @@ export class HomePage {
       alert("Usuario o contraseña incorrectos");
       
     }
-    // switch (this.aux) {
-    //   case 1:
-    //     console.log("Inició sesión correctamente");
-    //   break
-      
-    //   case 2:
-    //     console.log("Usuario y pass nulll");
-    //     alert("Por favor ingrese un usuario y una contrasña");
-    //   break
-      
-    //   case 3:
-    //   break
-
-    //   // default:
-    //   //   break;
-    // }
   }
 
   editarUsuario(id)

@@ -10,6 +10,7 @@ export class EventServices{
     events1 =[];
 
     public getEvents(){
+        // console.log('aqui');
         return this.afDB.list('events/');
     }
 
