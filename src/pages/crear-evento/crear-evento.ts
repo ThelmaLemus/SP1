@@ -25,9 +25,10 @@ export class CrearEventoPage
 		startDate: null,
 		endDate: null,
 		location: null,
-		direccion: null,
-		recordatorio: null,
-		repeticion: null
+		allday: null,
+		repeat: null,
+		reminder: null,
+		description: null
 	};
 	
 	id = null;
@@ -42,38 +43,48 @@ export class CrearEventoPage
 
   disableTime()
   {
-  	console.log("deshabilitado");
+		// this.event.allday = true;
+		console.log("DisableTime");
+		
   }
 
 	guardarEvento(){
-
+		this.newEvent();
 	}
 
 
 
 	private newEvent() {
-		this.event.id = Date.now();
+		this.event.id = 'e'+ Date.now();
 		if (this.event.title == null ||
-			 this.event.startDate == null ||
-			 this.event.endDate == null ||
-			 this.event.password == null ||
-			 this.password2 == null) {
-			alert("Por favor llene los campos");
+			this.event.startDate == null ||
+			this.event.endDate == null ||
+			this.event.allday == null ||
+			this.event.reminder == null) 
+		{
+			alert("Por favor llene todos los campos");
 		}
-		else if (this.event.password != this.password2) {
-			alert("Las contraseñas no coinciden");
-		}
+		// else if (this.event.password != this.password2) {
+		// 	alert("Las contraseñas no coinciden");
+		// }
 		else {
 
-			// console.log("Nombre: " + this.event.nombre);
-			// console.log("Username: " + this.eventname);
-			// console.log("Correo: " + this.event.correo);
-			// console.log("Password: " + this.event.password);
+			console.log("Nombre: " + this.event.id);
+			console.log("Username: " + this.event.title);
+			console.log("Correo: " + this.event.location);
+			console.log("Password: " + this.event.allday);
+			console.log("Correo: " + this.event.startDate);
+			console.log("Password: " + this.event.endDate);
+			console.log("Password: " + this.event.repeat);
+			console.log("Correo: " + this.event.reminder);
+			console.log("Password: " + this.event.description);
 			// this.event.sexo="";
 			// this.event.myDate="";
-			this.eventsService.createUser(this.event);
+			
+			// this.eventServices.createEvent(this.event);
+
 			// console.log("Id: " + this.event.id);
-			this.navCtrl.push(Registro2Page, { id: this.event.id, edited: 0 });
+			// this.navCtrl.push(Registro2Page, { id: this.event.id, edited: 0 });
 		}
 	}
 }

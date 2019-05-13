@@ -45,7 +45,7 @@
 			<ion-item style="display:flex; justify-content: space-around;">
 				<ion-input style="display:none;"></ion-input>
 				<ion-label style="margin-top: 20px;" ><span>Todo el día</span> </ion-label>
-				<ion-checkbox item-right style="margin-top: 15px;" floating (ionChange)="disableTime()"></ion-checkbox>
+				<ion-checkbox item-right style="margin-top: 15px;" floating (ionChange)="disableTime()" [(ngModel)]="event.allday"></ion-checkbox>
 			</ion-item>
 		</div>
 	
@@ -104,7 +104,7 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Recordatorio</ion-label>
-				<ion-select [(ngModel)]="event.remind">
+				<ion-select [(ngModel)]="event.reminder">
 					<ion-input type="number" [(ngModel)]="event.tiempoAntes"></ion-input>
 					<ion-option value="no">
 						Sin recordatorio

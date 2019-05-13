@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Alert } from 'ionic-angular';
 import { UsersService } from '../../services/users.service';
 import { Registro1Page } from '../registro1/registro1';
 import { VistaDiariaPage } from '../vista-diaria/vista-diaria';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  ok = 0;
+  null = 0;
+  wrong = 0;
   users = [];
   user:any = {id: null, nombre :null, username:null, correo:null, password:null, sexo:"", myDate:"", trabaja:null, estudia:null};
   username = null;
   password = null;
-  constructor(public navCtrl: NavController, public usersService: UsersService) {
+  constructor(public navCtrl: NavController, public usersService: UsersService, public afDB: AngularFireDatabase) {
     usersService.getUsers().valueChanges()
     .subscribe(users => {
       this.users = users;
@@ -24,23 +28,56 @@ export class HomePage {
   iniciarSesion()
   {
     // debugger
-    for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].username == this.username && this.users[i].password == this.password) 
-      {
-        console.log("Inició sesión correctamente");
-        this.navCtrl.push(VistaDiariaPage);
-        break; 
-      }else if(this.username == null || this.password == null)
-      {
-        alert("Por favor ingrese un usuario y una contrasña");
-        break;
-      }else
-      {
-        alert("Usuario o contraseña incorrectos");
-        break;
+    if (this.username != null || this.password != null)
+    {
+      for (let i = 0; i < this.users.length; i++) {
+        if (this.users[i].username == this.username && this.users[i].password == this.password && i < this.users.length) 
+        {
+          this.ok ++;
+          // break;
+        } else if (i < this.users.length)
+        {
+          this.wrong ++;
+          // break;
+        }
       }
+    }else{
+      console.log("Favor ingresar un usuario y una contraseña");
       
     }
+    // debugger
+    if (this.ok == 1) 
+    {
+      console.log('ok');
+      this.navCtrl.push(VistaDiariaPage);
+      
+    }else if (this.null !=0)
+    {
+      console.log('null');
+      
+    }else if (this.wrong  ==  this.users.length )
+    {
+      // console.log('wrong');
+      console.log("Usuario o contraseña incorrecta");
+      alert("Usuario o contraseña incorrectos");
+      
+    }
+    // switch (this.aux) {
+    //   case 1:
+    //     console.log("Inició sesión correctamente");
+    //   break
+      
+    //   case 2:
+    //     console.log("Usuario y pass nulll");
+    //     alert("Por favor ingrese un usuario y una contrasña");
+    //   break
+      
+    //   case 3:
+    //   break
+
+    //   // default:
+    //   //   break;
+    // }
   }
 
   editarUsuario(id)
