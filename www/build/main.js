@@ -67,7 +67,7 @@ var HomePage = /** @class */ (function () {
         // debugger
         if (this.ok == 1) {
             console.log('ok');
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__vista_diaria_vista_diaria__["a" /* VistaDiariaPage */], { uid: this.id });
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__vista_diaria_vista_diaria__["a" /* VistaDiariaPage */], { id: this.id });
         }
         else if (this.null != 0) {
             console.log('null');
@@ -130,9 +130,9 @@ var EventServices = /** @class */ (function () {
         this.events = [];
         this.events1 = [];
     }
-    EventServices.prototype.getEvents = function () {
+    EventServices.prototype.getEvents = function (uid) {
         // console.log('aqui');
-        return this.afDB.list('events/');
+        return this.afDB.list('users/' + uid + '/events/');
     };
     EventServices.prototype.getEvent = function (id) {
         return this.events1.filter(function (e, i) { return e.id == id; })[0] || { id: null, nombre: null, username: null, correo: null, password: null, password2: null, sexo: null, myDate: null, trabaja: null, estudia: null };
@@ -144,8 +144,8 @@ var EventServices = /** @class */ (function () {
     EventServices.prototype.createEvent = function (event) {
         this.events1.push(event);
     };
-    EventServices.prototype.createEventF = function (event) {
-        this.afDB.database.ref('events/' + event.id).set(event);
+    EventServices.prototype.createEventF = function (event, uid) {
+        this.afDB.database.ref('users/' + uid + '/events/' + event.id).set(event);
     };
     EventServices.prototype.editEvent = function (event) {
         for (var i = 0; i < this.events.length; i++) {
@@ -168,9 +168,10 @@ var EventServices = /** @class */ (function () {
     };
     EventServices = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_fire_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_fire_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
     ], EventServices);
     return EventServices;
+    var _a;
 }());
 
 //# sourceMappingURL=events.services.js.map
@@ -508,11 +509,13 @@ var VistaDiariaPage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.eventServices = eventServices;
+        this.date = new Date();
+        this.myDate = this.date.getDate() + '/' + (this.date.getMonth() + 1) + '/' + this.date.getFullYear();
         this.events = [];
         this.uid = null;
         this.eid = null;
-        this.uid = navParams.get('uid');
-        eventServices.getEvents().valueChanges()
+        this.uid = navParams.get('id');
+        eventServices.getEvents(this.uid).valueChanges()
             .subscribe(function (events) {
             _this.events = events;
         });
@@ -525,11 +528,11 @@ var VistaDiariaPage = /** @class */ (function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__crear_evento_crear_evento__["a" /* CrearEventoPage */], { uid: this.uid, eid: eid });
     };
     VistaDiariaPage.prototype.newEvent = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__crear_evento_crear_evento__["a" /* CrearEventoPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__crear_evento_crear_evento__["a" /* CrearEventoPage */], { uid: this.uid });
     };
     VistaDiariaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-vista-diaria',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\vista-diaria\vista-diaria.html"*/'<!--\n\n  Generated template for the VistaDiariaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Calendario</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<div class="newEvent">\n\n		<button class="addbutton" ion-button icon-only color="light" (click)="newEvent()">\n\n	  		<ion-icon name="add"></ion-icon>\n\n		</button>\n\n	</div>\n\n	<br><br>\n\n	<!-- <div style="color:gray;">\n\n		<i class="fas fa-palette">d</i>\n\n	</div>  -->\n\n	<div class="event_list">\n\n		<div class="item_event_list" *ngFor="let event of events">\n\n			<ion-card class="reales" (click)="editarEvento(event.id)">\n\n				<ion-card-header>\n\n					<ion-card-title >\n\n						{{ event.title }}\n\n					</ion-card-title>\n\n				</ion-card-header>\n\n				\n\n				<ion-card-content>\n\n					{{ event.startDate }}\n\n				</ion-card-content>\n\n			</ion-card>\n\n		</div>\n\n	</div>\n\n	\n\n	<ion-label>\n\n		Sugerencias\n\n	</ion-label>\n\n\n\n	<ion-item *ngFor="let event of events">\n\n		<ion-row>\n\n	    	<ion-col col-10>\n\n	    		<ion-card class="sugerencias">\n\n					<ion-card-header>\n\n			    		<ion-card-title >\n\n			    			{{ event.title }}\n\n			    		</ion-card-title>\n\n					</ion-card-header>\n\n\n\n					<ion-card-content>\n\n				    	{{ event.startDate }}\n\n					</ion-card-content>\n\n				</ion-card>\n\n	    	</ion-col>\n\n	    	<ion-col col-2 align-self-left text-center>\n\n	    		<ion-row>\n\n		    		<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="checkmark-circle"></ion-icon>\n\n		        	</button>\n\n		        </ion-row>\n\n		        <ion-row>\n\n		        	<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="close-circle"></ion-icon>\n\n		       		</button>\n\n		       	</ion-row>\n\n	    	</ion-col>\n\n		</ion-row>\n\n	</ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\vista-diaria\vista-diaria.html"*/,
+            selector: 'page-vista-diaria',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\vista-diaria\vista-diaria.html"*/'<!--\n\n  Generated template for the VistaDiariaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n	<ion-navbar color="primary">\n\n		<button ion-button menuToggle>\n\n			<ion-icon name="menu"></ion-icon>\n\n		</button>\n\n		<ion-title class="title">\n\n			<ion-input  [(ngModel)]="myDate"></ion-input>\n\n		</ion-title>\n\n		<!--    <button ion-button icon-only>\n\n      <ion-icon name="refresh" (click)="refrescar()"></ion-icon>\n\n    </button>\n\n-->\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<div class="newEvent">\n\n		<button class="addbutton" ion-button icon-only color="light" (click)="newEvent()">\n\n	  		<ion-icon name="add"></ion-icon>\n\n		</button>\n\n	</div>\n\n	<br><br>\n\n	<!-- <div style="color:gray;">\n\n		<i class="fas fa-palette">d</i>\n\n	</div>  -->\n\n	<div class="event_list">\n\n		<div class="item_event_list" *ngFor="let event of events">\n\n			<ion-card class="reales" (click)="editarEvento(event.id)">\n\n				<ion-card-header>\n\n					<ion-card-title >\n\n						{{ event.title }}\n\n					</ion-card-title>\n\n				</ion-card-header>\n\n				\n\n				<ion-card-content>\n\n					{{ event.startDate }}\n\n				</ion-card-content>\n\n			</ion-card>\n\n		</div>\n\n	</div>\n\n	\n\n	<ion-label>\n\n		Sugerencias\n\n	</ion-label>\n\n\n\n	<ion-item *ngFor="let event of events">\n\n		<ion-row>\n\n	    	<ion-col col-10>\n\n	    		<ion-card class="sugerencias">\n\n					<ion-card-header>\n\n			    		<ion-card-title >\n\n			    			{{ event.title }}\n\n			    		</ion-card-title>\n\n					</ion-card-header>\n\n\n\n					<ion-card-content>\n\n				    	{{ event.startDate }}\n\n					</ion-card-content>\n\n				</ion-card>\n\n	    	</ion-col>\n\n	    	<ion-col col-2 align-self-left text-center>\n\n	    		<ion-row>\n\n		    		<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="checkmark-circle"></ion-icon>\n\n		        	</button>\n\n		        </ion-row>\n\n		        <ion-row>\n\n		        	<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="close-circle"></ion-icon>\n\n		       		</button>\n\n		       	</ion-row>\n\n	    	</ion-col>\n\n		</ion-row>\n\n	</ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\vista-diaria\vista-diaria.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */]) === "function" && _c || Object])
     ], VistaDiariaPage);
@@ -548,7 +551,6 @@ var VistaDiariaPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerEventoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_events_services__ = __webpack_require__(176);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -560,7 +562,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
 // import { FirebaseService } from '../../services/firebase.service';
 /**
  * Generated class for the VerEventoPage page.
@@ -569,7 +570,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var VerEventoPage = /** @class */ (function () {
-    function VerEventoPage(navCtrl, navParams, eventServices) {
+    function VerEventoPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.event = { id: null,
@@ -580,10 +581,8 @@ var VerEventoPage = /** @class */ (function () {
             direccion: null,
             recordatorio: null,
             repeticion: null };
-        this.eid = null;
-        this.uid = null;
-        this.uid = navParams.get('uid');
-        this.eid = navParams.get('eid');
+        this.id = null;
+        this.id = navParams.get('id');
         // this.event = eventsService.getEvent(this.id);
     }
     VerEventoPage.prototype.ionViewDidLoad = function () {
@@ -591,12 +590,11 @@ var VerEventoPage = /** @class */ (function () {
     };
     VerEventoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-ver-evento',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\ver-evento\ver-evento.html"*/'<!--\n  Generated template for the VerEventoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="primary">\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n	<ion-item>\n		<!-- FALTA MOSTRAR EL COLOR DEL EVENTO QUE ESCOGIÓ -->\n		<h1>{{ event.title }}</h1>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/imgs/reloj.png">\n	    </ion-avatar>\n	    <h3>{{ event.startDate }}</h3>\n	    <h3>{{ event.endDate }}</h3>\n	</ion-item>\n\n	<ion-item>\n		<ion-label>Descripción</ion-label>\n	</ion-item>\n	<ion-item>\n		<h3>{{ event.description }}</h3>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/icon/address.svg">\n	    </ion-avatar>\n	    <h3>{{ event.location }}</h3>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/imgs/alarm.png">\n	    </ion-avatar>\n	    <h3>{{ event.reminder }}</h3>\n	</ion-item>\n\n	<ion-item>\n		<!-- 512*512 -->\n	    <ion-avatar item-start>\n	      <img src="assets/icon/repeat.svg">\n	    </ion-avatar>\n	    <h3>{{ event.repeat }}</h3>\n	</ion-item>\n\n	<br><br>\n	\n	<div class="boton">\n		<button ion-button icon-only color="light">\n	  		<ion-icon name="create"></ion-icon>\n		</button>\n	</div>\n	\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\ver-evento\ver-evento.html"*/,
+            selector: 'page-ver-evento',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\ver-evento\ver-evento.html"*/'<!--\n\n  Generated template for the VerEventoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n	<ion-item>\n\n		<!-- FALTA MOSTRAR EL COLOR DEL EVENTO QUE ESCOGIÓ -->\n\n		<h1>{{ event.title }}</h1>\n\n	</ion-item>\n\n\n\n	<ion-item>\n\n		<!-- 512*512 -->\n\n	    <ion-avatar item-start>\n\n	      <img src="assets/imgs/reloj.png">\n\n	    </ion-avatar>\n\n	    <h3>{{ event.startDate }}</h3>\n\n	    <h3>{{ event.endDate }}</h3>\n\n	</ion-item>\n\n\n\n	<ion-item>\n\n		<ion-label>Descripción</ion-label>\n\n	</ion-item>\n\n	<ion-item>\n\n		<h3>{{ event.description }}</h3>\n\n	</ion-item>\n\n\n\n	<ion-item>\n\n		<!-- 512*512 -->\n\n	    <ion-avatar item-start>\n\n	      <img src="assets/icon/address.svg">\n\n	    </ion-avatar>\n\n	    <h3>{{ event.location }}</h3>\n\n	</ion-item>\n\n\n\n	<ion-item>\n\n		<!-- 512*512 -->\n\n	    <ion-avatar item-start>\n\n	      <img src="assets/imgs/alarm.png">\n\n	    </ion-avatar>\n\n	    <h3>{{ event.reminder }}</h3>\n\n	</ion-item>\n\n\n\n	<ion-item>\n\n		<!-- 512*512 -->\n\n	    <ion-avatar item-start>\n\n	      <img src="assets/icon/repeat.svg">\n\n	    </ion-avatar>\n\n	    <h3>{{ event.repeat }}</h3>\n\n	</ion-item>\n\n\n\n	<br><br>\n\n	\n\n	<div class="boton">\n\n		<button ion-button icon-only color="light">\n\n	  		<ion-icon name="create"></ion-icon>\n\n		</button>\n\n	</div>\n\n	\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\ver-evento\ver-evento.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], VerEventoPage);
     return VerEventoPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=ver-evento.js.map
@@ -651,6 +649,7 @@ var CrearEventoPage = /** @class */ (function () {
         this.eid = null;
         this.uid = navParams.get('uid');
         this.eid = navParams.get('eid');
+        console.log("el uid: " + this.uid);
         if (this.eid != undefined) {
             eventServices.getEventF(this.eid).valueChanges()
                 .subscribe(function (event) {
@@ -675,6 +674,7 @@ var CrearEventoPage = /** @class */ (function () {
     };
     CrearEventoPage.prototype.newEvent = function () {
         this.event.id = 'e' + Date.now();
+        this.event.uid = this.uid;
         if (this.event.title == null ||
             this.event.startDate == null ||
             this.event.endDate == null ||
@@ -683,7 +683,7 @@ var CrearEventoPage = /** @class */ (function () {
             alert("Por favor llene todos los campos");
         }
         else {
-            this.eventServices.createEventF(this.event);
+            this.eventServices.createEventF(this.event, this.uid);
             this.navCtrl.pop();
         }
     };
@@ -696,7 +696,7 @@ var CrearEventoPage = /** @class */ (function () {
             alert("Por favor llene todos los campos");
         }
         else {
-            this.eventServices.createEventF(this.event);
+            this.eventServices.createEventF(this.event, this.uid);
             // this.usersService.editUserF(this.user);
             this.navCtrl.pop();
         }

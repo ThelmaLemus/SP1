@@ -25857,6 +25857,10 @@ page-vista-diaria .sugerencias {
   margin-top: 2px;
 }
 
+page-vista-diaria .title {
+  float: right;
+}
+
 page-vista-diaria .newEvent {
   display: -webkit-box;
   display: -webkit-flex;

@@ -6,9 +6,18 @@
 -->
 
 <ion-header>
-  <ion-navbar>
-    <ion-title>Calendario</ion-title>
-  </ion-navbar>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title class="title">
+			<ion-input  [(ngModel)]="myDate"></ion-input>
+		</ion-title>
+		<!--    <button ion-button icon-only>
+      <ion-icon name="refresh" (click)="refrescar()"></ion-icon>
+    </button>
+-->
+	</ion-navbar>
 </ion-header>
 
 <ion-content padding>

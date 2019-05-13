@@ -9,9 +9,9 @@ export class EventServices{
     events = [];
     events1 =[];
 
-    public getEvents(){
+    public getEvents(uid){
         // console.log('aqui');
-        return this.afDB.list('events/');
+        return this.afDB.list('users/'+uid+'/events/');
     }
 
     public getEvent(id){
@@ -27,8 +27,8 @@ export class EventServices{
         this.events1.push(event);
     }
 
-    public createEventF(event) {
-        this.afDB.database.ref('events/' + event.id).set(event);
+    public createEventF(event, uid) {
+        this.afDB.database.ref('users/'+uid+'/events/' + event.id).set(event);
     }
 
     public editEvent(event) {
