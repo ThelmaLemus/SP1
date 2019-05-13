@@ -20,7 +20,8 @@ export class CrearEventoPage
 {
 	event = 
 	{	
-		id: null, 
+		id: null,
+		uid: null, 
 		title: null,
 		startDate: null,
 		endDate: null,
@@ -48,7 +49,7 @@ export class CrearEventoPage
 		
   }
 
-	guardarEvento(){
+	crearEvento(){
 		this.newEvent();
 	}
 
@@ -78,10 +79,10 @@ export class CrearEventoPage
 			console.log("Password: " + this.event.repeat);
 			console.log("Correo: " + this.event.reminder);
 			console.log("Password: " + this.event.description);
+			this.eventServices.createEvent(this.event);
 			// this.event.sexo="";
 			// this.event.myDate="";
 			
-			// this.eventServices.createEvent(this.event);
 
 			// console.log("Id: " + this.event.id);
 			// this.navCtrl.push(Registro2Page, { id: this.event.id, edited: 0 });

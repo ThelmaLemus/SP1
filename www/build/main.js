@@ -401,10 +401,9 @@ var Registro2Page = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-registro2',template:/*ion-inline-start:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\registro2\registro2.html"*/'<!--\n\n  Generated template for the Registro2Page page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n	<h3>Registro</h3>\n\n\n\n	<ion-list>\n\n		<ion-item>\n\n			<ion-label floating>Sexo</ion-label>\n\n			<ion-select [(ngModel)]="user.sexo">\n\n				<ion-option value="hombre">\n\n					Hombre\n\n				</ion-option>\n\n				<ion-option value="mujer">\n\n					Mujer\n\n				</ion-option>\n\n			</ion-select>\n\n		</ion-item>\n\n\n\n		<ion-item>\n\n		  <ion-label floating>Fecha de nacimiento</ion-label>\n\n		  <ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="user.myDate"></ion-datetime>\n\n		</ion-item>\n\n\n\n		<br>\n\n\n\n	    <ion-item>\n\n		    <ion-label color="gris">Trabajas</ion-label>\n\n		    <ion-checkbox [(ngModel)]="user.trabaja"></ion-checkbox>\n\n		</ion-item>\n\n\n\n		<ion-item>\n\n		    <ion-label color="gris">Estudias</ion-label>\n\n		    <ion-checkbox [(ngModel)]="user.estudia"></ion-checkbox>\n\n		</ion-item>\n\n\n\n	</ion-list>\n\n\n\n	<div padding>\n\n    	<button ion-button block (click)="continuar2()">Continuar</button>\n\n	</div>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\IvanC\Documents\GitHub\SP1\src\pages\registro2\registro2.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_users_service__["a" /* UsersService */]])
     ], Registro2Page);
     return Registro2Page;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=registro2.js.map
@@ -499,6 +498,7 @@ var CrearEventoPage = /** @class */ (function () {
         this.eventServices = eventServices;
         this.event = {
             id: null,
+            uid: null,
             title: null,
             startDate: null,
             endDate: null,
@@ -518,7 +518,7 @@ var CrearEventoPage = /** @class */ (function () {
         // this.event.allday = true;
         console.log("DisableTime");
     };
-    CrearEventoPage.prototype.guardarEvento = function () {
+    CrearEventoPage.prototype.crearEvento = function () {
         this.newEvent();
     };
     CrearEventoPage.prototype.newEvent = function () {
@@ -540,9 +540,9 @@ var CrearEventoPage = /** @class */ (function () {
             console.log("Password: " + this.event.repeat);
             console.log("Correo: " + this.event.reminder);
             console.log("Password: " + this.event.description);
+            this.eventServices.createEvent(this.event);
             // this.event.sexo="";
             // this.event.myDate="";
-            // this.eventServices.createEvent(this.event);
             // console.log("Id: " + this.event.id);
             // this.navCtrl.push(Registro2Page, { id: this.event.id, edited: 0 });
         }
