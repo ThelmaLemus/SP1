@@ -51,7 +51,7 @@ export class HomePage {
     if (this.ok == 1) 
     {
       console.log('ok');
-      this.navCtrl.push(VistaDiariaPage, {id: this.id});
+      this.navCtrl.push(VistaDiariaPage, {uid: this.id});
       
     }else if (this.null !=0)
     {

@@ -16,14 +16,13 @@ import { CrearEventoPage } from '../crear-evento/crear-evento';
   templateUrl: 'vista-diaria.html',
 })
 export class VistaDiariaPage {
-  date = new Date();
-  myDate: String = this.date.getDate() + '/' + (this.date.getMonth() + 1) + '/' + this.date.getFullYear();
+
   events = [];
   uid = null;
   eid = null;
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
-    this.uid = navParams.get('id');
-    eventServices.getEvents(this.uid).valueChanges()
+    this.uid = navParams.get('uid');
+    eventServices.getEvents().valueChanges()
       .subscribe(events => {
         this.events = events;
       });
@@ -39,7 +38,7 @@ export class VistaDiariaPage {
   }
 
   newEvent() {
-    this.navCtrl.push(CrearEventoPage, {uid: this.uid});
+    this.navCtrl.push(CrearEventoPage);
   }
 
 
