@@ -22,7 +22,7 @@ export class VistaDiariaPage {
   eid = null;
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
     this.uid = navParams.get('uid');
-    eventServices.getEvents().valueChanges()
+    eventServices.getEvents(this.uid).valueChanges()
       .subscribe(events => {
         this.events = events;
       });
@@ -37,8 +37,8 @@ export class VistaDiariaPage {
     this.navCtrl.push(CrearEventoPage, { uid: this.uid ,eid: eid });
   }
 
-  newEvent() {
-    this.navCtrl.push(CrearEventoPage);
+  newEvent(uid) {
+    this.navCtrl.push(CrearEventoPage, { uid: this.uid });
   }
 
 

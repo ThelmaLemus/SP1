@@ -37,9 +37,11 @@ export class CrearEventoPage
 	constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
 		this.uid = navParams.get('uid');
 		this.eid = navParams.get('eid'); 
+		console.log('This is the uid: ', this.uid);
+		
 		if (this.eid != undefined) 
 		{
-			eventServices.getEventF(this.eid).valueChanges()
+			eventServices.getEventF(this.uid, this.eid).valueChanges()
 			.subscribe(event => {
 				this.event = event;
 			});
@@ -83,7 +85,7 @@ export class CrearEventoPage
 
 		else {
 
-			this.eventServices.createEventF(this.event);
+			this.eventServices.createEventF(this.uid, this.event);
 			this.navCtrl.pop();
 
 		}
@@ -100,7 +102,7 @@ export class CrearEventoPage
 			alert("Por favor llene todos los campos");
 		}else
 		{
-			this.eventServices.createEventF(this.event);
+			this.eventServices.createEventF(this.uid, this.event);
 			// this.usersService.editUserF(this.user);
 			this.navCtrl.pop();
 

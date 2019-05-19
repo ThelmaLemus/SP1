@@ -9,8 +9,9 @@ export class EventServices{
     events = [];
     events1 =[];
 
-    public getEvents(){
+    public getEvents(uid){
         // console.log('aqui');
+        return this.afDB.list('users/'+uid+'/events/');
         return this.afDB.list('events/');
     }
 
@@ -19,16 +20,16 @@ export class EventServices{
         // return this.afDB.object('events/'+ id);
     }
 
-    public getEventF(id) {
-        return this.afDB.object('events/' + id);
+    public getEventF(uid, eid) {
+        return this.afDB.object('users/'+uid+'/events/' + eid);
     }
 
     public createEvent(event){
         this.events1.push(event);
     }
 
-    public createEventF(event) {
-        this.afDB.database.ref('events/' + event.id).set(event);
+    public createEventF(uid, event) {
+        this.afDB.database.ref('users/'+uid+'/events/' + event.id).set(event);
     }
 
     public editEvent(event) {
