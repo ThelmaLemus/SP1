@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EventServices } from '../../services/events.services';
 import { CrearEventoPage } from '../crear-evento/crear-evento';
+import { VistaMensualPage } from '../vista-mensual/vista-mensual';
 
 /**
  * Generated class for the VistaDiariaPage page.
@@ -29,17 +30,24 @@ export class VistaDiariaPage {
       // debugger
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad()
+  {
     console.log('ionViewDidLoad VistaDiariaPage');
   }
 
-  editarEvento(eid) {
+  editarEvento(eid)
+  {
     this.navCtrl.push(CrearEventoPage, { uid: this.uid ,eid: eid });
   }
 
-  newEvent(uid) {
+  newEvent(uid)
+  {
     this.navCtrl.push(CrearEventoPage, { uid: this.uid });
   }
 
+  monthly_view()
+  {
+    this.navCtrl.push(VistaMensualPage, { uid: this.uid });
+  }
 
 }

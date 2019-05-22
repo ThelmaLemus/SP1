@@ -25834,6 +25834,23 @@ page-ver-evento .boton {
   padding: 10px;
 }
 
+page-vista-diaria .navbutton {
+  background: none;
+}
+
+page-vista-diaria .icons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 0px;
+  zoom: 1.2;
+}
+
 page-vista-diaria .reales {
   display: block;
   width: 100% !important;
@@ -25881,4 +25898,82 @@ page-vista-diaria .item_event_list {
 
 page-vista-diaria .event_list {
   margin-bottom: 30px;
+}
+
+page-vista-mensual [col-1] {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 8.33333%;
+  -ms-flex: 0 0 8.33333%;
+  flex: 0 0 14.285714285714286%;
+  width: 14.285714285714286%;
+  max-width: 14.285714285714286%;
+}
+
+page-vista-mensual .col {
+  text-align: center;
+  padding: 5px;
+}
+
+page-vista-mensual .last-month, page-vista-mensual .next-month {
+  color: #999999;
+  font-size: 90%;
+}
+
+page-vista-mensual .currentDate, page-vista-mensual .otherDate {
+  padding: 5px;
+}
+
+page-vista-mensual .currentDate {
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  border-radius: 30px;
+}
+
+page-vista-mensual .calendar-header {
+  background-color: #1a732d;
+  color: #FFFFFF;
+}
+
+page-vista-mensual .event-bullet {
+  margin: 2px auto;
+  height: 5px;
+  width: 5px;
+  background-color: green;
+  border-radius: 30px;
+}
+
+page-vista-mensual .selected-date {
+  width: 20px;
+  height: 2px;
+  background-color: blue;
+}
+
+page-vista-mensual .unselected-date {
+  border: none;
+}
+
+page-vista-mensual .calendar-body
+.grid {
+  padding: 0;
+}
+
+page-vista-mensual .col:last-child {
+  border-right: none;
+}
+
+page-vista-mensual .calendar-weekday, page-vista-mensual .calendar-date {
+  text-align: center;
+  margin: 0;
+}
+
+page-vista-mensual .calendar-weekday {
+  font-weight: bold;
+  border-bottom: solid 1px #1a732d;
+  background-color: #26ab56;
+}
+
+page-vista-mensual .calendar-date {
+  border-top: solid 1px #1a732d;
+  border-bottom: solid 1px #1a732d;
 }

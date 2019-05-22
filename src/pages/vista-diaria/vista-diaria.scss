@@ -1,5 +1,20 @@
 page-vista-diaria {
 
+
+	.navbutton
+	{
+		background: none;
+	}
+
+	.icons
+	{
+		// height: 100px;
+		display: flex;
+		justify-content: center;
+		width: 0px;
+		zoom:1.2;
+	}
+	
 	.reales
 	{
 		display: block;
