@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { VistaDiariaPage } from '../vista-diaria/vista-diaria';
 
 /**
  * Generated class for the VistaMensualPage page.
@@ -77,6 +78,10 @@ export class VistaMensualPage {
   goToNextMonth() {
     this.date = new Date(this.date.getFullYear(), this.date.getMonth()+2, 0);
     this.getDaysOfMonth();
+  }
+
+  vista_diaria(){
+    this.navCtrl.push(VistaDiariaPage);
   }
 
 }
