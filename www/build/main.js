@@ -45,21 +45,19 @@ var VistaDiariaPage = /** @class */ (function () {
         this.year = null;
         this.aux = null;
         this.theDate = null;
-        // debugger
         this.uid = navParams.get('uid');
+        this.op = this.navParams.get('op');
         this.day = navParams.get('day');
         this.month = navParams.get('month');
         this.year = navParams.get('year');
-        // debugger
         if (this.day == null || this.month == null || this.year == null) {
             this.theDate = new Date();
             this.day = this.theDate.getDate();
             this.month = this.theDate.getMonth() + 1;
             this.year = this.theDate.getFullYear();
             this.month = this.month.toString();
-            if (this.month.length == 1) {
+            if (this.month.length == 1)
                 this.month = "0" + this.month;
-            }
         }
         else {
             this.month = this.month.toString();
@@ -70,20 +68,12 @@ var VistaDiariaPage = /** @class */ (function () {
         }
         this.aux = this.day + "-" + this.month + "-" + this.year;
         this.theDate = this.theDate.toDateString();
-        eventServices.getEvents(this.uid).valueChanges()
-            .subscribe(function (events) {
+        eventServices.getEvents(this.uid).valueChanges().subscribe(function (events) {
             _this.all_events = events;
-            console.log(_this.all_events.length);
             if (_this.all_events.length > 0) {
-                console.log(_this.all_events[0].startDate);
                 for (var i = 0; i < _this.all_events.length; i++) {
-                    if (_this.all_events[i].startDate == _this.aux) {
+                    if (_this.all_events[i].startDate == _this.aux)
                         _this.events1.push(_this.all_events[i]);
-                        console.log(events);
-                    }
-                    else {
-                        console.log("evnt:" + events);
-                    }
                 }
             }
         });
@@ -98,11 +88,11 @@ var VistaDiariaPage = /** @class */ (function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__crear_evento_crear_evento__["a" /* CrearEventoPage */], { uid: this.uid });
     };
     VistaDiariaPage.prototype.monthly_view = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__vista_mensual_vista_mensual__["a" /* VistaMensualPage */], { uid: this.uid });
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__vista_mensual_vista_mensual__["a" /* VistaMensualPage */], { uid: this.uid, op: 1 });
     };
     VistaDiariaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-vista-diaria',template:/*ion-inline-start:"C:\Users\Erick Cutuc\Music\SP1\src\pages\vista-diaria\vista-diaria.html"*/'<!--\n\n  Generated template for the VistaDiariaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{theDate}}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<div class="newEvent">\n\n		<button class="navbutton" icon-only color="light" (click)="monthly_view()">\n\n	  		<ion-icon class="icons" name="md-calendar"></ion-icon>\n\n		</button>\n\n		<button class="navbutton" icon-only color="light" (click)="newEvent()">\n\n	  		<ion-icon class="icons" name="add"></ion-icon>\n\n		</button>\n\n	</div>\n\n	<br><br>\n\n	<!-- <div style="color:gray;">\n\n		<i class="fas fa-palette">d</i>\n\n	</div>  -->\n\n	<div class="event_list">\n\n		<div class="item_event_list" *ngFor="let event of events1">\n\n			<ion-card class="reales" (click)="editarEvento(event.id)">\n\n				<ion-card-header>\n\n					<ion-card-title >\n\n						{{ event.title }}\n\n					</ion-card-title>\n\n				</ion-card-header>\n\n				\n\n				<ion-card-content>\n\n					{{ event.startDate }}\n\n				</ion-card-content>\n\n			</ion-card>\n\n		</div>\n\n	</div>\n\n	\n\n	<ion-label>\n\n		Sugerencias\n\n	</ion-label>\n\n\n\n	<ion-item *ngFor="let event of events">\n\n		<ion-row>\n\n	    	<ion-col col-10>\n\n	    		<ion-card class="sugerencias">\n\n					<ion-card-header>\n\n			    		<ion-card-title >\n\n			    			{{ event.title }}\n\n			    		</ion-card-title>\n\n					</ion-card-header>\n\n\n\n					<ion-card-content>\n\n				    	{{ event.startDate }}\n\n					</ion-card-content>\n\n				</ion-card>\n\n	    	</ion-col>\n\n	    	<ion-col col-2 align-self-left text-center>\n\n	    		<ion-row>\n\n		    		<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="checkmark-circle"></ion-icon>\n\n		        	</button>\n\n		        </ion-row>\n\n		        <ion-row>\n\n		        	<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="close-circle"></ion-icon>\n\n		       		</button>\n\n		       	</ion-row>\n\n	    	</ion-col>\n\n		</ion-row>\n\n	</ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Erick Cutuc\Music\SP1\src\pages\vista-diaria\vista-diaria.html"*/,
+            selector: 'page-vista-diaria',template:/*ion-inline-start:"C:\Users\Erick Cutuc\Music\SP1\src\pages\vista-diaria\vista-diaria.html"*/'<!--\n\n  Generated template for the VistaDiariaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{theDate}}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<div class="newEvent">\n\n		<button class="navbutton" icon-only color="light" (click)="monthly_view()">\n\n	  		<ion-icon class="icons" name="md-calendar"></ion-icon>\n\n		</button>\n\n		<button class="navbutton" icon-only color="light" (click)="newEvent()">\n\n	  		<ion-icon class="icons" name="add"></ion-icon>\n\n		</button>\n\n	</div>\n\n	<br><br>\n\n	<!-- <div style="color:gray;">\n\n		<i class="fas fa-palette">d</i>\n\n	</div>  -->\n\n	<div class="event_list">\n\n		<div class="item_event_list" *ngFor="let event of events1">\n\n			<ion-card class="reales" (click)="editarEvento(event.id)">\n\n				<ion-card-header>\n\n					<ion-card-title >\n\n						{{ event.title }}\n\n					</ion-card-title>\n\n				</ion-card-header>\n\n				\n\n				<ion-card-content>\n\n					{{ event.startDate }}\n\n				</ion-card-content>\n\n			</ion-card>\n\n		</div>\n\n	</div>\n\n	\n\n	<ion-label>\n\n		Sugerencias\n\n	</ion-label>\n\n\n\n	<ion-item *ngFor="let event of events1">\n\n		<ion-row>\n\n	    	<ion-col col-10>\n\n	    		<ion-card class="sugerencias">\n\n					<ion-card-header>\n\n			    		<ion-card-title >\n\n			    			{{ event.title }}\n\n			    		</ion-card-title>\n\n					</ion-card-header>\n\n\n\n					<ion-card-content>\n\n				    	{{ event.startDate }}\n\n					</ion-card-content>\n\n				</ion-card>\n\n	    	</ion-col>\n\n	    	<ion-col col-2 align-self-left text-center>\n\n	    		<ion-row>\n\n		    		<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="checkmark-circle"></ion-icon>\n\n		        	</button>\n\n		        </ion-row>\n\n		        <ion-row>\n\n		        	<button class="simbolo" ion-button icon-only outline item-right clear>\n\n		        		<ion-icon name="close-circle"></ion-icon>\n\n		       		</button>\n\n		       	</ion-row>\n\n	    	</ion-col>\n\n		</ion-row>\n\n	</ion-item>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Erick Cutuc\Music\SP1\src\pages\vista-diaria\vista-diaria.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_events_services__["a" /* EventServices */]) === "function" && _c || Object])
     ], VistaDiariaPage);
@@ -732,9 +722,11 @@ var VistaMensualPage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.uid = null;
+        this.op = null;
         this.date = new Date();
         this.monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         this.uid = this.navParams.get('uid');
+        this.op = this.navParams.get('op');
         this.getDaysOfMonth();
     }
     VistaMensualPage.prototype.ionViewDidLoad = function () {
@@ -785,7 +777,9 @@ var VistaMensualPage = /** @class */ (function () {
     };
     VistaMensualPage.prototype.vista_diaria = function (day, month, year) {
         debugger;
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__vista_diaria_vista_diaria__["a" /* VistaDiariaPage */], { uid: this.uid, day: day, month: (month + 1), year: year });
+        if (this.op == 1) {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__vista_diaria_vista_diaria__["a" /* VistaDiariaPage */], { uid: this.uid, op: 2, day: day, month: (month + 1), year: year });
+        }
     };
     VistaMensualPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({

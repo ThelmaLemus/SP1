@@ -16,6 +16,7 @@ import { VistaDiariaPage } from '../vista-diaria/vista-diaria';
 })
 export class VistaMensualPage {
   uid = null;
+  op = null;
   date = new Date();
   daysInThisMonth: any;
   daysInLastMonth: any;
@@ -26,6 +27,7 @@ export class VistaMensualPage {
   currentDate: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.uid = this.navParams.get('uid');
+    this.op = this.navParams.get('op');
     this.getDaysOfMonth();
   }
 
@@ -83,7 +85,9 @@ export class VistaMensualPage {
 
   vista_diaria(day, month, year){
     debugger
-    this.navCtrl.push(VistaDiariaPage, {uid:this.uid, day:day, month:(month+1), year:year});
+    if (this.op == 1) {
+      this.navCtrl.push(VistaDiariaPage, {uid:this.uid, op:2, day:day, month:(month+1), year:year});
+    }
   }
 
 }
