@@ -18,16 +18,63 @@ import { VistaMensualPage } from '../vista-mensual/vista-mensual';
 })
 export class VistaDiariaPage {
 
-  events = [];
+  all_events = [];
+  events1 = [];
   uid = null;
   eid = null;
+  day = null;
+  month = null;
+  year = null;
+  aux = null;
+  theDate = null;
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
+    // debugger
     this.uid = navParams.get('uid');
+    this.day = navParams.get('day');
+    this.month = navParams.get('month');
+    this.year = navParams.get('year');
+    // debugger
+    if (this.day == null || this.month == null || this.year == null) {
+      this.theDate = new Date();
+      this.day = this.theDate.getDate();
+      this.month = this.theDate.getMonth() + 1;
+      this.year = this.theDate.getFullYear();
+      this.month = this.month.toString();
+      if (this.month.length == 1) {
+        this.month = "0"+ this.month;
+      }
+    }else{
+      this.month = this.month.toString();
+      if (this.month.length == 1) {
+        this.month = "0"+ this.month;
+      }
+      this.theDate = new Date(this.year , this.month , this.day);
+    }
+    this.aux = this.day+"-"+ this.month +"-"+ this.year; 
+    this.theDate = this.theDate.toDateString();
     eventServices.getEvents(this.uid).valueChanges()
       .subscribe(events => {
-        this.events = events;
+        this.all_events = events;
+        console.log(this.all_events.length);
+        
+        if (this.all_events.length>0) {
+          console.log(this.all_events[0].startDate);
+          for (let i = 0; i < this.all_events.length; i++) {
+            if (this.all_events[i].startDate == this.aux) {
+              this.events1.push(this.all_events[i]);
+              console.log(events);
+              
+            }else{
+              console.log("evnt:"+events);
+  
+            }
+            
+            
+          }
+          
+        }
       });
-      // debugger
+      
   }
 
   ionViewDidLoad()

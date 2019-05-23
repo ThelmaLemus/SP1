@@ -11,21 +11,13 @@ export class EventServices{
 
     public getEvents(uid){
         // console.log('aqui');
-        return this.afDB.list('users/'+uid+'/events/');
-        return this.afDB.list('events/');
-    }
 
-    public getEvent(id){
-        return this.events1.filter(function(e, i){return e.id == id})[0] || {id: null, nombre :null, username:null, correo:null, password:null, password2:null, sexo:null, myDate:null, trabaja:null, estudia:null};
-        // return this.afDB.object('events/'+ id);
+        return this.afDB.list('users/'+uid+'/events/');
+        // return this.afDB.list('events/');
     }
 
     public getEventF(uid, eid) {
         return this.afDB.object('users/'+uid+'/events/' + eid);
-    }
-
-    public createEvent(event){
-        this.events1.push(event);
     }
 
     public createEventF(uid, event) {

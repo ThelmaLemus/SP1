@@ -44,6 +44,8 @@ export class CrearEventoPage
 			eventServices.getEventF(this.uid, this.eid).valueChanges()
 			.subscribe(event => {
 				this.event = event;
+				console.log( this.event.startDate);
+				
 			});
 		}
 	  
@@ -84,7 +86,8 @@ export class CrearEventoPage
 		}
 
 		else {
-
+			debugger
+			this.event.startDate = this.event.startDate.substr(8,9) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
 			this.eventServices.createEventF(this.uid, this.event);
 			this.navCtrl.pop();
 
