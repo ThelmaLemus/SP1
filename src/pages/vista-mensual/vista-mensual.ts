@@ -16,7 +16,6 @@ import { VistaDiariaPage } from '../vista-diaria/vista-diaria';
 })
 export class VistaMensualPage {
   uid = null;
-  op = null;
   date = new Date();
   daysInThisMonth: any;
   daysInLastMonth: any;
@@ -27,7 +26,7 @@ export class VistaMensualPage {
   currentDate: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.uid = this.navParams.get('uid');
-    this.op = this.navParams.get('op');
+    // this.op = this.navParams.get('op');
     this.getDaysOfMonth();
   }
 
@@ -40,7 +39,7 @@ export class VistaMensualPage {
     this.daysInThisMonth = new Array();
     this.daysInLastMonth = new Array();
     this.daysInNextMonth = new Array();
-    debugger
+    // debugger
     this.currentMonth = this.monthNames[this.date.getMonth()];
     this.currentYear = this.date.getFullYear();
     if(this.date.getMonth() === new Date().getMonth()) {
@@ -84,10 +83,13 @@ export class VistaMensualPage {
   }
 
   vista_diaria(day, month, year){
-    debugger
-    if (this.op == 1) {
-      this.navCtrl.push(VistaDiariaPage, {uid:this.uid, op:2, day:day, month:(month+1), year:year});
-    }
+    // 
+    // this.navCtrl.getPrevious().data.op = 1;
+    // this.navCtrl.getPrevious().data.day = day;
+    // this.navCtrl.getPrevious().data.month = month+1;
+    // this.navCtrl.getPrevious().data.year = year;
+    this.navCtrl.push( VistaDiariaPage, {uid:this.uid, op:1, day:day, month:(month+1), year:year} );
+    
   }
 
 }
