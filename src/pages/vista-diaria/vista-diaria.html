@@ -21,9 +21,7 @@
 		</button>
 	</div>
 	<br><br>
-	<!-- <div style="color:gray;">
-		<i class="fas fa-palette">d</i>
-	</div>  -->
+	
 	<div class="event_list">
 		<div class="item_event_list" *ngFor="let event of events1">
 			<ion-card class="reales" (click)="editarEvento(event.id)">
@@ -34,7 +32,7 @@
 				</ion-card-header>
 				
 				<ion-card-content>
-					{{ event.startDate }}
+					{{ event.dstartDate }}
 				</ion-card-content>
 			</ion-card>
 		</div>

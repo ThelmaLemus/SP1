@@ -19,8 +19,6 @@ import { VistaMensualPage } from '../vista-mensual/vista-mensual';
 export class VistaDiariaPage {
 
   all_events = [];
-  thing1 = null;
-  thing2 = null;
   op = null;
   events1 = [];
   uid = null;
@@ -32,7 +30,14 @@ export class VistaDiariaPage {
   theDate = null;
   fday = null;
   fmonth = null;
-  fyear =null;
+  fyear = null;
+  sday = null;
+  smonth = null;
+  syear = null;
+  aday = null;
+  amonth = null;
+  ayear = null;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
     this.uid = navParams.get('uid');
     this.op = navParams.get('op');
@@ -80,8 +85,7 @@ export class VistaDiariaPage {
 
   monthly_view()
   {
-    if (this.op == 1)
-    {
+    if (this.op == 1){
       this.navCtrl.pop();
     }else
     {
@@ -89,8 +93,9 @@ export class VistaDiariaPage {
     }
   }
 
-  private validations() {
-    
+  private validations()
+  { 
+    var isValid = null;   
     if (this.day == null || this.month == null || this.year == null) 
     {
       this.theDate = new Date();
@@ -110,27 +115,62 @@ export class VistaDiariaPage {
       
       this.theDate = new Date(this.year , this.month , this.day);
     }
-    this.aux = this.day+"-"+ this.month +"-"+ this.year; 
+    this.aux = this.year+"-"+ this.month +"-"+ this.day; 
     this.theDate = this.theDate.toDateString();
     this.eventServices.getEvents(this.uid).valueChanges().subscribe(events => 
     {
       this.all_events = events;
       if (this.all_events.length>0) 
       {
-        for (let i = 0; i < this.all_events.length; i++) {
-          
-          this.fday = this.all_events[i].startDate.substr(0,2);
-          this.fmonth = this.all_events[i].startDate.substr(3,2);
-          console.log(this.all_events[i].startDate.substr(8,2));
-          
-          if (this.all_events[i].startDate == this.aux)
-          {
-            this.events1.push(this.all_events[i]);   
-          } 
+        for (let i = 0; i < this.all_events.length; i++) 
+        {
+          isValid =  this.valid_range(this.all_events[i].startDate, this.aux, this.all_events[i].endDate);
+          if (isValid)this.events1.push(this.all_events[i]);   
         }
       }
     });
   }
 
-  
+  private valid_range(startDate, aux, endDate)
+  {
+    //get the day, month and year from each date
+    debugger
+    this.sday = startDate.substr(8,9);
+    this.smonth = startDate.substr(5, 2);
+    this.syear = startDate.substr(0,4);
+
+    this.fday = endDate.substr(8,9);
+    this.fmonth = endDate.substr(5, 2);
+    this.fyear = endDate.substr(0,4);
+
+    this.aday = aux.substr(8,9);
+    this.amonth = aux.substr(5, 2);
+    this.ayear = aux.substr(0,4);
+
+    //parsing each string date to integer
+    this.sday = parseInt(this.sday, 10);
+    this.smonth = parseInt(this.smonth, 10);
+    this.syear = parseInt(this.syear, 10);
+
+    this.fday = parseInt(this.fday, 10);
+    this.fmonth = parseInt(this.fmonth, 10);
+    this.fyear = parseInt(this.fyear, 10);
+
+    this.fday = parseInt(this.fday, 10);
+    this.fmonth = parseInt(this.fmonth, 10);
+    this.fyear = parseInt(this.fyear, 10);
+
+    this.aday = parseInt(this.aday, 10);
+    this.amonth = parseInt(this.amonth, 10);
+    this.ayear = parseInt(this.ayear, 10);
+    // debugger
+    if (startDate == aux)
+    {
+      return true;
+    } 
+    else if (this.sday <= this.aday && this.aday <= this.fday) 
+      if (this.smonth <= this.amonth && this.amonth <= this.fmonth) 
+        if (this.syear <= this.ayear && this.ayear <= this.fyear) return true;
+    
+  }
 }

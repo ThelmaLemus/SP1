@@ -83,13 +83,12 @@ export class VistaMensualPage {
   }
 
   vista_diaria(day, month, year){
-    // 
-    // this.navCtrl.getPrevious().data.op = 1;
-    // this.navCtrl.getPrevious().data.day = day;
-    // this.navCtrl.getPrevious().data.month = month+1;
-    // this.navCtrl.getPrevious().data.year = year;
-    this.navCtrl.push( VistaDiariaPage, {uid:this.uid, op:1, day:day, month:(month+1), year:year} );
-    
+    // debugger
+    if (day == new Date().getDate().toString() ) {
+      this.navCtrl.pop();
+    }else{
+      this.navCtrl.push( VistaDiariaPage, {uid:this.uid, op:1, day:day, month:(month+1), year:year} );
+    }    
   }
 
 }

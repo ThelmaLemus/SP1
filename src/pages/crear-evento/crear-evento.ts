@@ -24,6 +24,7 @@ export class CrearEventoPage
 		uid: null, 
 		title: null,
 		startDate: null,
+		dstartDate: null,
 		endDate: null,
 		location: null,
 		allday: null,
@@ -86,25 +87,26 @@ export class CrearEventoPage
 		}
 
 		else {
-			debugger
-			this.event.startDate = this.event.startDate.substr(8,9) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
+			this.event.dstartDate = this.event.startDate.substr(8,9) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
+			// this.event.endDate = this.event.endDate.substr(8, 9) + "-" + this.event.endDate.substr(5, 2) + "-" + this.event.endDate.substr(0, 4);
 			this.eventServices.createEventF(this.uid, this.event);
 			this.navCtrl.pop();
-
+			
 		}
 	}
 
-
-
+	
+	
 	private editEvent () {
 		if (this.event.title == "" ||
-			this.event.startDate == "" ||
-			this.event.endDate == "" ||
-			this.event.allday == "" ||
-			this.event.reminder == "") {
+		this.event.startDate == "" ||
+		this.event.endDate == "" ||
+		this.event.allday == "" ||
+		this.event.reminder == "") {
 			alert("Por favor llene todos los campos");
 		}else
 		{
+			this.event.dstartDate = this.event.startDate.substr(8,9) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
 			this.eventServices.createEventF(this.uid, this.event);
 			// this.usersService.editUserF(this.user);
 			this.navCtrl.pop();
