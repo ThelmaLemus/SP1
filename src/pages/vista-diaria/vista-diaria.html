@@ -7,22 +7,23 @@
 
 <ion-header>
   <ion-navbar>
-    <ion-title>Calendario</ion-title>
+    <ion-title>{{theDate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 	<div class="newEvent">
-		<button class="addbutton" ion-button icon-only color="light" (click)="newEvent()">
-	  		<ion-icon name="add"></ion-icon>
+		<button class="navbutton" icon-only color="light" (click)="monthly_view()">
+	  		<ion-icon class="icons" name="md-calendar"></ion-icon>
+		</button>
+		<button class="navbutton" icon-only color="light" (click)="newEvent()">
+	  		<ion-icon class="icons" name="add"></ion-icon>
 		</button>
 	</div>
 	<br><br>
-	<!-- <div style="color:gray;">
-		<i class="fas fa-palette">d</i>
-	</div>  -->
+	
 	<div class="event_list">
-		<div class="item_event_list" *ngFor="let event of events">
+		<div class="item_event_list" *ngFor="let event of events1">
 			<ion-card class="reales" (click)="editarEvento(event.id)">
 				<ion-card-header>
 					<ion-card-title >
@@ -31,7 +32,7 @@
 				</ion-card-header>
 				
 				<ion-card-content>
-					{{ event.startDate }}
+					{{ event.dstartDate }}
 				</ion-card-content>
 			</ion-card>
 		</div>
@@ -41,7 +42,7 @@
 		Sugerencias
 	</ion-label>
 
-	<ion-item *ngFor="let event of events">
+	<ion-item *ngFor="let event of events1">
 		<ion-row>
 	    	<ion-col col-10>
 	    		<ion-card class="sugerencias">
