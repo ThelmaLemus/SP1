@@ -28,15 +28,15 @@ export class VistaDiariaPage {
   year = null;
   aux = null;
   theDate = null;
-  fday = null;
-  fmonth = null;
-  fyear = null;
   sday = null;
   smonth = null;
   syear = null;
   aday = null;
   amonth = null;
   ayear = null;
+  fday = null;
+  fmonth = null;
+  fyear = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
     this.uid = navParams.get('uid');
@@ -134,8 +134,8 @@ export class VistaDiariaPage {
   private valid_range(startDate, aux, endDate)
   {
     //get the day, month and year from each date
-    debugger
-    this.sday = startDate.substr(8,9);
+    // debugger
+    this.sday = startDate.substr(8,2);
     this.smonth = startDate.substr(5, 2);
     this.syear = startDate.substr(0,4);
 
@@ -143,7 +143,7 @@ export class VistaDiariaPage {
     this.fmonth = endDate.substr(5, 2);
     this.fyear = endDate.substr(0,4);
 
-    this.aday = aux.substr(8,9);
+    this.aday = aux.substr(8,2);
     this.amonth = aux.substr(5, 2);
     this.ayear = aux.substr(0,4);
 
@@ -151,10 +151,6 @@ export class VistaDiariaPage {
     this.sday = parseInt(this.sday, 10);
     this.smonth = parseInt(this.smonth, 10);
     this.syear = parseInt(this.syear, 10);
-
-    this.fday = parseInt(this.fday, 10);
-    this.fmonth = parseInt(this.fmonth, 10);
-    this.fyear = parseInt(this.fyear, 10);
 
     this.fday = parseInt(this.fday, 10);
     this.fmonth = parseInt(this.fmonth, 10);

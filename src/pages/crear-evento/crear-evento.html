@@ -48,26 +48,49 @@
 				<ion-checkbox item-right style="margin-top: 15px;" floating (ionChange)="disableTime()" [(ngModel)]="event.allday"></ion-checkbox>
 			</ion-item>
 		</div>
+
+		<div id="Time">
+			<div class="citem">
+				<div class="icon-center">
+					<i class="ico-gray far fa-clock fa-lg"></i>
+				</div>
+				<ion-item>
+					<ion-label floating>Hora inicial</ion-label>
+					<ion-datetime displayFormat="hh:mm:a" pickerFormat="hh:mm:a" [(ngModel)]="event.startHour"></ion-datetime>
+				</ion-item>
+			</div>
 	
-		<div class="citem">
-			<div class="icon-center">
-				<i class="ico-gray fas fa-calendar fa-lg"></i>
+			<div class="citem">
+				<div class="icon-center">
+					<i class="ico-gray far fa-clock fa-lg"></i>
+				</div>
+				<ion-item>
+					<ion-label floating>Hora Final</ion-label>
+					<ion-datetime displayFormat="hh:mm:a" pickerFormat="hh:mm:a" [(ngModel)]="event.endtHour"></ion-datetime>
+				</ion-item>
 			</div>
-			<ion-item>
-				<ion-label floating>Fecha inicial</ion-label>
-				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="event.startDate"></ion-datetime>
-			</ion-item>
-		</div>
-		
-		<div class="citem">
-			<div class="icon-center">
-				<i class="ico-gray fas fa-calendar fa-lg"></i>
+			
+			<div class="citem">
+				<div class="icon-center">
+					<i class="ico-gray fas fa-calendar fa-lg"></i>
+				</div>
+				<ion-item>
+					<ion-label floating>Fecha inicial</ion-label>
+					<ion-datetime displayFormat="DD/MMM/YY hh:mm:a" pickerFormat="DD/MMM/YY hh:mm:a" [(ngModel)]="event.startDate"></ion-datetime>
+				</ion-item>
 			</div>
-			<ion-item>
-				<ion-label floating>Fecha final</ion-label>
-				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="event.endDate"></ion-datetime>
-			</ion-item>
+			
+			<div class="citem">
+				<div class="icon-center">
+					<i class="ico-gray fas fa-calendar fa-lg"></i>
+				</div>
+				<ion-item>
+					<ion-label floating>Fecha final</ion-label>
+					<ion-datetime displayFormat="DD/MMM/YY hh:mm:a" pickerFormat="DD/MMM/YY hh:mm:a" (ionChange)="validateTime()" [(ngModel)]="event.endDate"></ion-datetime>
+				</ion-item>
+			</div>
 		</div>
+	
 	
 		<div class="citem">
 			<div class="icon-center">
@@ -75,7 +98,7 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Repetición</ion-label>
-				<ion-select [(ngModel)]="event.repeat">
+				<ion-select [(ngModel)]="event.repeat"> 
 					<ion-option value="no">
 						No se repite
 					</ion-option>
@@ -146,5 +169,6 @@
 		<button ion-button block (click)="crearEvento()">Guardar</button>
 	</div>
 	
+
 
 </ion-content>
