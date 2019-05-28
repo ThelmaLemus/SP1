@@ -28,6 +28,7 @@ export class VistaDiariaPage {
   year = null;
   aux = null;
   theDate = null;
+  theDate2 = null;
   sday = null;
   smonth = null;
   syear = null;
@@ -80,7 +81,27 @@ export class VistaDiariaPage {
 
   newEvent(uid)
   {
-    this.navCtrl.push(CrearEventoPage, { uid: this.uid });
+    if (this.day == null || this.month == null || this.year == null) {
+      this.theDate2 = new Date();
+      this.day = this.theDate2.getDate();
+      this.day = this.theDate2.getDate();
+      this.month = this.theDate2.getMonth() + 1;
+      this.month = this.theDate2.getMonth() + 1;
+      this.year = this.theDate2.getFullYear();
+      this.year = this.theDate2.getFullYear();
+      this.month = this.month.toString();
+      this.day = this.day.toString();
+      if (this.month.length == 1) this.month = "0" + this.month;
+      if (this.day.length == 1) this.day = "0" + this.day;
+    } else {
+      this.month = this.month.toString();
+      this.day = this.day.toString();
+      if (this.month.length == 1) this.month = "0" + this.month;
+      if (this.day.length == 1) this.day = "0" + this.day;
+      this.theDate2 = new Date(this.year, this.month, this.day);
+    }
+    this.aux = this.year + "-" + this.month + "-" + this.day;
+    this.navCtrl.push(CrearEventoPage, { uid: this.uid, date: this.aux });
   }
 
   monthly_view()
@@ -98,6 +119,7 @@ export class VistaDiariaPage {
     var isValid = null;   
     if (this.day == null || this.month == null || this.year == null) 
     {
+      debugger
       this.theDate = new Date();
       this.day = this.theDate.getDate();
       this.month = this.theDate.getMonth() + 1;

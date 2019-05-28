@@ -18,13 +18,20 @@ import { EventServices } from '../../services/events.services';
 })
 export class CrearEventoPage
 {
+	day = null;
+	month = null;
+	year = null;
+
 	sday = null;
 	smonth = null;
 	syear = null;
 	shour = null;
 	sminute = null;
 	
-	saa = null;
+	theDate2 = null;
+	aday = null;
+	amonth = null;
+	ayear = null;
 	
 	fday = null;
 	fmonth = null;
@@ -52,10 +59,12 @@ export class CrearEventoPage
 	
 	uid = null;
 	eid = null;
+	aux = null;
 	constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
 		this.uid = navParams.get('uid');
 		this.eid = navParams.get('eid'); 
-		console.log('This is the uid: ', this.uid);
+		this.aux = navParams.get('date');
+		if (this.aux != undefined) this.event.startDate = this.aux + "T00:00:00Z";
 		
 		if (this.eid != undefined) 
 		{
@@ -79,6 +88,7 @@ export class CrearEventoPage
 			var x = document.getElementById("Time");
 			if (x.style.display === "none") {
 				console.log("EnableTime");
+				this.event.startDate= 
 				x.style.display = "block";
 			} else {
 				console.log("DisableTime");
@@ -88,7 +98,7 @@ export class CrearEventoPage
 			
 	}
 
-	validateTime()
+	private validateTime()
 	{
 		this.sday = this.event.startDate.substr(8,9);
 		this.smonth = this.event.startDate.substr(5, 2);
@@ -114,14 +124,23 @@ export class CrearEventoPage
 		this.fyear = parseInt(this.fyear, 10);
 		this.fhour = parseInt(this.fhour, 10);
 		this.fminute = parseInt(this.fminute, 10);
-		debugger
+		// debugger
 		if (this.sday > this.fday|| this.smonth > this.fmonth || this.syear > this.fyear)
 		{
 			alert("Elija un rango de fechas válido");
-			this.event.startDate = this.sbackDate;
-			this.event.endDate = this.ebackDate;
+			return false;
+		}else
+		{
+			debugger
+			if (this.sday == this.fday && this.smonth == this.fmonth && this.syear == this.fyear) if (this.shour < this.fhour) {
+				return true;
+			}
+			else{
+				alert("Elija un rango de horas válido");
+				return false;
+			}
 		}
-		console.log(this.event.endDate);
+		// console.log(this.event.endDate);
 		
 	}
 
@@ -161,18 +180,21 @@ export class CrearEventoPage
 	
 	
 	private editEvent () {
+		debugger
 		if (this.event.title == "" ||
 		this.event.startDate == "" ||
 		this.event.endDate == "" ||
 		this.event.reminder == "") {
 			alert("Por favor llene todos los campos");
 		}else
-		{
-			debugger
-			this.event.dstartDate = this.event.startDate.substr(8,2) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
-			this.eventServices.createEventF(this.uid, this.event);
-			// this.usersService.editUserF(this.user);
-			this.navCtrl.pop();
+		{	
+			// debugger
+			if (this.validateTime()) {
+				this.event.dstartDate = this.event.startDate.substr(8,2) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
+				this.eventServices.createEventF(this.uid, this.event);
+				// this.usersService.editUserF(this.user);
+				this.navCtrl.pop();
+			}
 
 		}
 	}
