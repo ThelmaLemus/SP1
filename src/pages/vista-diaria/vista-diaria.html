@@ -24,7 +24,7 @@
 	
 	<div class="event_list">
 		<div class="item_event_list" *ngFor="let event of events1">
-			<ion-card class="reales" (click)="editarEvento(event.id)">
+			<ion-card class="reales" (click)="editarEvento(event.id, event.dstartDate)">
 				<ion-card-header>
 					<ion-card-title >
 						{{ event.title }}
