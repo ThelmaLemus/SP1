@@ -67,26 +67,26 @@ export class CrearEventoPage
 		this.uid = navParams.get('uid');
 		this.eid = navParams.get('eid'); 
 		this.aux = navParams.get('date');
-		this.daux = navParams.get('dstartDate');
+		// this.daux = navParams.get('dstartDate');
 		if (this.aux != undefined) {
 			this.event.startDate = this.aux + "T00:00:00Z";
 		}
-		else
-		{
-			this.aux = this.daux.substr(6,4) +"-"+ this.daux.substr(3,2) + "-" + this.daux.substr(0,2);
-		}
+		// else
+		// {
+		// 	this.aux = this.daux.substr(6,4) +"-"+ this.daux.substr(3,2) + "-" + this.daux.substr(0,2);
+		// }
 		
 		// this.daux = this.aux.substr(8,9) + "-" + this.aux.substr(5,2) + "-" +this.aux.substr(0,4) ;
 
 		if (this.eid != undefined) 
 		{
-			eventServices.getEventF(this.uid, this.daux, this.eid).valueChanges()
+			eventServices.getEventF(this.uid, this.eid).valueChanges()
 			.subscribe(event => {
 				this.event = event;
 				this.sbackDate = this.event.startDate;
 				this.ebackDate = this.event.endDate;
 			});
-			// this.validatAllDay();
+			this.validateAllDay();
 		}
   	}
 
@@ -103,13 +103,21 @@ export class CrearEventoPage
 		} 
 		else if (x.style.display != "none"|| this.event.allday == true) 
 		{
-			this.event.startDate= this.aux + "T00:00:00Z";
-			this.event.endDate= this.aux + "T24:00:00Z";
+			if (this.aux != undefined) 
+			{
+				this.event.startDate = this.aux + "T00:00:00Z";
+				this.event.endDate = this.aux + "T23:59:59Z";
+			}
+			else
+			{
+				this.event.startDate = this.event.startDate.substr(0,10) + "T00:00:00Z";
+				this.event.endDate = this.event.endDate.substr(0,10) + "T23:59:59Z";
+			}
 			x.style.display = "none";
 		}
 	}
 
-	private validatAllDay() 
+	private validateAllDay() 
 	{
 		// console.log(this.event.allday);
 		var x = document.getElementById("Time");
@@ -200,6 +208,7 @@ export class CrearEventoPage
 			this.event.dstartDate = this.event.startDate.substr(8,2) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
 			// this.event.endDate = this.event.endDate.substr(8, 9) + "-" + this.event.endDate.substr(5, 2) + "-" + this.event.endDate.substr(0, 4);
 			this.eventServices.createEventF(this.uid, this.event);
+			this.navCtrl.getPrevious().data.rep = 1;
 			this.navCtrl.pop();
 			
 		}
@@ -217,8 +226,9 @@ export class CrearEventoPage
 			if (this.validateTime()) {
 				this.event.dstartDate = this.event.startDate.substr(8,2) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
 				this.eventServices.createEventF(this.uid, this.event);
-				// this.usersService.editUserF(this.user);
-				this.navCtrl.pop();
+				debugger
+				this.navCtrl.getPrevious().data.rep = 1;
+ 				this.navCtrl.pop();
 			}
 
 		}
@@ -226,6 +236,6 @@ export class CrearEventoPage
 
 	public ionViewWillEnter() 
 	{
-		this.validatAllDay();
+		this.validateAllDay();
 	}
 }

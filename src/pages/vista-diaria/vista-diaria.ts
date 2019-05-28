@@ -20,6 +20,7 @@ export class VistaDiariaPage {
 
   all_events = [];
   op = null;
+  rep = null;
   events1 = [];
   uid = null;
   eid = null;
@@ -46,29 +47,16 @@ export class VistaDiariaPage {
     this.day = navParams.get('day') ;
     this.month = navParams.get('month') ;
     this.year = navParams.get('year');
+    // debugger
     this.validations();
+    // this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
-
-  // public ionViewWillEnter() {
-  //   debugger
-  //   this.uid = this.navParams.get('uid');
-  //   this.op = this.navParams.get('op')|| null;
-  //   this.day =  this.navParams.get('day')|| null;
-  //   this.month =  this.navParams.get('month')|| null;
-  //   this.year = this.navParams.get('year')|| null;
-  //   console.log(this.day);
-  //   this.validations();
-  //   this.eventServices.getEvents(this.uid).valueChanges().subscribe(events => 
-  //     {
-  //       this.all_events = events;
-  //       if (this.all_events.length>0) 
-  //       {
-  //         for (let i = 0; i < this.all_events.length; i++) {
-  //           if (this.all_events[i].startDate == this.aux) this.events1.push(this.all_events[i]);   
-  //         }
-  //       }
-  //     });
-  // } 
+  
+  public ionViewWillEnter() 
+  {
+    this.rep = this.navParams.get('rep');
+    if (this.rep != undefined)this.events1 = [];
+  } 
   
   ionViewDidLoad()
   {
@@ -120,7 +108,6 @@ export class VistaDiariaPage {
     var isValid = null;   
     if (this.day == null || this.month == null || this.year == null) 
     {
-      // debugger
       this.theDate = new Date();
       this.day = this.theDate.getDate();
       this.month = this.theDate.getMonth() + 1;
@@ -139,11 +126,19 @@ export class VistaDiariaPage {
       this.theDate = new Date(this.year , this.month , this.day);
     }
     this.aux = this.year+"-"+ this.month +"-"+ this.day; 
-    this.aux2 = this.day+"-"+ this.month +"-"+ this.year; 
     this.theDate = this.theDate.toDateString();
-    this.eventServices.getEvents(this.uid, this.aux2).valueChanges().subscribe(events => 
+    this.eventServices.getEvents(this.uid).valueChanges().subscribe(events => 
     {
-      this.events1 = events;
+      this.all_events = events;
+      if (this.all_events.length>0) 
+      {
+        for (let i = 0; i < this.all_events.length; i++) 
+        {
+          isValid =  this.valid_range(this.all_events[i].startDate, this.aux, this.all_events[i].endDate);
+          if (isValid)this.events1.push(this.all_events[i]);   
+          // debugger
+        }
+      }
     });
   }
 

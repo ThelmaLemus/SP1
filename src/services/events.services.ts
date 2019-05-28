@@ -9,16 +9,16 @@ export class EventServices{
     events = [];
     events1 =[];
 
-    public getEvents(uid, startDate){
-        return this.afDB.list('users/'+uid+'/events/'+ startDate + "/");
+    public getEvents(uid){
+        return this.afDB.list('users/'+uid+'/events/');
     }
 
-    public getEventF(uid, startDate, eid) {
-        return this.afDB.object('users/'+uid+'/events/' + startDate + "/" + eid);
+    public getEventF(uid, eid) {
+        return this.afDB.object('users/'+uid+'/events/' + eid);
     }
 
     public createEventF(uid, event) {
-        this.afDB.database.ref('users/'+uid+'/events/' + event.dstartDate + "/" + event.id).set(event);
+        this.afDB.database.ref('users/'+uid+'/events/' + event.id).set(event);
     }
 
     /**
