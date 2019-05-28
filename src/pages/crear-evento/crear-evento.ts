@@ -228,6 +228,4 @@ export class CrearEventoPage
 	{
 		this.validatAllDay();
 	}
-
-
 }
