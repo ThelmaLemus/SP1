@@ -104,7 +104,7 @@ export class CrearEventoPage
 		else if (x.style.display != "none"|| this.event.allday == true) 
 		{
 			this.event.startDate= this.aux + "T00:00:00Z";
-			this.event.endDate= this.aux + "T23:59:59Z";
+			this.event.endDate= this.aux + "T24:00:00Z";
 			x.style.display = "none";
 		}
 	}
