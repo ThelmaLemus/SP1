@@ -1,5 +1,7 @@
 {
   "name": "mul",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

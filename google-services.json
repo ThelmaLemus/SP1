@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "963088475538",
+    "firebase_url": "https://multitask1030.firebaseio.com",
+    "project_id": "multitask1030",
+    "storage_bucket": "multitask1030.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963088475538:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963088475538-9r5563t32tgcsmv4f7g5bglohech4h0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSPDC1yRLVy48fTrOi16pDaGkdnvTpKgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963088475538-9r5563t32tgcsmv4f7g5bglohech4h0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
