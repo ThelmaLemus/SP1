@@ -37,7 +37,7 @@
 				<ion-input type="text" [(ngModel)]="event.location"></ion-input>
 			</ion-item>
 		</div>
-	
+		
 		<div class="citem">
 			<div class="icon-center">
 				<i class="ico-gray fas fa-clock fa-lg"></i>
@@ -152,3 +152,17 @@
 
 
 </ion-content>
+
+<script >
+	document.addEventListener('readystatechange', event => {
+
+		if (event.target.readyState === "interactive") {      //same as:  document.addEventListener("DOMContentLoaded"...   // same as  jQuery.ready
+			alert("All HTML DOM elements are accessible");
+		}
+
+		if (event.target.readyState === "complete") {
+			alert("Now external resources are loaded too, like css,src etc... ");
+		}
+
+	});
+</script>

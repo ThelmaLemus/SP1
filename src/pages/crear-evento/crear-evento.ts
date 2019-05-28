@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
 import { EventServices } from '../../services/events.services';
+import { debug } from 'util';
 
 
 
@@ -52,61 +53,84 @@ export class CrearEventoPage
 		endDate: null,
 		location: null,
 		allday: null,
-		repeat: null,
-		reminder: null,
+		repeat: "no",
+		reminder: "no",
 		description: null
 	};
 	
 	uid = null;
 	eid = null;
 	aux = null;
+	daux = null;
+
 	constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
 		this.uid = navParams.get('uid');
 		this.eid = navParams.get('eid'); 
 		this.aux = navParams.get('date');
-		if (this.aux != undefined) this.event.startDate = this.aux + "T00:00:00Z";
+		this.daux = navParams.get('dstartDate');
+		if (this.aux != undefined) {
+			this.event.startDate = this.aux + "T00:00:00Z";
+		}
+		else
+		{
+			this.aux = this.daux.substr(6,4) +"-"+ this.daux.substr(3,2) + "-" + this.daux.substr(0,2);
+		}
 		
+		// this.daux = this.aux.substr(8,9) + "-" + this.aux.substr(5,2) + "-" +this.aux.substr(0,4) ;
+
 		if (this.eid != undefined) 
 		{
-			eventServices.getEventF(this.uid, this.eid).valueChanges()
+			eventServices.getEventF(this.uid, this.daux, this.eid).valueChanges()
 			.subscribe(event => {
 				this.event = event;
 				this.sbackDate = this.event.startDate;
 				this.ebackDate = this.event.endDate;
-				
 			});
+			// this.validatAllDay();
 		}
   	}
 
-	ionViewDidLoad() {
+	ionViewDidLoad()
+	 {
 		console.log('ionViewDidLoad CrearEventoPage');
 	}
 
   	disableTime()
 	{
-			// this.event.allday = true;
-			var x = document.getElementById("Time");
-			if (x.style.display === "none") {
-				console.log("EnableTime");
-				this.event.startDate= 
-				x.style.display = "block";
-			} else {
-				console.log("DisableTime");
-				x.style.display = "none";
-			}
-			// document.getElementById("StartHour").style.display = "none";
-			
+		var x = document.getElementById("Time");
+		if (x.style.display === "none" || this.event.allday == false) {
+			x.style.display = "block";
+		} 
+		else if (x.style.display != "none"|| this.event.allday == true) 
+		{
+			this.event.startDate= this.aux + "T00:00:00Z";
+			this.event.endDate= this.aux + "T24:00:00Z";
+			x.style.display = "none";
+		}
 	}
 
+	private validatAllDay() 
+	{
+		// console.log(this.event.allday);
+		var x = document.getElementById("Time");
+		if (this.event.allday == false) {
+			x.style.display = "block";
+		} 
+		else if (this.event.allday == true) 
+		{
+			x.style.display = "none";
+		}
+	}
+	
 	private validateTime()
 	{
-		this.sday = this.event.startDate.substr(8,9);
+		this.sday = this.event.startDate.substr(8,2);
 		this.smonth = this.event.startDate.substr(5, 2);
 		this.syear = this.event.startDate.substr(0,4);
 		this.shour = this.event.startDate.substr(11, 2);
 		this.sminute = this.event.startDate.substr(14,2);
 		
-		this.fday = this.event.endDate.substr(8,9);
+		this.fday = this.event.endDate.substr(8,2);
 		this.fmonth = this.event.endDate.substr(5, 2);
 		this.fyear = this.event.endDate.substr(0,4);
 		this.fhour = this.event.endDate.substr(11, 2);
@@ -124,20 +148,25 @@ export class CrearEventoPage
 		this.fyear = parseInt(this.fyear, 10);
 		this.fhour = parseInt(this.fhour, 10);
 		this.fminute = parseInt(this.fminute, 10);
-		// debugger
 		if (this.sday > this.fday|| this.smonth > this.fmonth || this.syear > this.fyear)
 		{
 			alert("Elija un rango de fechas válido");
 			return false;
 		}else
 		{
-			debugger
-			if (this.sday == this.fday && this.smonth == this.fmonth && this.syear == this.fyear) if (this.shour < this.fhour) {
-				return true;
+			if (this.sday == this.fday && this.smonth == this.fmonth && this.syear == this.fyear) 
+			{
+				if (this.shour < this.fhour) {
+					return true;
+				}
+				else{
+					alert("Elija un rango de horas válido");
+					return false;
+				}
 			}
-			else{
-				alert("Elija un rango de horas válido");
-				return false;
+			else
+			{
+				return true;
 			}
 		}
 		// console.log(this.event.endDate);
@@ -149,15 +178,15 @@ export class CrearEventoPage
 		if (this.eid != undefined) 
 		{
 			this.editEvent();
+			
 		}else
 		{
 			this.newEvent();
 		}
 	}
 
-
-
-	private newEvent() {
+	private newEvent() 
+	{
 		this.event.id = 'e'+ Date.now();
 		if (this.event.title == null ||
 			this.event.startDate == null ||
@@ -168,7 +197,6 @@ export class CrearEventoPage
 		}
 
 		else {
-			debugger
 			this.event.dstartDate = this.event.startDate.substr(8,2) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
 			// this.event.endDate = this.event.endDate.substr(8, 9) + "-" + this.event.endDate.substr(5, 2) + "-" + this.event.endDate.substr(0, 4);
 			this.eventServices.createEventF(this.uid, this.event);
@@ -177,10 +205,8 @@ export class CrearEventoPage
 		}
 	}
 
-	
-	
-	private editEvent () {
-		debugger
+	private editEvent () 
+	{
 		if (this.event.title == "" ||
 		this.event.startDate == "" ||
 		this.event.endDate == "" ||
@@ -188,7 +214,6 @@ export class CrearEventoPage
 			alert("Por favor llene todos los campos");
 		}else
 		{	
-			// debugger
 			if (this.validateTime()) {
 				this.event.dstartDate = this.event.startDate.substr(8,2) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
 				this.eventServices.createEventF(this.uid, this.event);
@@ -198,4 +223,11 @@ export class CrearEventoPage
 
 		}
 	}
+
+	public ionViewWillEnter() 
+	{
+		this.validatAllDay();
+	}
+
+
 }
