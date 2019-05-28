@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-//import { HomePage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';
 //import { CrearEventoPage } from '../pages/crear-evento/crear-evento';
 import { VistaDiariaPage } from '../pages/vista-diaria/vista-diaria';
 
@@ -13,9 +13,9 @@ import { FCM } from '@ionic-native/fcm';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  // rootPage:any = HomePage;
+  rootPage:any = HomePage;
   // rootPage:any = CrearEventoPage;
-  rootPage:any = VistaDiariaPage;
+  // rootPage:any = VistaDiariaPage;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private fcm: FCM) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

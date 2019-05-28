@@ -50,7 +50,7 @@ export class HomePage {
     // debugger
     if (this.ok == 1) 
     {
-      console.log('ok');
+      // console.log('ok');
       this.navCtrl.push(VistaDiariaPage, {uid: this.id});
       
     }else if (this.null !=0)

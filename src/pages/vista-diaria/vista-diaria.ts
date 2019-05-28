@@ -27,7 +27,9 @@ export class VistaDiariaPage {
   month = null;
   year = null;
   aux = null;
+  aux2 = null;
   theDate = null;
+  theDate2 = null;
   sday = null;
   smonth = null;
   syear = null;
@@ -73,14 +75,34 @@ export class VistaDiariaPage {
     console.log('ionViewDidLoad VistaDiariaPage');
   }
 
-  editarEvento(eid)
+  editarEvento(eid, dstartDate)
   {
-    this.navCtrl.push(CrearEventoPage, { uid: this.uid ,eid: eid });
+    this.navCtrl.push(CrearEventoPage, { uid: this.uid ,eid: eid, dstartDate: dstartDate });
   }
 
   newEvent(uid)
   {
-    this.navCtrl.push(CrearEventoPage, { uid: this.uid });
+    if (this.day == null || this.month == null || this.year == null) {
+      this.theDate2 = new Date();
+      this.day = this.theDate2.getDate();
+      this.day = this.theDate2.getDate();
+      this.month = this.theDate2.getMonth() + 1;
+      this.month = this.theDate2.getMonth() + 1;
+      this.year = this.theDate2.getFullYear();
+      this.year = this.theDate2.getFullYear();
+      this.month = this.month.toString();
+      this.day = this.day.toString();
+      if (this.month.length == 1) this.month = "0" + this.month;
+      if (this.day.length == 1) this.day = "0" + this.day;
+    } else {
+      this.month = this.month.toString();
+      this.day = this.day.toString();
+      if (this.month.length == 1) this.month = "0" + this.month;
+      if (this.day.length == 1) this.day = "0" + this.day;
+      this.theDate2 = new Date(this.year, this.month, this.day);
+    }
+    this.aux = this.year + "-" + this.month + "-" + this.day;
+    this.navCtrl.push(CrearEventoPage, { uid: this.uid, date: this.aux });
   }
 
   monthly_view()
@@ -98,6 +120,7 @@ export class VistaDiariaPage {
     var isValid = null;   
     if (this.day == null || this.month == null || this.year == null) 
     {
+      // debugger
       this.theDate = new Date();
       this.day = this.theDate.getDate();
       this.month = this.theDate.getMonth() + 1;
@@ -116,18 +139,11 @@ export class VistaDiariaPage {
       this.theDate = new Date(this.year , this.month , this.day);
     }
     this.aux = this.year+"-"+ this.month +"-"+ this.day; 
+    this.aux2 = this.day+"-"+ this.month +"-"+ this.year; 
     this.theDate = this.theDate.toDateString();
-    this.eventServices.getEvents(this.uid).valueChanges().subscribe(events => 
+    this.eventServices.getEvents(this.uid, this.aux2).valueChanges().subscribe(events => 
     {
-      this.all_events = events;
-      if (this.all_events.length>0) 
-      {
-        for (let i = 0; i < this.all_events.length; i++) 
-        {
-          isValid =  this.valid_range(this.all_events[i].startDate, this.aux, this.all_events[i].endDate);
-          if (isValid)this.events1.push(this.all_events[i]);   
-        }
-      }
+      this.events1 = events;
     });
   }
 
