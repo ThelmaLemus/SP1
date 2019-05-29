@@ -1,9 +1,10 @@
 import { Injectable} from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AlertController } from 'ionic-angular';
 @Injectable()
 
 export class UsersService{
-    constructor(public afDB: AngularFireDatabase){
+    constructor(public afDB: AngularFireDatabase, public alertCtrl: AlertController){
 
     }
     users = [];
@@ -58,4 +59,13 @@ export class UsersService{
         //     }
         // }
     }
+
+    public dalert(title, subtitle) {
+        let alert = this.alertCtrl.create({
+          title:title,
+          subTitle: subtitle,
+          buttons: ['Ok']
+        });
+        alert.present();
+      }
 }

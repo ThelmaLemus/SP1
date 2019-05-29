@@ -148,21 +148,5 @@
 	<div padding>
 		<button ion-button block (click)="crearEvento()">Guardar</button>
 	</div>
-	
-
 
 </ion-content>
-
-<script >
-	document.addEventListener('readystatechange', event => {
-
-		if (event.target.readyState === "interactive") {      //same as:  document.addEventListener("DOMContentLoaded"...   // same as  jQuery.ready
-			alert("All HTML DOM elements are accessible");
-		}
-
-		if (event.target.readyState === "complete") {
-			alert("Now external resources are loaded too, like css,src etc... ");
-		}
-
-	});
-</script>

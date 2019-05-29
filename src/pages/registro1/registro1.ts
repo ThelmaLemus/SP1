@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Registro2Page } from '../registro2/registro2';
 import { UsersService } from '../../services/users.service';
+import { FormGroup } from '@angular/forms';
 
 
 /**
@@ -17,6 +18,9 @@ import { UsersService } from '../../services/users.service';
   templateUrl: 'registro1.html',
 })
 export class Registro1Page {
+
+  registerForm : FormGroup;
+
   user:any = {id: null, nombre :null, username:null, correo:null, password:null, sexo:"", myDate:"", trabaja:null, estudia:null};
   password2 = '';
   
@@ -56,10 +60,10 @@ export class Registro1Page {
   {
     this.user.id = Date.now();
     if (this.user.nombre == null || this.user.username == null || this.user.correo == null || this.user.password == null || this.password2 == null) {
-      alert("Por favor llene los campos");
+      this.usersService.dalert("Error","Por favor llene los campos");
     }
     else if (this.user.password != this.password2) {
-      alert("Las contraseñas no coinciden");
+      this.usersService.dalert("Error","Las contraseñas no coinciden");
     }
     else {
       
@@ -78,10 +82,10 @@ export class Registro1Page {
   private editUser()
   {
     if (this.user.nombre == "" || this.user.username == "" || this.user.correo == "" || this.user.password == "" || this.password2 == "") {
-      alert("Por favor llene los campos");
+       this.usersService.dalert("Error","Por favor llene los campos");
     }
     else if (this.user.password != this.password2) {
-      alert("Las contraseñas no coinciden");
+       this.usersService.dalert("Error","Las contraseñas no coinciden");
     }
     else {
       this.usersService.editUserF(this.user);

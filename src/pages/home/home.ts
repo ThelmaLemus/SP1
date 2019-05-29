@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Alert } from 'ionic-angular';
+import { NavController, Alert, AlertController } from 'ionic-angular';
 import { UsersService } from '../../services/users.service';
 import { Registro1Page } from '../registro1/registro1';
 import { VistaDiariaPage } from '../vista-diaria/vista-diaria';
@@ -18,7 +18,7 @@ export class HomePage {
   user:any = {id: null, nombre :null, username:null, correo:null, password:null, sexo:"", myDate:"", trabaja:null, estudia:null};
   username = null;
   password = null;
-  constructor(public navCtrl: NavController, public usersService: UsersService, public afDB: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public usersService: UsersService, public afDB: AngularFireDatabase, public alertCtrl: AlertController) {
     usersService.getUsers().valueChanges()
     .subscribe(users => {
       this.users = users;
@@ -61,7 +61,7 @@ export class HomePage {
     {
       // console.log('wrong');
       console.log("Usuario o contraseña incorrecta");
-      alert("Usuario o contraseña incorrectos");
+      this.usersService.dalert("Error","Usuario o contraseña incorrectos");
       
     }
   }

@@ -158,7 +158,7 @@ export class CrearEventoPage
 		this.fminute = parseInt(this.fminute, 10);
 		if (this.sday > this.fday|| this.smonth > this.fmonth || this.syear > this.fyear)
 		{
-			alert("Elija un rango de fechas válido");
+			 this.eventServices.dalert("Error","Elija un rango de fechas válido");
 			return false;
 		}else
 		{
@@ -168,7 +168,7 @@ export class CrearEventoPage
 					return true;
 				}
 				else{
-					alert("Elija un rango de horas válido");
+					 this.eventServices.dalert("Error","Elija un rango de horas válido");
 					return false;
 				}
 			}
@@ -201,7 +201,7 @@ export class CrearEventoPage
 			this.event.endDate == null ||
 			this.event.reminder == null) 
 		{
-			alert("Por favor llene todos los campos");
+			 this.eventServices.dalert("Error","Por favor llene todos los campos");
 		}
 
 		else {
@@ -220,7 +220,7 @@ export class CrearEventoPage
 		this.event.startDate == "" ||
 		this.event.endDate == "" ||
 		this.event.reminder == "") {
-			alert("Por favor llene todos los campos");
+			 this.eventServices.dalert("Error","Por favor llene todos los campos");
 		}else
 		{	
 			if (this.validateTime()) {

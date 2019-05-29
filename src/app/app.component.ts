@@ -11,10 +11,10 @@ import { VistaMensualPage } from '../pages/vista-mensual/vista-mensual';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  // rootPage:any = HomePage;
+  rootPage:any = HomePage;
   // rootPage:any = CrearEventoPage;
   // rootPage:any = VistaDiariaPage;
-  rootPage:any = VistaMensualPage;
+  // rootPage:any = VistaMensualPage;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

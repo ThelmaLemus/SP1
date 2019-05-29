@@ -1,9 +1,10 @@
 import { Injectable} from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AlertController } from 'ionic-angular';
 @Injectable()
 
 export class EventServices{
-    constructor(public afDB: AngularFireDatabase){
+    constructor(public afDB: AngularFireDatabase, public alertCtrl: AlertController){
 
     }
     events = [];
@@ -27,4 +28,13 @@ export class EventServices{
     public deleteEvent(event) {
         this.afDB.database.ref('events/' + event.id).remove();
     }
+
+    public dalert(title, subtitle) {
+        let alert = this.alertCtrl.create({
+          title:title,
+          subTitle: subtitle,
+          buttons: ['Ok']
+        });
+        alert.present();
+      }
 }

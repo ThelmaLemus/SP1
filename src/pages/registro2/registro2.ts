@@ -60,7 +60,7 @@ export class Registro2Page {
     // this.user.myDate = new Date().toISOString();
     if(this.user.sexo == undefined || this.user.myDate == undefined)
     {
-      alert("Por favor llene los campos");
+      this.usersService.dalert("Error","Por favor llene los campos");
     }
     else
     {
