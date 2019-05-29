@@ -21,6 +21,11 @@ export class EventServices{
         this.afDB.database.ref('users/'+uid+'/events/' + event.id).set(event);
     }
 
+    //PARA SUGERENCIAS DE MES PASADO
+    public getEvent_TD(currentDate, event) {
+        if(currentDate == event.dstartDate)return true;
+    }
+
     /**
      * deleteEvent
      */

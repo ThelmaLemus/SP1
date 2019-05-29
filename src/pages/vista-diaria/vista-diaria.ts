@@ -137,6 +137,8 @@ export class VistaDiariaPage {
           isValid =  this.valid_range(this.all_events[i].startDate, this.aux, this.all_events[i].endDate);
           if (isValid)this.events1.push(this.all_events[i]);   
           // debugger
+
+          //COSAS
         }
       }
     });
