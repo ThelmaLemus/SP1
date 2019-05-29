@@ -37,7 +37,7 @@
 				<ion-input type="text" [(ngModel)]="event.location"></ion-input>
 			</ion-item>
 		</div>
-	
+		
 		<div class="citem">
 			<div class="icon-center">
 				<i class="ico-gray fas fa-clock fa-lg"></i>
@@ -48,26 +48,29 @@
 				<ion-checkbox item-right style="margin-top: 15px;" floating (ionChange)="disableTime()" [(ngModel)]="event.allday"></ion-checkbox>
 			</ion-item>
 		</div>
+
+		<div id="Time">
+			<div class="citem">
+				<div class="icon-center">
+					<i class="ico-gray fas fa-calendar fa-lg"></i>
+				</div>
+				<ion-item>
+					<ion-label floating>Fecha inicial</ion-label>
+					<ion-datetime max="2030-12-31" displayFormat="DD/MMM/YY hh:mm:a" pickerFormat="DD/MMM/YY hh:mm:a" [(ngModel)]="event.startDate"></ion-datetime>
+				</ion-item>
+			</div>
+			
+			<div class="citem">
+				<div class="icon-center">
+					<i class="ico-gray fas fa-calendar fa-lg"></i>
+				</div>
+				<ion-item>
+					<ion-label floating>Fecha final</ion-label>
+					<ion-datetime max="2030-12-31" displayFormat="DD/MMM/YY hh:mm:a" pickerFormat="DD/MMM/YY hh:mm:a" (ionChange)="validateTime()" [(ngModel)]="event.endDate"></ion-datetime>
+				</ion-item>
+			</div>
+		</div>
 	
-		<div class="citem">
-			<div class="icon-center">
-				<i class="ico-gray fas fa-calendar fa-lg"></i>
-			</div>
-			<ion-item>
-				<ion-label floating>Fecha inicial</ion-label>
-				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="event.startDate"></ion-datetime>
-			</ion-item>
-		</div>
-		
-		<div class="citem">
-			<div class="icon-center">
-				<i class="ico-gray fas fa-calendar fa-lg"></i>
-			</div>
-			<ion-item>
-				<ion-label floating>Fecha final</ion-label>
-				<ion-datetime displayFormat="DD/MMM/YYYY" pickerFormat="DD/MMM/YYYY" [(ngModel)]="event.endDate"></ion-datetime>
-			</ion-item>
-		</div>
 	
 		<div class="citem">
 			<div class="icon-center">
@@ -75,7 +78,7 @@
 			</div>
 			<ion-item>
 				<ion-label floating>Repetición</ion-label>
-				<ion-select [(ngModel)]="event.repeat">
+				<ion-select [(ngModel)]="event.repeat"> 
 					<ion-option value="no">
 						No se repite
 					</ion-option>
@@ -147,4 +150,19 @@
 	</div>
 	
 
+
 </ion-content>
+
+<script >
+	document.addEventListener('readystatechange', event => {
+
+		if (event.target.readyState === "interactive") {      //same as:  document.addEventListener("DOMContentLoaded"...   // same as  jQuery.ready
+			alert("All HTML DOM elements are accessible");
+		}
+
+		if (event.target.readyState === "complete") {
+			alert("Now external resources are loaded too, like css,src etc... ");
+		}
+
+	});
+</script>

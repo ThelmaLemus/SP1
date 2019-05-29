@@ -42,7 +42,7 @@ export class VistaMensualPage {
     // debugger
     this.currentMonth = this.monthNames[this.date.getMonth()];
     this.currentYear = this.date.getFullYear();
-    if(this.date.getMonth() === new Date().getMonth()) {
+    if(this.date.getMonth() === new Date().getMonth() && this.date.getFullYear() === new Date().getFullYear()) {
       this.currentDate = new Date().getDate();
     } else {
       this.currentDate = 999;
