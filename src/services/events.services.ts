@@ -22,9 +22,9 @@ export class EventServices{
     }
 
     //PARA SUGERENCIAS DE MES PASADO
-    public getEvent_TD(currentDate, event) {
-        if(currentDate == event.dstartDate)return true;
-    }
+    // public getEvent_TD(currentDate, event) {
+    //     if(currentDate == event.dstartDate) return true;
+    // }
 
     /**
      * deleteEvent
