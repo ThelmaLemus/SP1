@@ -41,23 +41,39 @@ export class VistaDiariaPage {
   fmonth = null;
   fyear = null;
 
+  //PARA SUGERENCIAS
+  diaMesAnterior = null;
+  mesMesAnterior = null;
+  añoMesAnterior = null;
+  dateMesAnterior = null;
+
+  auxMesAnterior = null;
+
+  suggest = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
+    debugger
     this.uid = navParams.get('uid');
     this.op = navParams.get('op');
     this.day = navParams.get('day') ;
     this.month = navParams.get('month') ;
     this.year = navParams.get('year');
-    // debugger
     this.validations();
+    this.sugerencias();
     // this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
   
   public ionViewWillEnter() 
   {
+    // debugger
     this.rep = this.navParams.get('rep');
-    if (this.rep != undefined)this.events1 = [];
-  } 
-  
+    if (this.rep != undefined)
+    {
+      this.events1 = [];
+      this.validations();
+    } 
+  }
+
   ionViewDidLoad()
   {
     console.log('ionViewDidLoad VistaDiariaPage');
@@ -71,12 +87,10 @@ export class VistaDiariaPage {
   newEvent(uid)
   {
     if (this.day == null || this.month == null || this.year == null) {
+      // debugger
       this.theDate2 = new Date();
       this.day = this.theDate2.getDate();
-      this.day = this.theDate2.getDate();
       this.month = this.theDate2.getMonth() + 1;
-      this.month = this.theDate2.getMonth() + 1;
-      this.year = this.theDate2.getFullYear();
       this.year = this.theDate2.getFullYear();
       this.month = this.month.toString();
       this.day = this.day.toString();
@@ -137,6 +151,51 @@ export class VistaDiariaPage {
         {
           isValid =  this.valid_range(this.all_events[i].startDate, this.aux, this.all_events[i].endDate);
           if (isValid)this.events1.push(this.all_events[i]);   
+          // debugger
+        }
+      }
+    });
+  }
+
+  private sugerencias() {
+    if (this.day == null || this.month == null || this.year == null) {
+      // debugger
+      this.theDate = new Date();
+      this.day = this.theDate.getDate();
+      this.month = this.theDate.getMonth() + 1;
+      this.year = this.theDate.getFullYear();
+    }
+    else {
+      this.month = this.month//.toString();
+      this.day = this.day//.toString();
+    }
+
+    //PARA MES ANTERIOR
+    if (this.month == 1) {
+      this.diaMesAnterior = this.day;
+      this.mesMesAnterior = 12;
+      this.añoMesAnterior = this.year - 1;
+    }
+    else {
+      this.diaMesAnterior = this.day;
+      this.mesMesAnterior = this.month - 1;
+      this.añoMesAnterior = this.year;
+    }
+
+    //FECHA MES ANTERIOR
+    this.diaMesAnterior = this.diaMesAnterior.toString();
+    this.mesMesAnterior = this.mesMesAnterior.toString();
+    if (this.mesMesAnterior.length == 1) this.mesMesAnterior = "0" + this.mesMesAnterior;
+    if (this.diaMesAnterior.length == 1) this.diaMesAnterior = "0" + this.diaMesAnterior;
+    this.dateMesAnterior = new Date(this.añoMesAnterior, this.mesMesAnterior, this.diaMesAnterior);
+    this.auxMesAnterior = this.diaMesAnterior + "-" + this.mesMesAnterior + "-" + this.añoMesAnterior;
+
+    this.eventServices.getEvents(this.uid).valueChanges().subscribe(events => {
+      this.all_events = events;
+      if (this.all_events.length > 0) {
+        for (let i = 0; i < this.all_events.length; i++) {
+          if (this.eventServices.getEvent_TD(this.auxMesAnterior, this.all_events[i]))
+            this.suggest.push(this.all_events[i]);
           // debugger
         }
       }

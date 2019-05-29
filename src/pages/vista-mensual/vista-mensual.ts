@@ -84,10 +84,11 @@ export class VistaMensualPage {
 
   vista_diaria(day, month, year){
     // debugger
+    // month ++;
     if (day == new Date().getDate().toString() ) {
       this.navCtrl.pop();
     }else{
-      this.navCtrl.push( VistaDiariaPage, {uid:this.uid, op:1, day:day, month:(month+1), year:year} );
+      this.navCtrl.push( VistaDiariaPage, {uid:this.uid, op:1, day:day, month:month, year:year} );
     }    
   }
 
