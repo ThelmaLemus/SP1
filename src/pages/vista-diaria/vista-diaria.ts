@@ -41,6 +41,26 @@ export class VistaDiariaPage {
   fmonth = null;
   fyear = null;
 
+  //PARA SUGERENCIAS
+  diaMesAnterior = null;
+  mesMesAnterior = null;
+  añoMesAnterior = null;
+  dateMesAnterior = null;
+
+  diaDiaAnterior = null;
+  mesDiaAnterior = null;
+  añoDiaAnterior = null;
+
+  diaDiaAnterior2 = null;
+  mesDiaAnterior2 = null;
+  añoDiaAnterior2 = null;
+
+  auxMesAnterior = null;
+  auxDiaAnterior = null;
+  auxDiaAnterior2 = null;
+
+  suggest = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
     this.uid = navParams.get('uid');
     this.op = navParams.get('op');
@@ -141,6 +161,59 @@ export class VistaDiariaPage {
         }
       }
     });
+  }
+
+  private sugerencias()
+  {
+    if (this.day == null || this.month == null || this.year == null) 
+    {
+      // debugger
+      this.theDate = new Date();
+      this.day = this.theDate.getDate();
+      this.month = this.theDate.getMonth() + 1;
+      this.year = this.theDate.getFullYear();
+    }
+    else
+    {
+      this.month = this.month//.toString();
+      this.day = this.day//.toString();
+    }
+
+    //PARA MES ANTERIOR
+    if(this.month == 1)
+    {
+      this.diaMesAnterior = this.day;
+      this.mesMesAnterior = 12;
+      this.añoMesAnterior = this.year - 1;
+    }
+    else
+    {
+      this.diaMesAnterior = this.day;
+      this.mesMesAnterior = this.month - 1;
+      this.añoMesAnterior = this.year;
+    }
+
+    //FECHA MES ANTERIOR
+    this.diaMesAnterior = this.diaMesAnterior.toString();
+    this.mesMesAnterior = this.mesMesAnterior.toString();
+    if (this.mesMesAnterior.length == 1) this.mesMesAnterior = "0"+ this.mesMesAnterior;
+    if (this.diaMesAnterior.length == 1) this.diaMesAnterior = "0"+ this.diaMesAnterior;
+    this.dateMesAnterior = new Date(this.añoMesAnterior, this.mesMesAnterior, this.diaMesAnterior);
+    this.auxMesAnterior = this.diaMesAnterior+"-"+ this.mesMesAnterior +"-"+ this.añoMesAnterior;
+
+    this.eventServices.getEvents(this.uid).valueChanges().subscribe(events => 
+      {
+        this.all_events = events;
+        if (this.all_events.length>0) 
+        {
+          for (let i = 0; i < this.all_events.length; i++) 
+          {
+            if (this.eventServices.getEvent_TD(this.auxMesAnterior, this.all_events[i]))
+              this.suggest.push(this.all_events[i]); 
+            // debugger
+          }
+        }
+      });
   }
 
   private valid_range(startDate, aux, endDate)
