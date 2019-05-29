@@ -1,14 +1,23 @@
 import { Injectable} from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController } from 'ionic-angular';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 @Injectable()
 
 export class UsersService{
-    constructor(public afDB: AngularFireDatabase, public alertCtrl: AlertController){
+    constructor(public afDB: AngularFireDatabase, public alertCtrl: AlertController, public afAuth:AngularFireAuth){
 
     }
     users = [];
     users1 =[];
+
+    public login() {
+        this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+      }
+    public logout() {
+    this.afAuth.auth.signOut();
+    }
 
     public getUsers(){
         // return this.users;
@@ -31,6 +40,17 @@ export class UsersService{
 
     public createUserF(user) {
         this.afDB.database.ref('users/' + user.id).set(user);
+        this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+        .then((response) =>
+        {
+            console.log("Usuario creado")
+        })
+        .catch((error) => 
+        {
+            console.log("entró");
+            
+            console.log('Error: ', error);
+        });
     }
 
     public editUser(user) {

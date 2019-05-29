@@ -30,11 +30,11 @@ export class EventServices{
     }
 
     public dalert(title, subtitle) {
-        let alert = this.alertCtrl.create({
-          title:title,
-          subTitle: subtitle,
-          buttons: ['Ok']
-        });
-        alert.present();
-      }
+    let alert = this.alertCtrl.create({
+      title:title,
+      subTitle: subtitle,
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
 }

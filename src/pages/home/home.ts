@@ -44,7 +44,7 @@ export class HomePage {
         }
       }
     }else{
-      console.log("Favor ingresar un usuario y una contraseña");
+      this.usersService.dalert("Error","Favor ingresar un usuario y una contraseña");
       
     }
     // debugger
@@ -53,7 +53,8 @@ export class HomePage {
       // console.log('ok');
       this.navCtrl.push(VistaDiariaPage, {uid: this.id});
       
-    }else if (this.null !=0)
+    }
+    else if (this.null !=0)
     {
       console.log('null');
       
@@ -82,4 +83,6 @@ export class HomePage {
     });
     this.usersService.deleteUser(this.user);
   }
+
+  
 }
