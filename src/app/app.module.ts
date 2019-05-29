@@ -7,7 +7,7 @@ import { WelPageModule } from '../pages/wel/wel.module';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { FCM } from '@ionic-native/fcm';
+//import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
@@ -64,7 +64,7 @@ export const firebaseConfig = {
     StatusBar,
     EventServices,
     SplashScreen,
-    FCM,
+//    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsersService
   ]

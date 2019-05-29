@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { EventServices } from '../../services/events.services';
-import { debug } from 'util';
+//import { debug } from 'util';
+
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 
@@ -63,7 +65,8 @@ export class CrearEventoPage
 	aux = null;
 	daux = null;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices, public localNotifications: LocalNotifications, public platform: Platform, public alertCtrl: AlertController) 
+	{
 		this.uid = navParams.get('uid');
 		this.eid = navParams.get('eid'); 
 		this.aux = navParams.get('date');
@@ -195,11 +198,22 @@ export class CrearEventoPage
 		{
 			alert("Por favor llene todos los campos");
 		}
-
-		else {
+		else 
+		{
 			this.event.dstartDate = this.event.startDate.substr(8,2) +"-"+ this.event.startDate.substr(5,2) +"-"+ this.event.startDate.substr(0,4);
 			// this.event.endDate = this.event.endDate.substr(8, 9) + "-" + this.event.endDate.substr(5, 2) + "-" + this.event.endDate.substr(0, 4);
 			this.eventServices.createEventF(this.uid, this.event);
+
+		/* 	this.localNotifications.schedule({
+				id: this.event.id,
+				title: this.event.title,
+				text: this.event.title,
+				trigger: { at: new Date(new Date().getTime() + 60) },
+				icon: 'assets/imgs/calendar.svg.png'
+//				led: 'FF0000',
+//				sound: null
+			}); */
+
 			this.navCtrl.pop();
 			
 		}
