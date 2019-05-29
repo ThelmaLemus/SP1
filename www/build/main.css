@@ -25900,6 +25900,11 @@ page-vista-diaria .event_list {
   margin-bottom: 30px;
 }
 
+page-vista-mensual .all {
+  height: 100%;
+  margin-bottom: 0px;
+}
+
 page-vista-mensual [col-1] {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 8.33333%;
@@ -25936,6 +25941,7 @@ page-vista-mensual .currentDate {
 }
 
 page-vista-mensual .calendar-header {
+  height: 7%;
   background-color: #488AFF;
   color: #FFFFFF;
   font-size: 24px;
@@ -25964,6 +25970,14 @@ page-vista-mensual .calendar-body
   padding: 0;
 }
 
+page-vista-mensual .calendar-body {
+  height: 93%;
+}
+
+page-vista-mensual .grid {
+  height: 100%;
+}
+
 page-vista-mensual .col:last-child {
   border-right: none;
 }
@@ -25974,12 +25988,14 @@ page-vista-mensual .calendar-weekday, page-vista-mensual .calendar-date {
 }
 
 page-vista-mensual .calendar-weekday {
+  height: 6%;
   font-size: 18px;
   border-bottom: solid 1px darkblue;
   background-color: skyblue;
 }
 
 page-vista-mensual .calendar-date {
+  height: 94%;
   border-top: solid 1px darkblue;
   border-bottom: solid 1px darkblue;
 }
