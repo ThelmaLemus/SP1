@@ -127,6 +127,7 @@ export class VistaDiariaPage {
     }
     this.aux = this.year+"-"+ this.month +"-"+ this.day; 
     this.theDate = this.theDate.toDateString();
+    // debugger
     this.eventServices.getEvents(this.uid).valueChanges().subscribe(events => 
     {
       this.all_events = events;
