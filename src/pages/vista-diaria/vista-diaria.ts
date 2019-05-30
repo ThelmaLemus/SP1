@@ -53,7 +53,7 @@ export class VistaDiariaPage {
   suggest = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
-    // debugger
+    debugger
     this.uid = navParams.get('uid');
     this.op = navParams.get('op');
     this.day = navParams.get('day') ;
@@ -66,7 +66,7 @@ export class VistaDiariaPage {
   
   public ionViewWillEnter() 
   {
-    // debugger
+    debugger
     this.rep = this.navParams.get('rep');
     if (this.rep != undefined)
     {
