@@ -90,7 +90,7 @@ export class VistaDiariaPage {
       // debugger
       this.theDate2 = new Date();
       this.day = this.theDate2.getDate();
-      this.month = this.theDate2.getMonth() + 1;
+      this.month = this.theDate2.getMonth();
       this.year = this.theDate2.getFullYear();
       this.month = this.month.toString();
       this.day = this.day.toString();
@@ -210,7 +210,7 @@ export class VistaDiariaPage {
     this.smonth = startDate.substr(5, 2);
     this.syear = startDate.substr(0,4);
 
-    this.fday = endDate.substr(8,9);
+    this.fday = endDate.substr(8,2);
     this.fmonth = endDate.substr(5, 2);
     this.fyear = endDate.substr(0,4);
 
@@ -235,9 +235,51 @@ export class VistaDiariaPage {
     {
       return true;
     } 
-    else if (this.sday <= this.aday && this.aday <= this.fday) 
-      if (this.smonth <= this.amonth && this.amonth <= this.fmonth) 
-        if (this.syear <= this.ayear && this.ayear <= this.fyear) return true;
-    
+    if(this.syear != this.fyear)
+    {
+      if(this.ayear >= this.syear && this.ayear <= this.fyear)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+    else
+    {
+      if(this.smonth != this.fmonth)
+      {
+        if(this.amonth >= this.smonth && this.amonth <= this.fmonth)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      else
+      {
+        if(this.sday != this.fday)
+        {
+          if(this.aday >= this.sday && this.aday <= this.fday)
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
+        }
+        else
+        {
+          if(this.aday == this.sday)
+            return true;
+          else
+            return false;
+        }
+      }
+    } 
   }
 }

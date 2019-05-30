@@ -24,6 +24,7 @@ export class EventServices{
 
     public getEvent_TD(currentDate, event)
     {
+        // const query = events
         if(currentDate == event.dstart)return true;
     }
     /**
