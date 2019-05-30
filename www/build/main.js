@@ -149,6 +149,7 @@ var VistaDiariaPage = /** @class */ (function () {
         this.eid = null;
         this.day = null;
         this.month = null;
+        this.montha = null;
         this.year = null;
         this.aux = null;
         this.aux2 = null;
@@ -170,7 +171,7 @@ var VistaDiariaPage = /** @class */ (function () {
         this.dateMesAnterior = null;
         this.auxMesAnterior = null;
         this.suggest = [];
-        debugger;
+        // debugger
         this.uid = navParams.get('uid');
         this.op = navParams.get('op');
         this.day = navParams.get('day');
@@ -244,13 +245,15 @@ var VistaDiariaPage = /** @class */ (function () {
                 this.day = "0" + this.day;
         }
         else {
+            this.montha = this.month;
+            this.month = 1 + this.month;
             this.month = this.month.toString();
             this.day = this.day.toString();
             if (this.month.length == 1)
                 this.month = "0" + this.month;
             if (this.day.length == 1)
                 this.day = "0" + this.day;
-            this.theDate = new Date(this.year, this.month, this.day);
+            this.theDate = new Date(this.year, this.montha, this.day);
         }
         this.aux = this.year + "-" + this.month + "-" + this.day;
         this.theDate = this.theDate.toDateString();
@@ -317,7 +320,7 @@ var VistaDiariaPage = /** @class */ (function () {
         this.sday = startDate.substr(8, 2);
         this.smonth = startDate.substr(5, 2);
         this.syear = startDate.substr(0, 4);
-        this.fday = endDate.substr(8, 9);
+        this.fday = endDate.substr(8, 2);
         this.fmonth = endDate.substr(5, 2);
         this.fyear = endDate.substr(0, 4);
         this.aday = aux.substr(8, 2);
@@ -334,7 +337,7 @@ var VistaDiariaPage = /** @class */ (function () {
         this.amonth = parseInt(this.amonth, 10);
         this.ayear = parseInt(this.ayear, 10);
         // debugger
-        if (startDate == aux) {
+        if (startDate.substr(0, 10) == aux) {
             return true;
         }
         else if (this.sday <= this.aday && this.aday <= this.fday)
@@ -1738,7 +1741,7 @@ var EventServices = /** @class */ (function () {
         this.afDB.database.ref('users/' + uid + '/events/' + event.id).set(event);
     };
     EventServices.prototype.getEvent_TD = function (currentDate, event) {
-        if (currentDate == event.dstart)
+        if (currentDate == event.dstartDate)
             return true;
     };
     /**

@@ -26,6 +26,7 @@ export class VistaDiariaPage {
   eid = null;
   day = null;
   month = null;
+  montha = null;
   year = null;
   aux = null;
   aux2 = null;
@@ -52,7 +53,7 @@ export class VistaDiariaPage {
   suggest = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
-    debugger
+    // debugger
     this.uid = navParams.get('uid');
     this.op = navParams.get('op');
     this.day = navParams.get('day') ;
@@ -132,12 +133,14 @@ export class VistaDiariaPage {
       if (this.day.length == 1) this.day = "0"+ this.day;
     }else
     {
+      this.montha = this.month;
+      this.month = 1+this.month;
       this.month = this.month.toString();
       this.day = this.day.toString();
       if (this.month.length == 1) this.month = "0"+ this.month;
       if (this.day.length == 1) this.day = "0"+ this.day;
       
-      this.theDate = new Date(this.year , this.month , this.day);
+      this.theDate = new Date(this.year , this.montha , this.day);
     }
     this.aux = this.year+"-"+ this.month +"-"+ this.day; 
     this.theDate = this.theDate.toDateString();
@@ -210,7 +213,7 @@ export class VistaDiariaPage {
     this.smonth = startDate.substr(5, 2);
     this.syear = startDate.substr(0,4);
 
-    this.fday = endDate.substr(8,9);
+    this.fday = endDate.substr(8,2);
     this.fmonth = endDate.substr(5, 2);
     this.fyear = endDate.substr(0,4);
 
@@ -231,7 +234,7 @@ export class VistaDiariaPage {
     this.amonth = parseInt(this.amonth, 10);
     this.ayear = parseInt(this.ayear, 10);
     // debugger
-    if (startDate == aux)
+    if (startDate.substr(0,10) == aux)
     {
       return true;
     } 

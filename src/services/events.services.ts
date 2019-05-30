@@ -24,7 +24,7 @@ export class EventServices{
 
     public getEvent_TD(currentDate, event)
     {
-        if(currentDate == event.dstart)return true;
+        if(currentDate == event.dstartDate)return true;
     }
     /**
      * deleteEvent
