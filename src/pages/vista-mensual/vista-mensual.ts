@@ -87,13 +87,10 @@ export class VistaMensualPage {
   }
 
   vista_diaria(day, month, year){
-    debugger
-    this.theDate = new Date();
-    this.dia = this.theDate.getDate();
-    this.mes = this.theDate.getMonth() + 1;
-    this.año = this.theDate.getFullYear();
+    // debugger
+
     // month ++;
-    if (day == this.dia.toString() && month == this.mes.toString() && year == this.año.toString()) {
+    if (day == new Date().getDate().toString() && (month+1) == (new Date().getMonth()+1).toString() && year == new Date().getFullYear().toString()) {
       this.navCtrl.pop();
     }else{
       this.navCtrl.push( VistaDiariaPage, {uid:this.uid, op:1, day:day, month:month, year:year} );

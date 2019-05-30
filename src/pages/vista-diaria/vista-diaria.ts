@@ -48,9 +48,24 @@ export class VistaDiariaPage {
   añoMesAnterior = null;
   dateMesAnterior = null;
 
+  diaDiaAnterior = null;
+  mesDiaAnterior = null;
+  añoDiaAnterior = null;
+  dateDiaAnterior = null;
+
+  diaDiaAnterior2 = null;
+  mesDiaAnterior2 = null;
+  añoDiaAnterior2 = null;
+  dateDiaAnterior2 = null;
+
   auxMesAnterior = null;
+  auxDiaAnterior = null;
+  auxDiaAnterior2 = null;
 
   suggest = [];
+  suggest2 = [];
+  eventos_ayer = [];
+  eventos_anteayer = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventServices: EventServices) {
     // debugger
@@ -152,6 +167,7 @@ export class VistaDiariaPage {
       {
         for (let i = 0; i < this.all_events.length; i++) 
         {
+          debugger
           isValid =  this.valid_range(this.all_events[i].startDate, this.aux, this.all_events[i].endDate);
           if (isValid)this.events1.push(this.all_events[i]);   
           // debugger
@@ -185,6 +201,103 @@ export class VistaDiariaPage {
       this.añoMesAnterior = this.year;
     }
 
+    //PARA DIA ANTERIOR
+    if(this.day == 1)
+    {
+      if(this.month == 1)
+      {
+        this.diaDiaAnterior = 31;
+        this.mesDiaAnterior = 12;
+        this.añoDiaAnterior = this.year - 1;
+      }
+      else if((this.month == 5)||(this.month == 7)||(this.month == 8)||(this.month == 10)||(this.month == 12))
+      {
+        this.diaDiaAnterior = 30;
+        this.mesDiaAnterior = this.month - 1;
+        this.añoDiaAnterior = this.year;
+      }
+      else if(this.month == 3)
+      {
+        this.diaDiaAnterior = 28;
+        this.mesDiaAnterior = this.month - 1;
+        this.añoDiaAnterior = this.year;
+      }
+      else
+      {
+        this.diaDiaAnterior = 31;
+        this.mesDiaAnterior = this.month - 1;
+        this.añoDiaAnterior = this.year;
+      }
+    }
+    else
+    {
+      this.diaDiaAnterior = this.day - 1;
+      this.mesDiaAnterior = this.month;
+      this.añoDiaAnterior = this.year;
+    }
+
+    //PARA DOS DIAS ANTERIORES
+    if(this.day == 1)
+    {
+      if(this.month == 1)
+      {
+        this.diaDiaAnterior2 = 30;
+        this.mesDiaAnterior2 = 12;
+        this.añoDiaAnterior2 = this.year - 1;
+      }
+      else if((this.month == 5)||(this.month == 7)||(this.month == 8)||(this.month == 10)||(this.month == 12))
+      {
+        this.diaDiaAnterior2 = 29;
+        this.mesDiaAnterior2 = this.month - 1;
+        this.añoDiaAnterior2 = this.year;
+      }
+      else if(this.month == 3)
+      {
+        this.diaDiaAnterior2 = 27;
+        this.mesDiaAnterior2 = this.month - 1;
+        this.añoDiaAnterior2 = this.year;
+      }
+      else
+      {
+        this.diaDiaAnterior2 = 30;
+        this.mesDiaAnterior2 = this.month - 1;
+        this.añoDiaAnterior2 = this.year;
+      }
+    }
+    else if(this.day == 2)
+    {
+      if(this.month == 1)
+      {
+        this.diaDiaAnterior2 = 31;
+        this.mesDiaAnterior2 = 12;
+        this.añoDiaAnterior2 = this.year - 1;
+      }
+      else if((this.month == 5)||(this.month == 7)||(this.month == 8)||(this.month == 10)||(this.month == 12))
+      {
+        this.diaDiaAnterior2 = 30;
+        this.mesDiaAnterior2 = this.month - 1;
+        this.añoDiaAnterior2 = this.year;
+      }
+      else if(this.month == 3)
+      {
+        this.diaDiaAnterior2 = 28;
+        this.mesDiaAnterior2 = this.month - 1;
+        this.añoDiaAnterior2 = this.year;
+      }
+      else
+      {
+        this.diaDiaAnterior2 = 31;
+        this.mesDiaAnterior2 = this.month - 1;
+        this.añoDiaAnterior2 = this.year;
+      }
+    }
+    else
+    {
+      this.diaDiaAnterior2 = this.day - 2;
+      this.mesDiaAnterior2 = this.month;
+      this.añoDiaAnterior2 = this.year;
+    }
+
     //FECHA MES ANTERIOR
     this.diaMesAnterior = this.diaMesAnterior.toString();
     this.mesMesAnterior = this.mesMesAnterior.toString();
@@ -193,13 +306,47 @@ export class VistaDiariaPage {
     this.dateMesAnterior = new Date(this.añoMesAnterior, this.mesMesAnterior, this.diaMesAnterior);
     this.auxMesAnterior = this.diaMesAnterior + "-" + this.mesMesAnterior + "-" + this.añoMesAnterior;
 
+    //FECHA DIA ANTERIOR
+    this.diaDiaAnterior = this.diaDiaAnterior.toString();
+    this.mesDiaAnterior = this.mesDiaAnterior.toString();
+    if (this.mesDiaAnterior.length == 1) this.mesDiaAnterior = "0"+ this.mesDiaAnterior;
+    if (this.diaDiaAnterior.length == 1) this.diaDiaAnterior = "0"+ this.diaDiaAnterior;
+    this.dateDiaAnterior = new Date(this.añoDiaAnterior, this.mesDiaAnterior, this.diaDiaAnterior);
+    this.auxDiaAnterior = this.diaDiaAnterior+"-"+ this.mesDiaAnterior +"-"+ this.añoDiaAnterior;
+
+    //FECHA DIA ANTERIOR 2
+    this.diaDiaAnterior2 = this.diaDiaAnterior2.toString();
+    this.mesDiaAnterior2 = this.mesDiaAnterior2.toString();
+    if (this.mesDiaAnterior2.length == 1) this.mesDiaAnterior2 = "0"+ this.mesDiaAnterior2;
+    if (this.diaDiaAnterior2.length == 1) this.diaDiaAnterior2 = "0"+ this.diaDiaAnterior2;
+    this.dateDiaAnterior2 = new Date(this.añoDiaAnterior, this.mesDiaAnterior, this.diaDiaAnterior2);
+    this.auxDiaAnterior2 = this.diaDiaAnterior2+"-"+ this.mesDiaAnterior2 +"-"+ this.añoDiaAnterior2;
+
     this.eventServices.getEvents(this.uid).valueChanges().subscribe(events => {
       this.all_events = events;
       if (this.all_events.length > 0) {
         for (let i = 0; i < this.all_events.length; i++) {
+          if (this.eventServices.getEvent_TD(this.auxDiaAnterior, this.all_events[i]))
+          {
+              this.eventos_ayer.push(this.all_events[i]);
+          }
+          if(this.eventServices.getEvent_TD(this.auxDiaAnterior2, this.all_events[i]))
+          {
+            this.eventos_anteayer.push(this.all_events[i]);
+          }
           if (this.eventServices.getEvent_TD(this.auxMesAnterior, this.all_events[i]))
             this.suggest.push(this.all_events[i]);
           // debugger
+          // if(this.eventServices.getEvent_TD(this.auxDiaAnterior2, this.suggest[i]))
+          //   this.suggest2.push(this.suggest[i]);
+        }
+      }
+      for(let i = 0; i < this.eventos_ayer.length; i++)
+      {
+        for(let j = 0; j < this.eventos_anteayer.length; j++)
+        {
+          if(this.eventos_ayer[i].title == this.eventos_anteayer[j])
+          this.suggest.push(this.all_events[i]);
         }
       }
     });

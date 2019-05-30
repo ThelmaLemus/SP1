@@ -9,6 +9,8 @@ export class EventServices{
     }
     events = [];
     events1 =[];
+    repeat = null;
+    eventn = null;
 
     public getEvents(uid){
         return this.afDB.list('users/'+uid+'/events/');
@@ -19,13 +21,34 @@ export class EventServices{
     }
 
     public createEventF(uid, event) {
-        this.afDB.database.ref('users/'+uid+'/events/' + event.id).set(event);
+        this.repeat = event.repeat;
+        switch (this.repeat) {
+            case "no":
+                this.afDB.database.ref('users/'+uid+'/events/' + event.id).set(event);
+                break;
+            case "dias":
+                debugger
+                event.endDate ="2100-12-31"+ event.endDate.substr(10,10);
+                this.afDB.database.ref('users/'+uid+'/events/' + event.id).set(event);
+                break;
+            case "semanas":
+                
+                break;
+            case "meses":
+            
+                break;
+            case "años":
+            
+                break;
+        
+        }
     }
 
     public getEvent_TD(currentDate, event)
     {
         if(currentDate == event.dstartDate)return true;
     }
+    
     /**
      * deleteEvent
      */
