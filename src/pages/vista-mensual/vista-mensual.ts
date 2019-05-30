@@ -17,6 +17,10 @@ import { VistaDiariaPage } from '../vista-diaria/vista-diaria';
 export class VistaMensualPage {
   uid = null;
   date = new Date();
+  dia = null;
+  mes = null;
+  año = null;
+  theDate = null;
   daysInThisMonth: any;
   daysInLastMonth: any;
   daysInNextMonth: any;
@@ -83,9 +87,13 @@ export class VistaMensualPage {
   }
 
   vista_diaria(day, month, year){
-    // debugger
+    debugger
+    this.theDate = new Date();
+    this.dia = this.theDate.getDate();
+    this.mes = this.theDate.getMonth() + 1;
+    this.año = this.theDate.getFullYear();
     // month ++;
-    if (day == new Date().getDate().toString() ) {
+    if (day == this.dia.toString() && month == this.mes.toString() && year == this.año.toString()) {
       this.navCtrl.pop();
     }else{
       this.navCtrl.push( VistaDiariaPage, {uid:this.uid, op:1, day:day, month:month, year:year} );
